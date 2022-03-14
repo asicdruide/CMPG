@@ -325,7 +325,7 @@ for fb_id in ['front' , 'back' , 'block']:
     # Add new entities to the modelspace:
     msp = doc.modelspace()
 
-    file_name = Frame_Plate(fb_id , lr_id)
+    file_name = 'Frame/' + Frame_Plate(fb_id , lr_id)
 
     doc.saveas(file_name)
 

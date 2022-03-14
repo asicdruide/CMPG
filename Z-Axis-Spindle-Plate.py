@@ -339,7 +339,7 @@ for Spindle in [{'name' : 'GPenny 2.2kW ER20 square air cooled flange', 'id' : '
   # Add new entities to the modelspace:
   msp = doc.modelspace()
 
-  file_name = Z_Axis_Spindle_Plate(Spindle)
+  file_name = 'Z-Axis/' + Z_Axis_Spindle_Plate(Spindle)
 
   doc.saveas(file_name)
 

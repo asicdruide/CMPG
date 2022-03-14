@@ -207,9 +207,9 @@ def AddOn (lr_id):
   else:
     mx = -1
 
-  for (x,y) in [[37           , 94.7514]
-               ,[37 + 1*70.59 , 94.7514]
-               ,[37 + 2*70.59 , 94.7514]
+  for (x,y) in [[37 + 1*70.59 , 94.7514]
+              #,[37 + 2*70.59 , 94.7514]
+              #,[37           , 94.7514]
                ]:
     msp.add_circle((x * mx , y) , hole/2)
 
@@ -602,7 +602,7 @@ for (p_id , lr_id) in [['back'         , ""     ]
   # Add new entities to the modelspace:
   msp = doc.modelspace()
 
-  file_name = Portal_plate(p_id , lr_id)
+  file_name = 'Portal/' + Portal_plate(p_id , lr_id)
 
   doc.saveas(file_name)
 
