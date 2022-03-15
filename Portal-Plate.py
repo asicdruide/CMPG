@@ -1,16 +1,6 @@
 import ezdxf
 import math
-
-cfg = {'Portal' : {'back'         : {'thickness' :  10,'material'  : 'alu' ,'delta_x' : 50}  # delta_x:so much wider do you want your x-axis
-                  ,'side'         : {'thickness' :  10,'material'  : 'alu'                }
-                  ,'block'        : {'thickness' :  10,'material'  : 'alu'                }
-                  ,'motor_spacer' : {'thickness' :  10,'material'  : 'alu'                }
-                  ,'nut_spacer'   : {'thickness' :  10,'material'  : 'alu'                }
-                  }
-      }
-
-# non obvious dependencies:
-#  * if you choose the portal.block.thickness >10mm you have to either shorten the X-ballscrew(difficult) or grow the frame in x-direction(easy)
+from cfg import *
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -330,7 +320,7 @@ def Portal_plate(p_id , lr_id):
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (p_id == 'back'):
     # fixed parameters
-    width           = 666 + cfg['Portal']['back']['delta_x']
+    width           = 666 + (cfg['Ballscrew']['X']['length'] - 650)  # 650 from baseline design
     height          = 160     # height of plate
     border_distance =   7.5
     hole_diameter   =   5.2

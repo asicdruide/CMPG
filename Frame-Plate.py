@@ -1,17 +1,6 @@
 import ezdxf
 import math
-
-# free parameters
-cfg = {'Frame'  : {'front'  : {'thickness' :  10,'material'  : 'alu'}
-                  ,'back'   : {'thickness' :  10,'material'  : 'alu'}
-                  ,'block'  : {'thickness' :  10,'material'  : 'alu'}
-                  }
-      ,'Portal' : {'side'   : {'thickness' :  10,'material'  : 'alu'}
-                  }
-      }
-
-# non obvious dependencies:
-#  * if you choose the frame.block.thickness >10mm you have to either shorten the Y-ballscrews(difficult) or grow the frame in y-direction(easy)
+from cfg import *
 
 # ============================================================================================================
 

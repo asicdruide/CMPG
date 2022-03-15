@@ -1,8 +1,5 @@
 import ezdxf
-
-cfg = {'Z-Axis' : {'spindle-plate'  : {'thickness' :  10,'material'  : 'alu'}
-                  }
-      }
+from cfg import *
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
