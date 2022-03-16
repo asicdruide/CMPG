@@ -14,10 +14,10 @@ It's based on python and the ezdxf module (btw great stuff).
 This is work-in-progress, if you use it, you do it on your own risk.
 
 Planned improvements:
- * central setup file for all parameters
+ * ~~central setup file for all parameters~~ (done)
  * more dependencies calculated (less magic numbers)
  * output for non-plate values like extrusion length
- * parts library for common parts
+ * ~~parts library for common parts~~ (done)
 
 
 
