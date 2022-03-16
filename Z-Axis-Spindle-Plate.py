@@ -1,19 +1,6 @@
 import ezdxf
-from cfg import *
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def MGN112H(cx , cy):
-  width  =  20
-  height =  20
-  hole   =   3.2
-
-  msp.add_circle((cx - width / 2 , cy - height / 2) ,   hole/2)
-  msp.add_circle((cx + width / 2 , cy - height / 2) ,   hole/2)
-  msp.add_circle((cx + width / 2 , cy + height / 2) ,   hole/2)
-  msp.add_circle((cx - width / 2 , cy + height / 2) ,   hole/2)
-
-  return
+from cfg    import *
+from common import *
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -25,43 +12,6 @@ def AddOn(width):
   # i'd guess these are holes to screw the rails while plate is mounted
   msp.add_circle(( -width/2 + 13.5 , 80) ,   hole/2)
   msp.add_circle(( +width/2 - 13.5 , 80) ,   hole/2)
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def SFU1204_nutholder(cy , orientation):
-  if (orientation == 'vertical'):
-    width  =  35
-    height =  24
-  elif (orientation == 'horizontal'):
-    width  =  24
-    height =  35
-  else:
-    print("unknown orientation '%s' at SFU1204_nutholder" % orientation)
-    exit(1)
-
-  hole   =   5.2
-  hole2  =   9   # counter bore
-
-  msp.add_circle((-width / 2 , cy - height / 2) ,   hole/2)
-  msp.add_circle((+width / 2 , cy - height / 2) ,   hole/2)
-  msp.add_circle((+width / 2 , cy + height / 2) ,   hole/2)
-  msp.add_circle((-width / 2 , cy + height / 2) ,   hole/2)
-
-
-  # place holes and annotation
-  msp.add_circle((-width / 2 , cy - height / 2) ,   hole2/2 , dxfattribs={'layer' : 'annotation'})
-  msp.add_circle((+width / 2 , cy - height / 2) ,   hole2/2 , dxfattribs={'layer' : 'annotation'})
-  msp.add_circle((+width / 2 , cy + height / 2) ,   hole2/2 , dxfattribs={'layer' : 'annotation'})
-  msp.add_circle((-width / 2 , cy + height / 2) ,   hole2/2 , dxfattribs={'layer' : 'annotation'})
-
-  msp.add_text("counterbored 5mm deep"
-              ,dxfattribs={'style' : 'LiberationSerif'
-                          ,'height': 5
-                          ,'layer' : 'annotation'
-                          }
-             ).set_pos((0 , cy) , align='MIDDLE_CENTER')
 
   return
 
@@ -284,12 +234,12 @@ def Z_Axis_Spindle_Plate(spindle):
   shape.close(True)
 
   # Assemble parts
-  MGN112H(-ZRail_xdist/2 , ZBlock_y1)
-  MGN112H(-ZRail_xdist/2 , ZBlock_y2)
-  MGN112H( ZRail_xdist/2 , ZBlock_y1)
-  MGN112H( ZRail_xdist/2 , ZBlock_y2)
+  MGN12H(msp , -ZRail_xdist/2 , ZBlock_y1 , 0)
+  MGN12H(msp , -ZRail_xdist/2 , ZBlock_y2 , 0)
+  MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y1 , 0)
+  MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y2 , 0)
 
-  SFU1204_nutholder(ZNut_y , 'vertical')
+  SFU1204_nutholder(msp , ZNut_y , 'footprint_vertical')
 
   AddOn(width)
 

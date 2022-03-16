@@ -1,92 +1,7 @@
 import ezdxf
 import math
-from cfg import *
-
-# ============================================================================================================
-
-def BF12 (lr_id , cx , cy):   # center of ballscrew
-  hole1  =   5.2
-  hole2  =  26
-
-  if (lr_id == 'left'):
-    mx = 1
-  else:
-    mx = -1
-
-  msp.add_circle(((cx     ) * mx , cy      ) , hole2/2)
-
-  msp.add_circle(((cx - 23) * mx , cy      ) , hole1/2)
-  msp.add_circle(((cx + 23) * mx , cy      ) , hole1/2)
-  msp.add_circle(((cx - 23) * mx , cy  - 18) , hole1/2)
-  msp.add_circle(((cx + 23) * mx , cy  - 18) , hole1/2)
-
-  # add outline
-  msp.add_lwpolyline([( (cx-30)*mx , cy-25     )
-                     ,( (cx+30)*mx , cy-25     )
-                     ,( (cx+30)*mx , cy-25+32.5)
-                     ,( (cx+17)*mx , cy-25+32.5)
-                     ,( (cx+17)*mx , cy-25+43  )
-                     ,( (cx-17)*mx , cy-25+43  )
-                     ,( (cx-17)*mx , cy-25+32.5)
-                     ,( (cx-30)*mx , cy-25+32.5)
-                     ,( (cx-30)*mx , cy-25     )
-                     ]
-                    , dxfattribs={'layer': 'outline'}
-                    )
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def BK12 (lr_id , cx , cy):   # center of ballscrew
-  hole1  =   5.2
-
-  if (lr_id == 'left'):
-    mx = 1
-  else:
-    mx = -1
-
-  msp.add_circle(((cx - 23) * mx , cy      ) , hole1/2)
-  msp.add_circle(((cx + 23) * mx , cy      ) , hole1/2)
-  msp.add_circle(((cx - 23) * mx , cy  - 18) , hole1/2)
-  msp.add_circle(((cx + 23) * mx , cy  - 18) , hole1/2)
-
-  # add outline
-  msp.add_lwpolyline([( (cx-30)*mx , cy-25     )
-                     ,( (cx+30)*mx , cy-25     )
-                     ,( (cx+30)*mx , cy-25+32.5)
-                     ,( (cx+17)*mx , cy-25+32.5)
-                     ,( (cx+17)*mx , cy-25+43  )
-                     ,( (cx-17)*mx , cy-25+43  )
-                     ,( (cx-17)*mx , cy-25+32.5)
-                     ,( (cx-30)*mx , cy-25+32.5)
-                     ,( (cx-30)*mx , cy-25     )
-                     ]
-                    , dxfattribs={'layer': 'outline'}
-                    )
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def NEMA23 (lr_id , cx , cy):   # center of axis
-  hole1  =   5.2
-  hole2  =  38.5
-  width  = 47.14
-
-  if (lr_id == 'left'):
-    mx = 1
-  else:
-    mx = -1
-
-  msp.add_circle(((cx     ) * mx , cy      ) , hole2/2)
-
-  msp.add_circle(((cx - width/2) * mx , cy  + width/2) , hole1/2)
-  msp.add_circle(((cx + width/2) * mx , cy  + width/2) , hole1/2)
-  msp.add_circle(((cx - width/2) * mx , cy  - width/2) , hole1/2)
-  msp.add_circle(((cx + width/2) * mx , cy  - width/2) , hole1/2)
-
-  return
+from cfg    import *
+from common import *
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -105,48 +20,6 @@ def Block_connect (lr_id , cx , cy):   # center of ballscrew
              ,(-28.6 ,  32.5)
              ]:
     msp.add_circle(((cx + x) * mx , cy + y) , hole/2)
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def Face40x80 (lr_id , cx , cy):   # center of profile
-  hole  =   5.2
-
-  if (lr_id == 'left'):
-    mx = 1
-  else:
-    mx = -1
-
-  for yi in range(0,4):
-    msp.add_circle(((cx - 10) * mx , cy + 30 - yi*20) , hole/2)
-    msp.add_circle(((cx + 10) * mx , cy + 30 - yi*20) , hole/2)
-
-  # add outline
-  msp.add_lwpolyline([( (cx-20)*mx , cy-40     )
-                     ,( (cx+20)*mx , cy-40     )
-                     ,( (cx+20)*mx , cy+40     )
-                     ,( (cx-20)*mx , cy+40     )
-                     ,( (cx-20)*mx , cy-40     )
-                     ]
-                    , dxfattribs={'layer': 'outline'}
-                    )
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def Side40x40 (lr_id , cx , cy):   # center of holes
-  hole  =   5.2
-
-  if (lr_id == 'left'):
-    mx = 1
-  else:
-    mx = -1
-
-  for xi in range(0,4):
-    msp.add_circle(((cx + 30 - xi*20) * mx , cy - 10) , hole/2)
-    msp.add_circle(((cx + 30 - xi*20) * mx , cy + 10) , hole/2)
 
   return
 
@@ -219,15 +92,15 @@ def Frame_Plate(fb_id , lr_id):
     #  13mm MGN12 height (rail+block)
     #  20mm half width of Y-profile
     #                = 68mm
-    Face40x80(lr_id ,  68   +shift_x ,   0)
-    Side40x40(lr_id , 126.75+shift_x , -20)   # x is rounded, should be uncritical
+    Face40x80(msp   , ( 68   +shift_x)*mx ,   0 , 0)
+    Side40x40(msp   , (126.75+shift_x)*mx , -20 , 0)   # x is rounded, should be uncritical
 
     if (fb_id == 'front'):
       # front
-      BF12         (lr_id ,   0    ,   0)
+      BF12_face     (msp ,  0  ,   0 , 0)
     elif (fb_id == 'back'):
       # back
-      NEMA23       (lr_id ,   0    ,   0)
+      NEMA23       (msp  ,   0    ,   0 , 0)
       Block_connect(lr_id ,   0    ,   0)
 
     width  = (x2-x0)
@@ -265,7 +138,7 @@ def Frame_Plate(fb_id , lr_id):
 
     # add other elements...
     Block_connect(lr_id ,   0    ,   0)
-    BK12         (lr_id ,   0    ,   0)
+    BK12_face    (msp ,  0    ,   0  , 0)
 
     width  = (x3-x0)
     height = (y3-y0)

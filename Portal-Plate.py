@@ -1,37 +1,7 @@
 import ezdxf
 import math
-from cfg import *
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def BK12 (lr_id , cx , cy):   # center of ballscrew
-  hole1  =   5.2
-
-  if (lr_id == 'left' or lr_id == ""):
-    mx = 1
-  else:
-    mx = -1
-
-  msp.add_circle(((cx     ) * mx , cy  - 23) , hole1/2)
-  msp.add_circle(((cx     ) * mx , cy  + 23) , hole1/2)
-  msp.add_circle(((cx + 18) * mx , cy  - 23) , hole1/2)
-  msp.add_circle(((cx + 18) * mx , cy  + 23) , hole1/2)
-
-  # add outline
-  msp.add_lwpolyline([( (cx-25     )*-1*mx , cy-30)
-                     ,( (cx-25     )*-1*mx , cy+30)
-                     ,( (cx-25+32.5)*-1*mx , cy+30)
-                     ,( (cx-25+32.5)*-1*mx , cy+17)
-                     ,( (cx-25+43  )*-1*mx , cy+17)
-                     ,( (cx-25+43  )*-1*mx , cy-17)
-                     ,( (cx-25+32.5)*-1*mx , cy-17)
-                     ,( (cx-25+32.5)*-1*mx , cy-30)
-                     ,( (cx-25     )*-1*mx , cy-30)
-                     ]
-                    , dxfattribs={'layer': 'outline'}
-                    )
-
-  return
+from cfg    import *
+from common import *
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -54,141 +24,6 @@ def Block_connect (lr_id , cx , cy):   # center of ballscrew
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-def NEMA23 (lr_id , cx , cy):   # center of axis
-  hole1  =   5.2
-  hole2  =  38.5
-  width  = 47.14
-
-  if (lr_id == 'left'):
-    mx = 1
-  else:
-    mx = -1
-
-  msp.add_circle(((cx     ) * mx , cy      ) , hole2/2)
-
-  for x,y in [(- width/2 , - width/2)
-             ,(- width/2 , + width/2)
-             ,(+ width/2 , - width/2)
-             ,(+ width/2 , + width/2)
-             ]:
-    msp.add_circle(((cx + x)*mx , cy + y) , hole1/2)
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def MGN12H(lr_id , cx , cy):
-  if (lr_id == 'left' or lr_id == ""):
-    mx = 1
-  else:
-    mx = -1
-
-  width  =  20
-  height =  20
-  hole   =   3.2
-
-  for (x,y) in [[cx - width / 2 , cy - height / 2]
-               ,[cx - width / 2 , cy + height / 2]
-               ,[cx + width / 2 , cy - height / 2]
-               ,[cx + width / 2 , cy + height / 2]
-               ]:
-    msp.add_circle((x*mx , y) , hole/2)
-
-  width  = 45.4
-  height = 27
-
-  # add outline
-  msp.add_lwpolyline([( (cx-(width/2))*mx , cy-(height/2))
-                     ,( (cx+(width/2))*mx , cy-(height/2))
-                     ,( (cx+(width/2))*mx , cy+(height/2))
-                     ,( (cx-(width/2))*mx , cy+(height/2))
-                     ,( (cx-(width/2))*mx , cy-(height/2))
-                     ]
-                    , dxfattribs={'layer': 'outline'}
-                    )
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def SFU1605_holder(lr_id , cx , cy , orientation):
-  if (orientation == 'vertical'):
-    width  = 40
-    height = 24
-    ow     = 52
-    oh     = 40
-  elif (orientation == 'horizontal'):
-    width  =  24
-    height =  40
-    ow     =  40
-    oh     =  52
-  else:
-    print("unknown orientation '%s' at SFU1605_holder" % orientation)
-    exit(1)
-
-  if (lr_id == 'left' or lr_id == ""):
-    mx = 1
-  else:
-    mx = -1
-
-  hole = 5.2
-
-  for (x,y) in [[cx - (width / 2) , cy - (height / 2)]
-               ,[cx - (width / 2) , cy + (height / 2)]
-               ,[cx + (width / 2) , cy - (height / 2)]
-               ,[cx + (width / 2) , cy + (height / 2)]
-               ]:
-    msp.add_circle((x*mx , y) , hole/2)
-
-
-  # add outline
-  msp.add_lwpolyline([( (cx-(ow/2))*mx , cy-(oh/2))
-                     ,( (cx+(ow/2))*mx , cy-(oh/2))
-                     ,( (cx+(ow/2))*mx , cy+(oh/2))
-                     ,( (cx-(ow/2))*mx , cy+(oh/2))
-                     ,( (cx-(ow/2))*mx , cy-(oh/2))
-                     ]
-                    , dxfattribs={'layer': 'outline'}
-                    )
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def BF12 (lr_id , cx , cy):   # center of ballscrew, floating support
-  hole1  =   5.2
-  hole2  =  26
-
-  if (lr_id == 'left'):
-    mx = 1
-  else:
-    mx = -1
-
-  msp.add_circle(((cx     ) * mx , cy      ) , hole2/2)
-
-  msp.add_circle(((cx     ) * mx , cy - 23 ) , hole1/2)
-  msp.add_circle(((cx     ) * mx , cy + 23 ) , hole1/2)
-  msp.add_circle(((cx - 18) * mx , cy - 23 ) , hole1/2)
-  msp.add_circle(((cx - 18) * mx , cy + 23 ) , hole1/2)
-
-  # add outline
-  msp.add_lwpolyline([( (cx-25     )*mx , cy-30)
-                     ,( (cx-25     )*mx , cy+30)
-                     ,( (cx-25+32.5)*mx , cy+30)
-                     ,( (cx-25+32.5)*mx , cy+17)
-                     ,( (cx-25+43  )*mx , cy+17)
-                     ,( (cx-25+43  )*mx , cy-17)
-                     ,( (cx-25+32.5)*mx , cy-17)
-                     ,( (cx-25+32.5)*mx , cy-30)
-                     ,( (cx-25     )*mx , cy-30)
-                     ]
-                    , dxfattribs={'layer': 'outline'}
-                    )
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 def AddOn (lr_id):
   hole = 6.8
 
@@ -202,60 +37,6 @@ def AddOn (lr_id):
               #,[37           , 94.7514]
                ]:
     msp.add_circle((x * mx , y) , hole/2)
-
-  return
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-def Face40x60 (lr_id , cx , cy , counterbore_depth):   # center of profile
-  hole = 5.2
-
-  if (lr_id == 'left'):
-    mx = 1
-  else:
-    mx = -1
-
-  holes =  [[cx - 20 , cy + 10]
-           ,[cx - 20 , cy - 10]
-           ,[cx      , cy + 10]
-           ,[cx      , cy - 10]
-           ,[cx + 20 , cy + 10]
-           ,[cx + 20 , cy - 10]
-           ]
-
-
-  for (x,y) in holes:
-    msp.add_circle((x * mx , y) , hole/2)
-
-  # add outline
-  msp.add_lwpolyline([( (cx-30)*mx , cy-20     )
-                     ,( (cx+30)*mx , cy-20     )
-                     ,( (cx+30)*mx , cy+20     )
-                     ,( (cx-30)*mx , cy+20     )
-                     ,( (cx-30)*mx , cy-20     )
-                     ]
-                    , dxfattribs={'layer': 'outline'}
-                    )
-
-
-  if (counterbore_depth > 0):
-    hole2  =   9   # counter bore
-
-    for (x,y) in holes:
-      msp.add_circle((x * mx , y) , hole2/2 , dxfattribs={'layer' : 'annotation'})
-
-    msp.add_text("counterbored %d[mm] deep" % counterbore_depth
-                ,dxfattribs={'style' : 'LiberationSerif'
-                            ,'height': 5
-                            ,'layer' : 'annotation'
-                            }
-               ).set_pos((cx , cy) , align='MIDDLE_CENTER')
-
-
-
-
-
-
 
   return
 
@@ -414,20 +195,18 @@ def Portal_plate(p_id , lr_id):
     shape.close(True)
 
     # add other elements...
-    MGN12H(lr_id ,  27    , 56)
-    MGN12H(lr_id , 188.18 , 56)
+    MGN12H         (msp ,  27   *mx ,  56      , 0)
+    MGN12H         (msp , 188.18*mx ,  56      , 0)
+    SFU1605_holder (msp , 107.59*mx ,  26      , 0)
 
-    SFU1605_holder(lr_id , 107.59 , 26 , 'horizontal')
-
-    Face40x60(lr_id , 35 , 126.059 , cfg['Portal']['side']['thickness']-10)
-    Face40x60(lr_id , 35 , 251.059 , cfg['Portal']['side']['thickness']-10)
+    Face40x60      (msp ,  35   *mx , 126.059  , 0 , cfg['Portal']['side']['thickness']-10)
+    Face40x60      (msp ,  35   *mx , 251.059  , 0 , cfg['Portal']['side']['thickness']-10)
 
     if (lr_id == 'left'):
-      BF12(lr_id , 48  , 188.5590)
+      BF12_face    (msp ,  48       , 188.5590 , -90)
     else:
-      NEMA23       (lr_id , 48 , 188.559)
-      Block_connect(lr_id , 48 , 188.559)
-
+      NEMA23       (msp , -48       , 188.559  ,   0)
+      Block_connect(lr_id ,  48  , 188.559)
 
     AddOn(lr_id)
 
@@ -461,7 +240,7 @@ def Portal_plate(p_id , lr_id):
     shape.close(True)
 
     # add other elements...
-    NEMA23(lr_id ,   0    ,   0)
+    NEMA23(msp  ,   0    ,   0  , 0)
 
     width  = (x1-x0)
     height = (y1-y0)
@@ -491,13 +270,7 @@ def Portal_plate(p_id , lr_id):
                               )
     shape.close(True)
 
-    # add other elements...
-    for x,y in [[-12 , -20]
-               ,[ 12 , -20]
-               ,[ 12 ,  20]
-               ,[-12 ,  20]
-               ]:
-      msp.add_circle((x, y) , hole/2)
+    SFU1605_holder(msp , 0 , 0 , 0)
 
     width  = (x1-x0)
     height = (y1-y0)
@@ -535,7 +308,7 @@ def Portal_plate(p_id , lr_id):
 
     # add other elements...
     Block_connect(lr_id ,   0    ,   0)
-    BK12         (lr_id ,   0    ,   0)
+    BK12_face    (msp ,  0    ,   0  , 90)
 
     width  = (x2-x0)
     height = (y3-y0)
