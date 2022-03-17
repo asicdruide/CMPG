@@ -249,8 +249,15 @@ def Portal_plate(p_id , lr_id):
     text_y = y1
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  elif (p_id == 'nut_spacer'):
+  elif (p_id == 'nut_spacer'
+        or
+        p_id == 'side_plate_spacer'):
     hole = 5.2
+
+    if (p_id == 'side_plate_spacer'):
+      cr = 1
+
+
 
     # x/y values
     (x0 , x1) = [-20 , 20]
@@ -348,13 +355,20 @@ def Portal_plate(p_id , lr_id):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # loop thru all plates to draw...
-for (p_id , lr_id) in [['back'         , ""     ]
-                      ,['block'        , ""     ]
-                      ,['side'         , 'left' ]
-                      ,['side'         , 'right']
-                      ,['motor_spacer' , ""     ]
-                      ,['nut_spacer'   , ""     ]
-                      ]:
+plates = [['back'              , ""     ]
+         ,['block'             , ""     ]
+         ,['side'              , 'left' ]
+         ,['side'              , 'right']
+         ,['motor_spacer'      , ""     ]
+         ,['nut_spacer'        , ""     ]
+         ]
+
+if (cfg['Portal']['side_plate_spacer']['thickness'] > 0):
+  plates.append(['side_plate_spacer' , ""     ])
+
+
+
+for (p_id , lr_id) in plates:
 
   # Create a new DXF R2010 drawing, official DXF version name: "AC1024"
   doc = ezdxf.new('R2010' , setup=True)

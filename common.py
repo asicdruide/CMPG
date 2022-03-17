@@ -56,22 +56,88 @@ def rotateXY(px , py , cx , cy , angle):
 def BF12_face(msp , cx , cy , rotate):   # center of ballscrew
   hole1  =   5.2
   hole2  =  26
+  B      =  60
+  h      =  25
+  H1     =  32.5
+  H      =  43
+  B1     =  34
+  P      =  46
+  E      =  18
 
-  msp.add_circle(     rotateXY(cx    , cy         , cx , cy , rotate) , hole2/2) # the large hole
-  msp.add_circle(     rotateXY(cx-23 , cy         , cx , cy , rotate) , hole1/2) # mounting holes
-  msp.add_circle(     rotateXY(cx+23 , cy         , cx , cy , rotate) , hole1/2) # mounting holes
-  msp.add_circle(     rotateXY(cx-23 , cy-18      , cx , cy , rotate) , hole1/2) # mounting holes
-  msp.add_circle(     rotateXY(cx+23 , cy-18      , cx , cy , rotate) , hole1/2) # mounting holes
+  msp.add_circle(     rotateXY(cx     , cy         , cx , cy , rotate) , hole2/2) # the large hole
+  msp.add_circle(     rotateXY(cx-P/2 , cy         , cx , cy , rotate) , hole1/2) # mounting holes
+  msp.add_circle(     rotateXY(cx+P/2 , cy         , cx , cy , rotate) , hole1/2) # mounting holes
+  msp.add_circle(     rotateXY(cx-P/2 , cy-E       , cx , cy , rotate) , hole1/2) # mounting holes
+  msp.add_circle(     rotateXY(cx+P/2 , cy-E       , cx , cy , rotate) , hole1/2) # mounting holes
 
   # draw outline
-  shape = msp.add_lwpolyline([rotateXY(cx-30 , cy-25      , cx , cy , rotate)
-                             ,rotateXY(cx+30 , cy-25      , cx , cy , rotate)
-                             ,rotateXY(cx+30 , cy-25+32.5 , cx , cy , rotate)
-                             ,rotateXY(cx+17 , cy-25+32.5 , cx , cy , rotate)
-                             ,rotateXY(cx+17 , cy-25+43   , cx , cy , rotate)
-                             ,rotateXY(cx-17 , cy-25+43   , cx , cy , rotate)
-                             ,rotateXY(cx-17 , cy-25+32.5 , cx , cy , rotate)
-                             ,rotateXY(cx-30 , cy-25+32.5 , cx , cy , rotate)
+  shape = msp.add_lwpolyline([rotateXY(cx-B/2 , cy-h       , cx , cy , rotate)  # 1
+                             ,rotateXY(cx+B/2 , cy-h       , cx , cy , rotate)  # 2
+                             ,rotateXY(cx+B/2 , cy-h+H1    , cx , cy , rotate)  # 3
+                             ,rotateXY(cx+B1/2, cy-h+H1    , cx , cy , rotate)  # 4
+                             ,rotateXY(cx+B1/2, cy-h+H     , cx , cy , rotate)  # 5
+                             ,rotateXY(cx-B1/2, cy-h+H     , cx , cy , rotate)  # 6
+                             ,rotateXY(cx-B1/2, cy-h+H1    , cx , cy , rotate)  # 7
+                             ,rotateXY(cx-B/2 , cy-h+H1    , cx , cy , rotate)  # 8
+                             ]
+                            , dxfattribs={'layer': 'outline'}
+                            )
+
+  shape.close(True)
+
+  return
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# floating end ballscrew support
+def BF10_face(msp , cx , cy , rotate):   # center of ballscrew
+  hole1  =   5.2
+  hole2  =  23
+  B      =  60
+  h      =  22
+  H1     =  32.5
+  H      =  39
+  B1     =  34
+  P      =  46
+  E      =  15
+
+  msp.add_circle(     rotateXY(cx     , cy         , cx , cy , rotate) , hole2/2) # the large hole
+  msp.add_circle(     rotateXY(cx-P/2 , cy         , cx , cy , rotate) , hole1/2) # mounting holes
+  msp.add_circle(     rotateXY(cx+P/2 , cy         , cx , cy , rotate) , hole1/2) # mounting holes
+  msp.add_circle(     rotateXY(cx-P/2 , cy-E       , cx , cy , rotate) , hole1/2) # mounting holes
+  msp.add_circle(     rotateXY(cx+P/2 , cy-E       , cx , cy , rotate) , hole1/2) # mounting holes
+
+  # draw outline
+  shape = msp.add_lwpolyline([rotateXY(cx-B/2 , cy-h       , cx , cy , rotate)  # 1
+                             ,rotateXY(cx+B/2 , cy-h       , cx , cy , rotate)  # 2
+                             ,rotateXY(cx+B/2 , cy-h+H1    , cx , cy , rotate)  # 3
+                             ,rotateXY(cx+B1/2, cy-h+H1    , cx , cy , rotate)  # 4
+                             ,rotateXY(cx+B1/2, cy-h+H     , cx , cy , rotate)  # 5
+                             ,rotateXY(cx-B1/2, cy-h+H     , cx , cy , rotate)  # 6
+                             ,rotateXY(cx-B1/2, cy-h+H1    , cx , cy , rotate)  # 7
+                             ,rotateXY(cx-B/2 , cy-h+H1    , cx , cy , rotate)  # 8
+                             ]
+                            , dxfattribs={'layer': 'outline'}
+                            )
+  shape.close(True)
+
+  return
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# floating end ballscrew support
+def BF10_footprint(msp , cx , cy , rotate):   # center of ballscrew
+  hole1  =   5.2
+  B      =  60
+  L      =  20
+  P      =  46
+
+  msp.add_circle(     rotateXY(cx , cy-P/2         , cx , cy , rotate) , hole1/2) # mounting holes
+  msp.add_circle(     rotateXY(cx , cy+P/2         , cx , cy , rotate) , hole1/2) # mounting holes
+
+  # draw outline
+  shape = msp.add_lwpolyline([rotateXY(cx-L/2 , cy-B/2     , cx , cy , rotate)  # 1
+                             ,rotateXY(cx+L/2 , cy-B/2     , cx , cy , rotate)  # 2
+                             ,rotateXY(cx+L/2 , cy+B/2     , cx , cy , rotate)  # 3
+                             ,rotateXY(cx-L/2 , cy+B/2     , cx , cy , rotate)  # 4
                              ]
                             , dxfattribs={'layer': 'outline'}
                             )

@@ -251,8 +251,8 @@ def Z_Axis_Spindle_Plate(spindle):
   txt = (                 "%s" % file_name
         ,    "width=%5.2f[mm]" % width
         ,   "height=%5.2f[mm]" % height
-        ,"thickness=%5.2f[mm]" % (cfg['Z-Axis']['spindle-plate']['thickness'])
-        , "material=%s"        % (cfg['Z-Axis']['spindle-plate']['material'])
+        ,"thickness=%5.2f[mm]" % (cfg['Z-Axis']['spindle']['thickness'])
+        , "material=%s"        % (cfg['Z-Axis']['spindle']['material'])
         , "spindle=%s"         % (spindle['name'])
         )
 
