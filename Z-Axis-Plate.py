@@ -167,9 +167,10 @@ def Z_Axis_Plate(name):
         ,   "height=%5.2f[mm]" % height
         ,"thickness=%5.2f[mm]" % (cfg['Z-Axis'][name]['thickness'])
         , "material=%s"        % (cfg['Z-Axis'][name]['material'])
+        ,   "amount=%d"        % (cfg['Z-Axis'][name]['amount'])
         )
 
-  for i in range(0,5):
+  for i in range(0,len(txt)):
     msp.add_text(txt[i]
                 ,dxfattribs={'style' : 'LiberationSerif'
                             ,'height': 5
@@ -178,7 +179,10 @@ def Z_Axis_Plate(name):
                ).set_pos((text_x , text_y - 10*i) , align='MIDDLE_CENTER')
 
 
-  return file_name
+  return  "%dx_%dmm_%s" % (cfg['Z-Axis'][name]['amount']
+                          ,cfg['Z-Axis'][name]['thickness']
+                          ,file_name
+                          )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

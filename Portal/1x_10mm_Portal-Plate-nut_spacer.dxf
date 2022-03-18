@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459655.900474537
+2459657.7607060187
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459655.900474537
+2459657.7607060187
   9
 $TDUUPDATE
  40
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{E1FCC2A1-4191-443F-8890-529C3C9A901F}
+{4FDBBF4A-03BD-4746-B36A-677161A1BE46}
   9
 $VERSIONGUID
   2
-{0F3B2060-61C2-46F8-B4BA-F29AA94A9050}
+{14416E7F-0722-44CC-A645-A7F1FCA125B7}
   9
 $EXTNAMES
 290
@@ -1323,9 +1323,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1339,9 +1339,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -5273,43 +5273,43 @@ AcDbPolyline
  70
 1
  10
--23.5
+-15.0
  20
--28.5
+-26.0
  10
-23.5
+15.0
  20
--28.5
+-26.0
  42
 0.4142135
  10
-28.5
+20.0
  20
--23.5
+-21.0
  10
-28.5
+20.0
  20
-23.5
+21.0
  42
 0.4142135
  10
-23.5
+15.0
  20
-28.5
+26.0
  10
--23.5
+-15.0
  20
-28.5
+26.0
  42
 0.4142135
  10
--28.5
+-20.0
  20
-23.5
+21.0
  10
--28.5
+-20.0
  20
--23.5
+-21.0
  42
 0.4142135
   0
@@ -5325,13 +5325,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-0.0
+-12.0
  20
-0.0
+-20.0
  30
 0.0
  40
-19.25
+2.6
   0
 CIRCLE
   5
@@ -5345,9 +5345,9 @@ AcDbEntity
 100
 AcDbCircle
  10
--23.57
+-12.0
  20
--23.57
+20.0
  30
 0.0
  40
@@ -5365,9 +5365,9 @@ AcDbEntity
 100
 AcDbCircle
  10
--23.57
+12.0
  20
-23.57
+-20.0
  30
 0.0
  40
@@ -5385,29 +5385,9 @@ AcDbEntity
 100
 AcDbCircle
  10
-23.57
+12.0
  20
--23.57
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-91
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-23.57
- 20
-23.57
+20.0
  30
 0.0
  40
@@ -5415,7 +5395,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-92
+91
 330
 17
 100
@@ -5425,41 +5405,61 @@ outline
 100
 AcDbPolyline
  90
-8
+4
  70
 1
  10
--25.5
+-20.0
  20
--28.5
+-26.0
  10
-25.5
+20.0
  20
--28.5
+-26.0
  10
-28.5
+20.0
  20
--25.5
+26.0
  10
-28.5
+-20.0
  20
-25.5
+26.0
+  0
+TEXT
+  5
+92
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
  10
-25.5
+0.0
  20
-28.5
- 10
--25.5
- 20
-28.5
- 10
--28.5
- 20
-25.5
- 10
--28.5
- 20
--25.5
+86.0
+ 30
+0.0
+ 40
+5.0
+  1
+Portal-Plate-nut_spacer.dxf
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+86.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
   0
 TEXT
   5
@@ -5475,13 +5475,13 @@ AcDbText
  10
 0.0
  20
-78.5
+76.0
  30
 0.0
  40
 5.0
   1
-Portal-Plate-motor_spacer.dxf
+width=40.00[mm]
   7
 LiberationSerif
  72
@@ -5489,7 +5489,7 @@ LiberationSerif
  11
 0.0
  21
-78.5
+76.0
  31
 0.0
 100
@@ -5511,13 +5511,13 @@ AcDbText
  10
 0.0
  20
-68.5
+66.0
  30
 0.0
  40
 5.0
   1
-width=57.00[mm]
+height=52.00[mm]
   7
 LiberationSerif
  72
@@ -5525,7 +5525,7 @@ LiberationSerif
  11
 0.0
  21
-68.5
+66.0
  31
 0.0
 100
@@ -5547,13 +5547,13 @@ AcDbText
  10
 0.0
  20
-58.5
+56.0
  30
 0.0
  40
 5.0
   1
-height=57.00[mm]
+thickness=10.00[mm]
   7
 LiberationSerif
  72
@@ -5561,7 +5561,7 @@ LiberationSerif
  11
 0.0
  21
-58.5
+56.0
  31
 0.0
 100
@@ -5583,13 +5583,13 @@ AcDbText
  10
 0.0
  20
-48.5
+46.0
  30
 0.0
  40
 5.0
   1
-thickness=10.00[mm]
+material=alu
   7
 LiberationSerif
  72
@@ -5597,7 +5597,7 @@ LiberationSerif
  11
 0.0
  21
-48.5
+46.0
  31
 0.0
 100
@@ -5619,13 +5619,13 @@ AcDbText
  10
 0.0
  20
-38.5
+36.0
  30
 0.0
  40
 5.0
   1
-material=alu
+amount=1
   7
 LiberationSerif
  72
@@ -5633,7 +5633,7 @@ LiberationSerif
  11
 0.0
  21
-38.5
+36.0
  31
 0.0
 100
@@ -6747,7 +6747,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-16T20:36:41.207549+00:00
+0.17.2 @ 2022-03-18T17:15:25.468752+00:00
   0
 VISUALSTYLE
   5
@@ -7459,7 +7459,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-16T20:36:41.214822+00:00
+0.17.2 @ 2022-03-18T17:15:25.476323+00:00
   0
 ENDSEC
   0

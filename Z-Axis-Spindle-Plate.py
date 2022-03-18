@@ -175,11 +175,11 @@ def Spindle_outline(spindle):
            ,(x1 , y4)
            ]
 
-  msp.add_lwpolyline(points                                   , dxfattribs={'layer': 'spindle_outline'})
+  msp.add_lwpolyline(points                                   , dxfattribs={'layer': 'outline'})
 
   # reference line of bottom/top of default spindle...
-  msp.add_lwpolyline([(-width1 , -67.5 ) , (width1 , -67.5 )] , dxfattribs={'layer': 'spindle_outline'})
-  msp.add_lwpolyline([(-width1 , 171.44) , (width1 , 171.44)] , dxfattribs={'layer': 'spindle_outline'})
+  msp.add_lwpolyline([(-width1 , -67.5 ) , (width1 , -67.5 )] , dxfattribs={'layer': 'outline'})
+  msp.add_lwpolyline([(-width1 , 171.44) , (width1 , 171.44)] , dxfattribs={'layer': 'outline'})
 
   return
 
@@ -234,10 +234,10 @@ def Z_Axis_Spindle_Plate(spindle):
   shape.close(True)
 
   # Assemble parts
-  MGN12H(msp , -ZRail_xdist/2 , ZBlock_y1 , 0)
-  MGN12H(msp , -ZRail_xdist/2 , ZBlock_y2 , 0)
-  MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y1 , 0)
-  MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y2 , 0)
+  MGN12H(msp , -ZRail_xdist/2 , ZBlock_y1 , 90)
+  MGN12H(msp , -ZRail_xdist/2 , ZBlock_y2 , 90)
+  MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y1 , 90)
+  MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y2 , 90)
 
   SFU1204_nutholder(msp , ZNut_y , 'footprint_vertical')
 
@@ -254,6 +254,7 @@ def Z_Axis_Spindle_Plate(spindle):
         ,"thickness=%5.2f[mm]" % (cfg['Z-Axis']['spindle']['thickness'])
         , "material=%s"        % (cfg['Z-Axis']['spindle']['material'])
         , "spindle=%s"         % (spindle['name'])
+        ,   "amount=%d"        % (cfg['Z-Axis']['spindle']['amount'])
         )
 
   for i in range(0,len(txt)):
@@ -264,7 +265,10 @@ def Z_Axis_Spindle_Plate(spindle):
                             }
                ).set_pos((0 , height + 120 - 10*i) , align='MIDDLE_CENTER')
 
-  return file_name
+  return  "%dx_%dmm_%s" % (cfg['Z-Axis']['spindle']['amount']
+                          ,cfg['Z-Axis']['spindle']['thickness']
+                          ,file_name
+                          )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -280,8 +284,8 @@ for Spindle in [{'name' : 'GPenny 2.2kW ER20 square air cooled flange', 'id' : '
   # Create a new DXF R2010 drawing, official DXF version name: "AC1024"
   doc = ezdxf.new('R2010' , setup=True)
 
-  doc.layers.add(name="annotation"      , color=2)
-  doc.layers.add(name="spindle_outline" , color=2)
+  doc.layers.add(name="annotation"  , color=2)
+  doc.layers.add(name="outline"     , color=2)
 
   # Add new entities to the modelspace:
   msp = doc.modelspace()

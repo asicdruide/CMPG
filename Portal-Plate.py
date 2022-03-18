@@ -5,10 +5,10 @@ from common import *
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-def Block_connect (lr_id , cx , cy):   # center of ballscrew
+def Block_connect (p_variant , cx , cy):   # center of ballscrew
   hole = 6.2
 
-  if (lr_id == 'left' or lr_id == ""):
+  if (p_variant == 'left' or p_variant == ""):
     mx = 1
   else:
     mx = -1
@@ -24,10 +24,10 @@ def Block_connect (lr_id , cx , cy):   # center of ballscrew
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-def AddOn (lr_id):
+def AddOn (p_variant):
   hole = 6.8
 
-  if (lr_id == 'left'):
+  if (p_variant == 'left'):
     mx = 1
   else:
     mx = -1
@@ -75,20 +75,22 @@ def outer_corner (cr , start_angle , stop_angle):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-def Portal_plate(p_id , lr_id):
-  if (lr_id == ""):
-    file_name = ('Portal-Plate-%s.dxf'    % (p_id))
-  else:
-    file_name = ('Portal-Plate-%s-%s.dxf' % (p_id , lr_id))
+def Portal_plate(p_name , p_variant):
+  if (p_variant == ""):
+    file_name = 'Portal-Plate-%s.dxf'    % (p_name)
 
-  if (lr_id == 'left' or lr_id == ""):
+  else:
+    file_name = 'Portal-Plate-%s-%s.dxf' % (p_name , p_variant)
+
+
+  if (p_variant == 'left' or p_variant == ""):
     # normal direction
     mx      = 1
-  elif (lr_id == 'right'):
+  elif (p_variant == 'right'):
     # mirrored in x-direction
     mx      = -1
   else:
-    print("ERROR: don't know how to draw Portal_plate(%s,%s)" % (p_id , lr_id))
+    print("ERROR: don't know how to draw Portal_plate(%s,%s)" % (p_name , p_variant))
     exit(1)
 
   cr    = 5                     # corner radius
@@ -99,7 +101,7 @@ def Portal_plate(p_id , lr_id):
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (p_id == 'back'):
+  if (p_name == 'back'):
     # fixed parameters
     width           = 666 + (cfg['Ballscrew']['X']['length'] - 650)  # 650 from baseline design
     height          = 160     # height of plate
@@ -148,8 +150,8 @@ def Portal_plate(p_id , lr_id):
     text_x = 0
     text_y = height
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  elif (p_id == 'side'):
-    if (lr_id == 'left'):
+  elif (p_name == 'side'):
+    if (p_variant == 'left'):
       mx = 1
     else:
       mx = -1
@@ -202,25 +204,25 @@ def Portal_plate(p_id , lr_id):
     Face40x60      (msp ,  35   *mx , 126.059  , 0 , cfg['Portal']['side']['thickness']-10)
     Face40x60      (msp ,  35   *mx , 251.059  , 0 , cfg['Portal']['side']['thickness']-10)
 
-    if (lr_id == 'left'):
+    if (p_variant == 'left'):
       BF12_face    (msp ,  48       , 188.5590 , -90)
     else:
       NEMA23       (msp , -48       , 188.559  ,   0)
-      Block_connect(lr_id ,  48  , 188.559)
+      Block_connect(p_variant ,  48  , 188.559)
 
-    AddOn(lr_id)
+    AddOn(p_variant)
 
     width  = x5 - x0
     height = y5 - y0
 
-    if (lr_id == 'left'):
+    if (p_variant == 'left'):
       text_x = x3
     else:
       text_x = -x3
 
     text_y = y5
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  elif (p_id == 'motor_spacer'):
+  elif (p_name == 'motor_spacer'):
     # x/y values under the assumption that the center of ballscrew/motor-axis is at (0,0)
     (x0 , x1) = [-28.5 , 28.5]
     (y0 , y1) = [-28.5 , 28.5]
@@ -249,12 +251,12 @@ def Portal_plate(p_id , lr_id):
     text_y = y1
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  elif (p_id == 'nut_spacer'
+  elif (p_name == 'nut_spacer'
         or
-        p_id == 'side_plate_spacer'):
+        p_name == 'side_plate_spacer'):
     hole = 5.2
 
-    if (p_id == 'side_plate_spacer'):
+    if (p_name == 'side_plate_spacer'):
       cr = 1
 
 
@@ -286,7 +288,7 @@ def Portal_plate(p_id , lr_id):
     text_y = y1
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  elif (p_id == 'block'):
+  elif (p_name == 'block'):
     # x/y values under the assumption that the center of ballscrew/motor-axis is at (0,0)
     (x0 , x1 , x2     ) = [-17   ,  17.2 , 43  ]
     (y0 , y1 , y2 , y3) = [-42.5 , -17.2 , 17.2 , 42.5]
@@ -314,7 +316,7 @@ def Portal_plate(p_id , lr_id):
     shape.close(True)
 
     # add other elements...
-    Block_connect(lr_id ,   0    ,   0)
+    Block_connect(p_variant ,   0    ,   0)
     BK12_face    (msp ,  0    ,   0  , 90)
 
     width  = (x2-x0)
@@ -325,7 +327,7 @@ def Portal_plate(p_id , lr_id):
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   else:
-    print("ERROR: don't know how to draw Portal_Plate(%s,%s)" % (p_id , lr_id))
+    print("ERROR: don't know how to draw Portal_Plate(%s,%s)" % (p_name , p_variant))
     exit(1)
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -336,54 +338,46 @@ def Portal_plate(p_id , lr_id):
   txt = (                 "%s" % file_name
         ,    "width=%5.2f[mm]" % width
         ,   "height=%5.2f[mm]" % height
-        ,"thickness=%5.2f[mm]" % (cfg['Portal'][p_id]['thickness'])
-        , "material=%s"        % (cfg['Portal'][p_id]['material'])
+        ,"thickness=%5.2f[mm]" % (cfg['Portal'][p_name]['thickness'])
+        , "material=%s"        % (cfg['Portal'][p_name]['material'])
+        ,   "amount=%d"        % (cfg['Portal'][p_name]['amount'])
         )
 
-  for i in range(0,5):
+  for i in range(0,len(txt)):
     msp.add_text(txt[i]
                 ,dxfattribs={'style' : 'LiberationSerif'
                             ,'height': 5
                             ,'layer' : 'annotation'
                             }
-               ).set_pos((text_x , text_y + 50 - 10*i) , align='MIDDLE_CENTER')
+               ).set_pos((text_x , text_y + 60 - 10*i) , align='MIDDLE_CENTER')
 
-  return file_name
+  return  "%dx_%dmm_%s" % (cfg['Portal'][p_name]['amount']
+                          ,cfg['Portal'][p_name]['thickness']
+                          ,file_name
+                          )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # loop thru all plates to draw...
-plates = [['back'              , ""     ]
-         ,['block'             , ""     ]
-         ,['side'              , 'left' ]
-         ,['side'              , 'right']
-         ,['motor_spacer'      , ""     ]
-         ,['nut_spacer'        , ""     ]
-         ]
+for p_name in      cfg['Portal'].keys():
+  for p_variant in cfg['Portal'][p_name]['variant']:
+    if (           cfg['Portal'][p_name]['thickness'] > 0):
+      # Create a new DXF R2010 drawing, official DXF version name: "AC1024"
+      doc = ezdxf.new('R2010' , setup=True)
 
-if (cfg['Portal']['side_plate_spacer']['thickness'] > 0):
-  plates.append(['side_plate_spacer' , ""     ])
+      doc.layers.add(name="annotation"     , color=2)
+      doc.layers.add(name="outline"        , color=2)
 
+      # Add new entities to the modelspace:
+      msp = doc.modelspace()
 
+      file_name = 'Portal/' + Portal_plate(p_name , p_variant)
 
-for (p_id , lr_id) in plates:
+      doc.saveas(file_name)
 
-  # Create a new DXF R2010 drawing, official DXF version name: "AC1024"
-  doc = ezdxf.new('R2010' , setup=True)
-
-  doc.layers.add(name="annotation"     , color=2)
-  doc.layers.add(name="outline"        , color=2)
-
-  # Add new entities to the modelspace:
-  msp = doc.modelspace()
-
-  file_name = 'Portal/' + Portal_plate(p_id , lr_id)
-
-  doc.saveas(file_name)
-
-  print("INFO: file '%s' written" % file_name)
+      print("INFO: file '%s' written" % file_name)
 
 
 

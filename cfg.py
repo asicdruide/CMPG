@@ -5,23 +5,23 @@
 #  * if you choose the  frame.block.thickness >10mm you have to either shorten the Y-ballscrews(difficult) or grow the frame in y-direction(easy)
 
 
-cfg = {'Portal'    : {'back'              : {'thickness' :  10,'material' : 'alu'}
-                     ,'side'              : {'thickness' :  10,'material' : 'alu'}
-                     ,'block'             : {'thickness' :  10,'material' : 'alu'}
-                     ,'motor_spacer'      : {'thickness' :  10,'material' : 'alu'}
-                     ,'nut_spacer'        : {'thickness' :  10,'material' : 'alu'}
+cfg = {'Portal'    : {'back'              : {'thickness' :  10,'material' : 'alu' , 'variant' : [       ''     ],'amount':1}
+                     ,'side'              : {'thickness' :  10,'material' : 'alu' , 'variant' : ['left','right'],'amount':1}
+                     ,'block'             : {'thickness' :  10,'material' : 'alu' , 'variant' : [       ''     ],'amount':1}
+                     ,'motor_spacer'      : {'thickness' :  10,'material' : 'alu' , 'variant' : [       ''     ],'amount':1}
+                     ,'nut_spacer'        : {'thickness' :  10,'material' : 'alu' , 'variant' : [       ''     ],'amount':1}
                      }
 
-      ,'Frame'     : {'front'             : {'thickness' :  10,'material' : 'alu'}
-                     ,'back'              : {'thickness' :  10,'material' : 'alu'}
-                     ,'block'             : {'thickness' :  10,'material' : 'alu'}
+      ,'Frame'     : {'front'             : {'thickness' :  10,'material' : 'alu' , 'variant' : ['left','right'],'amount':1}
+                     ,'back'              : {'thickness' :  10,'material' : 'alu' , 'variant' : ['left','right'],'amount':1}
+                     ,'block'             : {'thickness' :  10,'material' : 'alu' , 'variant' : ['left','right'],'amount':1}
                      }
 
 
-      ,'Z-Axis'    : {'spindle'           : {'thickness' :  10,'material' : 'alu'}
-                     ,'bottom'            : {'thickness' :  10,'material' : 'alu'}
-                     ,'top'               : {'thickness' :  10,'material' : 'alu'}
-                     ,'back'              : {'thickness' :  10,'material' : 'alu'}
+      ,'Z-Axis'    : {'spindle'           : {'thickness' :  10,'material' : 'alu' , 'variant' : ['left','right'],'amount':1}
+                     ,'bottom'            : {'thickness' :  10,'material' : 'alu' , 'variant' : ['left','right'],'amount':1}
+                     ,'top'               : {'thickness' :  10,'material' : 'alu' , 'variant' : [       ''     ],'amount':1}
+                     ,'back'              : {'thickness' :  10,'material' : 'alu' , 'variant' : [       ''     ],'amount':1}
                      }
 
       ,'Ballscrew' : {'X'                 : {'length' : 700}  #  650 is baseline design
@@ -31,6 +31,7 @@ cfg = {'Portal'    : {'back'              : {'thickness' :  10,'material' : 'alu
       }
 
 
-
-cfg['Portal']['side_plate_spacer'] = {'thickness' :  15 - cfg['Portal']['side']['thickness'],'material'  : 'alu'}
+# baseline design assumes a portal side thickness of 15mm
+# if you have 10, you need a spacer of 5mm
+cfg['Portal']['side_plate_spacer'] = {'thickness' :  15 - cfg['Portal']['side']['thickness'],'material'  : 'alu', 'variant' : [       ''     ],'amount':2}
 
