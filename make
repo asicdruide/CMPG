@@ -22,3 +22,8 @@ if ($par == "z-axis" || $par == "all") then
   python3.8 ./Z-Axis-Plate.py
 endif
 
+if ($par == "extrusion" || $par == "all") then
+  rm -f XYZ-Extrusion.txt
+  python3.8 ./XYZ-Extrusion.py
+endif
+

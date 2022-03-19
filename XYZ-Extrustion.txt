@@ -1,0 +1,15 @@
+Extrusions:
+ * frame-X-extrusion  (2 x 40x40)   610mm
+ * frame-Y-extrusion  (2 x 40x80)   796mm
+ * gantry-X-extrusion (2 x 40x60)   716mm
+ * gantry-Z-extrusion (2 x 20x20)   270mm
+
+Work-Area:
+ * X                                525mm
+ * Y                                550mm
+ * Z                                120mm
+
+outer frame:
+ * X                                741mm (+Xstepper)
+ * Y                                836mm (+Ystepper)
+generated on Sat 2022-Mar-19 20:17:52

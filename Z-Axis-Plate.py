@@ -456,10 +456,22 @@ def Z_Axis_Plate(p_name , p_variant):
     # x/y values
     (x1,x2,x3,x4,x5,x6,x7,x8,x9,x10) = [-80 , -60 , -28.57 , -18.57 , -10 , 10 , 18.57 , 28.57 , 60 , 80]
 
-    y5  = 270 + cfg['Z-Axis']['top']['thickness']
-    y4  = 270 + cfg['Z-Axis']['top']['thickness'] - 0.5
-    y3  = 270
-    y2  = 260
+    # Y-adjust when top-plate is thicker than 10mm
+    # the upper edge has to stay unchanged
+    yadj = 10 - cfg['Z-Axis']['top']['thickness']
+
+    if (yadj < -10):
+      print("ERROR: Z-Axis-top-plate is too thick! (%dmm)" % (cfg['Z-Axis']['top']['thickness']))
+      print("       can't shift rail spacer further down")
+      exit(1)
+
+
+
+
+    y5  = 280
+    y4  = 279.5
+    y3  = 270   + yadj
+    y2  = 260   + yadj
     y1  = 0.5
     y0  = 0
     ym1 = -cfg['Z-Axis']['bottom']['thickness']
@@ -525,7 +537,7 @@ def Z_Axis_Plate(p_name , p_variant):
     BackAddOn(40 , 197.78)  # what is the purpose of this?
 
     # shifted upper spacer a little down to avoid contact with top-plate
-    RailMount(66.5 , 54 , 122.67 , 191.33-margin , 260-margin)
+    RailMount(66.5 , 54 , 122.67 , 191.33-margin + yadj , 260-margin + yadj)
 
 
     width  = x10-x1    #  width of plate
