@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459657.7607060187
+2459658.6975347223
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459657.7607060187
+2459658.6975347223
   9
 $TDUUPDATE
  40
@@ -549,7 +549,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-AD
+AE
   9
 $SURFTAB1
  70
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{1F0776F5-9569-479C-AAFF-4549DAA59D36}
+{1F4E19C4-530E-4A36-8ADF-4DC31B39C782}
   9
 $VERSIONGUID
   2
-{222456E4-5D15-48FF-8E59-E1E80140451F}
+{D7337843-A482-40FC-A0AF-7BB57D3A0459}
   9
 $EXTNAMES
 290
@@ -1323,9 +1323,9 @@ ISM
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -1339,9 +1339,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -3133,7 +3133,7 @@ ACAD
   0
 APPID
   5
-AA
+AB
 330
 3
 100
@@ -3147,7 +3147,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-AB
+AC
 330
 3
 100
@@ -5845,23 +5845,23 @@ annotation
 100
 AcDbText
  10
-100.0
+0.0
  20
-100.0
+110.0
  30
 0.0
  40
 5.0
   1
-Frame-Plate-front-left.dxf
+Frame-front-left.dxf
   7
 LiberationSerif
  72
 1
  11
-100.0
+0.0
  21
-100.0
+110.0
  31
 0.0
 100
@@ -5881,9 +5881,9 @@ annotation
 100
 AcDbText
  10
-100.0
+0.0
  20
-90.0
+100.0
  30
 0.0
  40
@@ -5895,9 +5895,9 @@ LiberationSerif
  72
 1
  11
-100.0
+0.0
  21
-90.0
+100.0
  31
 0.0
 100
@@ -5917,9 +5917,9 @@ annotation
 100
 AcDbText
  10
-100.0
+0.0
  20
-80.0
+90.0
  30
 0.0
  40
@@ -5931,9 +5931,9 @@ LiberationSerif
  72
 1
  11
-100.0
+0.0
  21
-80.0
+90.0
  31
 0.0
 100
@@ -5953,9 +5953,9 @@ annotation
 100
 AcDbText
  10
-100.0
+0.0
  20
-70.0
+80.0
  30
 0.0
  40
@@ -5967,9 +5967,9 @@ LiberationSerif
  72
 1
  11
-100.0
+0.0
  21
-70.0
+80.0
  31
 0.0
 100
@@ -5989,9 +5989,9 @@ annotation
 100
 AcDbText
  10
-100.0
+0.0
  20
-60.0
+70.0
  30
 0.0
  40
@@ -6003,9 +6003,9 @@ LiberationSerif
  72
 1
  11
-100.0
+0.0
  21
-60.0
+70.0
  31
 0.0
 100
@@ -6025,9 +6025,9 @@ annotation
 100
 AcDbText
  10
-100.0
+0.0
  20
-50.0
+60.0
  30
 0.0
  40
@@ -6039,7 +6039,43 @@ LiberationSerif
  72
 1
  11
-100.0
+0.0
+ 21
+60.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+AA
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+50.0
+ 30
+0.0
+ 40
+5.0
+  1
+Sat 2022-Mar-19 16:44:27
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
  21
 50.0
  31
@@ -7143,7 +7179,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-AC
+AD
   0
 DICTIONARYVAR
   5
@@ -7155,7 +7191,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-18T17:15:25.904150+00:00
+0.17.2 @ 2022-03-19T15:44:27.389918+00:00
   0
 VISUALSTYLE
   5
@@ -7859,7 +7895,7 @@ X-Ray
   0
 DICTIONARYVAR
   5
-AC
+AD
 330
 2D
 100
@@ -7867,7 +7903,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-18T17:15:25.912593+00:00
+0.17.2 @ 2022-03-19T15:44:27.398322+00:00
   0
 ENDSEC
   0

@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459657.7607060187
+2459658.6975231483
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459657.7607060187
+2459658.6975231483
   9
 $TDUUPDATE
  40
@@ -549,7 +549,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-9B
+9D
   9
 $SURFTAB1
  70
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{696B4227-0BC8-4D22-8378-82B7022C1FF1}
+{B1417C38-26D2-461D-9B94-2EF1BB930FA3}
   9
 $VERSIONGUID
   2
-{13B3591B-8670-420B-B481-4F38716DB90E}
+{112BF6C9-DDC7-4AF1-B88A-69778779952B}
   9
 $EXTNAMES
 290
@@ -1323,9 +1323,9 @@ ISM
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -1339,9 +1339,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -3133,7 +3133,7 @@ ACAD
   0
 APPID
   5
-98
+9A
 330
 3
 100
@@ -3147,7 +3147,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-99
+9B
 330
 3
 100
@@ -5425,7 +5425,7 @@ AcDbPolyline
  20
 26.0
   0
-TEXT
+CIRCLE
   5
 92
 330
@@ -5433,33 +5433,17 @@ TEXT
 100
 AcDbEntity
   8
-annotation
+outline
 100
-AcDbText
+AcDbCircle
  10
 0.0
  20
-86.0
+0.0
  30
 0.0
  40
-5.0
-  1
-Portal-Plate-side_plate_spacer.dxf
-  7
-LiberationSerif
- 72
-1
- 11
-0.0
- 21
-86.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+2.0
   0
 TEXT
   5
@@ -5475,13 +5459,13 @@ AcDbText
  10
 0.0
  20
-76.0
+96.0
  30
 0.0
  40
 5.0
   1
-width=40.00[mm]
+Portal-nut_spacer.dxf
   7
 LiberationSerif
  72
@@ -5489,7 +5473,7 @@ LiberationSerif
  11
 0.0
  21
-76.0
+96.0
  31
 0.0
 100
@@ -5511,13 +5495,13 @@ AcDbText
  10
 0.0
  20
-66.0
+86.0
  30
 0.0
  40
 5.0
   1
-height=52.00[mm]
+width=40.00[mm]
   7
 LiberationSerif
  72
@@ -5525,7 +5509,7 @@ LiberationSerif
  11
 0.0
  21
-66.0
+86.0
  31
 0.0
 100
@@ -5547,13 +5531,13 @@ AcDbText
  10
 0.0
  20
-56.0
+76.0
  30
 0.0
  40
 5.0
   1
-thickness= 5.00[mm]
+height=52.00[mm]
   7
 LiberationSerif
  72
@@ -5561,7 +5545,7 @@ LiberationSerif
  11
 0.0
  21
-56.0
+76.0
  31
 0.0
 100
@@ -5583,13 +5567,13 @@ AcDbText
  10
 0.0
  20
-46.0
+66.0
  30
 0.0
  40
 5.0
   1
-material=alu
+thickness=10.00[mm]
   7
 LiberationSerif
  72
@@ -5597,7 +5581,7 @@ LiberationSerif
  11
 0.0
  21
-46.0
+66.0
  31
 0.0
 100
@@ -5619,13 +5603,85 @@ AcDbText
  10
 0.0
  20
+56.0
+ 30
+0.0
+ 40
+5.0
+  1
+material=alu
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+56.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+98
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+46.0
+ 30
+0.0
+ 40
+5.0
+  1
+amount=1
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+46.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+99
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
 36.0
  30
 0.0
  40
 5.0
   1
-amount=2
+Sat 2022-Mar-19 16:44:26
   7
 LiberationSerif
  72
@@ -6735,7 +6791,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-9A
+9C
   0
 DICTIONARYVAR
   5
@@ -6747,7 +6803,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-18T17:15:25.496358+00:00
+0.17.2 @ 2022-03-19T15:44:26.952273+00:00
   0
 VISUALSTYLE
   5
@@ -7451,7 +7507,7 @@ X-Ray
   0
 DICTIONARYVAR
   5
-9A
+9C
 330
 2D
 100
@@ -7459,7 +7515,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-18T17:15:25.503493+00:00
+0.17.2 @ 2022-03-19T15:44:26.959446+00:00
   0
 ENDSEC
   0

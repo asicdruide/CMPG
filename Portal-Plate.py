@@ -2,23 +2,21 @@ import ezdxf
 import math
 from cfg    import *
 from common import *
+from datetime import datetime
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def Block_connect (p_variant , cx , cy):   # center of ballscrew
   hole = 6.2
 
-  if (p_variant == 'left' or p_variant == ""):
-    mx = 1
-  else:
-    mx = -1
+  mx = -1
 
   for x,y in [(-9.5  ,  35)
              ,(-9.5  , -35)
              ,( 35.5 ,  35)
              ,( 35.5 , -35)
              ]:
-    msp.add_circle((cx*mx + x , cy + y) , hole/2)
+    msp.add_circle(((cx+x)*mx , cy + y) , hole/2)
 
   return
 
@@ -26,6 +24,7 @@ def Block_connect (p_variant , cx , cy):   # center of ballscrew
 
 def AddOn (p_variant):
   hole = 6.8
+  # purpose is to mount the foot of a measuring stand that holds a dial indicator the measure and adjust alignment
 
   if (p_variant == 'left'):
     mx = 1
@@ -77,10 +76,10 @@ def outer_corner (cr , start_angle , stop_angle):
 
 def Portal_plate(p_name , p_variant):
   if (p_variant == ""):
-    file_name = 'Portal-Plate-%s.dxf'    % (p_name)
+    file_name = 'Portal-%s.dxf'    % (p_name)
 
   else:
-    file_name = 'Portal-Plate-%s-%s.dxf' % (p_name , p_variant)
+    file_name = 'Portal-%s-%s.dxf' % (p_name , p_variant)
 
 
   if (p_variant == 'left' or p_variant == ""):
@@ -103,7 +102,9 @@ def Portal_plate(p_name , p_variant):
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (p_name == 'back'):
     # fixed parameters
-    width           = 666 + (cfg['Ballscrew']['X']['length'] - 650)  # 650 from baseline design
+    margin = 2
+
+    width           = 666 + (cfg['Ballscrew']['X']['length'] - 650) - margin  # 650 from baseline design
     height          = 160     # height of plate
     border_distance =   7.5
     hole_diameter   =   5.2
@@ -157,7 +158,13 @@ def Portal_plate(p_name , p_variant):
       mx = -1
 
     (x0 , x1 , x2 , x3 , x4 , x5) = (0 ,  5  ,    70   , 87.59  , 210.18    , 215.18)
-    (y0 , y1 , y2 , y3 , y4 , y5) = (0 , 31.25 , 42.5  , 54.82  ,  74.4976  , 276.059)
+    (y5 , y4 , y3 , y2 , y1 , y0) = ( 276.059
+                                    ,  74.4976
+                                    ,  54.82
+                                    ,  42.5
+                                    ,  31.25
+                                    ,   0
+                                    )
 
     cr=2.5
 
@@ -255,9 +262,7 @@ def Portal_plate(p_name , p_variant):
         or
         p_name == 'side_plate_spacer'):
     hole = 5.2
-
-    if (p_name == 'side_plate_spacer'):
-      cr = 1
+    cr   = 1
 
 
 
@@ -293,31 +298,33 @@ def Portal_plate(p_name , p_variant):
     (x0 , x1 , x2     ) = [-17   ,  17.2 , 43  ]
     (y0 , y1 , y2 , y3) = [-42.5 , -17.2 , 17.2 , 42.5]
 
+    mx=-1 # mirror to get the facets on the side towards inside
+
     # outer shape...
-    shape = msp.add_lwpolyline([( (x0+cr   )*mx , y0       , 0   )   #  1
-                               ,( (x2-cr   )*mx , y0       , cb90)   #  2
-                               ,( (x2      )*mx , y0+cr    , 0   )   #  3
-                               ,( (x2      )*mx , y3-cr    , cb90)   #  4
-                               ,( (x2-cr   )*mx , y3       , 0   )   #  5
-                               ,( (x0+cr   )*mx , y3       , cb90)   #  6
-                               ,( (x0      )*mx , y3-cr    , 0   )   #  7
-                               ,( (x0      )*mx , y2+cr    , cb90)   #  8
-                               ,( (x0+cr   )*mx , y2       , 0   )   #  9
-                               ,( (x1-dbo90)*mx , y2       , dbb )   # 10
-                               ,( (x1      )*mx , y2-dbo90 , 0   )   # 11
-                               ,( (x1      )*mx , y1+dbo90 , dbb )   # 12
-                               ,( (x1-dbo90)*mx , y1       , 0   )   # 13
-                               ,( (x0+cr   )*mx , y1       , cb90)   # 14
-                               ,( (x0      )*mx , y1-cr    , 0   )   # 15
-                               ,( (x0      )*mx , y0+cr    , cb90)   # 16
+    shape = msp.add_lwpolyline([( (x0+cr   )*mx , y0       , 0      )   #  1
+                               ,( (x2-cr   )*mx , y0       , cb90*mx)   #  2
+                               ,( (x2      )*mx , y0+cr    , 0      )   #  3
+                               ,( (x2      )*mx , y3-cr    , cb90*mx)   #  4
+                               ,( (x2-cr   )*mx , y3       , 0      )   #  5
+                               ,( (x0+cr   )*mx , y3       , cb90*mx)   #  6
+                               ,( (x0      )*mx , y3-cr    , 0      )   #  7
+                               ,( (x0      )*mx , y2+cr    , cb90*mx)   #  8
+                               ,( (x0+cr   )*mx , y2       , 0      )   #  9
+                               ,( (x1-dbo90)*mx , y2       , dbb *mx)   # 10
+                               ,( (x1      )*mx , y2-dbo90 , 0      )   # 11
+                               ,( (x1      )*mx , y1+dbo90 , dbb *mx)   # 12
+                               ,( (x1-dbo90)*mx , y1       , 0      )   # 13
+                               ,( (x0+cr   )*mx , y1       , cb90*mx)   # 14
+                               ,( (x0      )*mx , y1-cr    , 0      )   # 15
+                               ,( (x0      )*mx , y0+cr    , cb90*mx)   # 16
                                ]
                               , format='xyb'
                               )
     shape.close(True)
 
     # add other elements...
-    Block_connect(p_variant ,   0    ,   0)
-    BK12_face    (msp ,  0    ,   0  , 90)
+    Block_connect(p_variant ,  0    ,   0)
+    BK12_face    (msp       ,  0    ,   0  , 270)
 
     width  = (x2-x0)
     height = (y3-y0)
@@ -341,6 +348,7 @@ def Portal_plate(p_name , p_variant):
         ,"thickness=%5.2f[mm]" % (cfg['Portal'][p_name]['thickness'])
         , "material=%s"        % (cfg['Portal'][p_name]['material'])
         ,   "amount=%d"        % (cfg['Portal'][p_name]['amount'])
+        ,   "%s"               % (datetime.now().strftime("%a %Y-%b-%d %H:%M:%S"))
         )
 
   for i in range(0,len(txt)):
@@ -349,7 +357,7 @@ def Portal_plate(p_name , p_variant):
                             ,'height': 5
                             ,'layer' : 'annotation'
                             }
-               ).set_pos((text_x , text_y + 60 - 10*i) , align='MIDDLE_CENTER')
+               ).set_pos((text_x , text_y + 70 - 10*i) , align='MIDDLE_CENTER')
 
   return  "%dx_%dmm_%s" % (cfg['Portal'][p_name]['amount']
                           ,cfg['Portal'][p_name]['thickness']

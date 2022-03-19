@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459657.7607060187
+2459658.6975462963
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459657.7607060187
+2459658.6975462963
   9
 $TDUUPDATE
  40
@@ -549,7 +549,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-B1
+C1
   9
 $SURFTAB1
  70
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{5FCF9FE7-9A8A-445B-B23D-09E544085D56}
+{A11C265D-F5B1-40D5-8DD4-AC83F68A7904}
   9
 $VERSIONGUID
   2
-{FE39C2F1-ABBA-4EFD-B5EB-C0FA3699410B}
+{8402DF4D-D82D-4C74-BCA2-3F391764F475}
   9
 $EXTNAMES
 290
@@ -1323,9 +1323,9 @@ ISM
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -1339,9 +1339,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -3133,7 +3133,7 @@ ACAD
   0
 APPID
   5
-AE
+BE
 330
 3
 100
@@ -3147,7 +3147,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-AF
+BF
 330
 3
 100
@@ -5269,67 +5269,87 @@ AcDbEntity
 100
 AcDbPolyline
  90
-12
+16
  70
 1
  10
--33.1
- 20
--40.0
- 10
-160.9
- 20
--40.0
- 42
-0.4142135
- 10
-163.9
- 20
--37.0
- 10
-163.9
- 20
--3.0
- 42
-0.4142135
- 10
-160.9
+-44.0
  20
 0.0
  10
-91.0
+44.0
  20
 0.0
  42
--0.4142135
+0.4142135
  10
-88.0
+47.0
  20
 3.0
  10
-88.0
+47.0
  20
-37.0
+17.0
+ 42
+-0.4142135
+ 10
+50.0
+ 20
+20.0
+ 10
+77.0
+ 20
+20.0
  42
 0.4142135
  10
-85.0
+80.0
  20
-40.0
+23.0
  10
--33.1
+80.0
  20
-40.0
+137.0
  42
 0.4142135
  10
--36.1
+77.0
  20
-37.0
+140.0
  10
--36.1
+-77.0
  20
--37.0
+140.0
+ 42
+0.4142135
+ 10
+-80.0
+ 20
+137.0
+ 10
+-80.0
+ 20
+23.0
+ 42
+0.4142135
+ 10
+-77.0
+ 20
+20.0
+ 10
+-50.0
+ 20
+20.0
+ 42
+-0.4142135
+ 10
+-47.0
+ 20
+17.0
+ 10
+-47.0
+ 20
+3.0
  42
 0.4142135
   0
@@ -5345,13 +5365,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-58.0
+-56.5
  20
-30.0
+108.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5365,13 +5385,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-78.0
+-76.5
  20
-30.0
+108.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5385,13 +5405,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-58.0
+-56.5
  20
-10.0
+128.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5405,97 +5425,17 @@ AcDbEntity
 100
 AcDbCircle
  10
-78.0
+-76.5
  20
-10.0
+128.0
  30
 0.0
  40
-2.6
-  0
-CIRCLE
-  5
-91
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-58.0
- 20
--10.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-92
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-78.0
- 20
--10.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-93
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-58.0
- 20
--30.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-94
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-78.0
- 20
--30.0
- 30
-0.0
- 40
-2.6
+1.6
   0
 LWPOLYLINE
   5
-95
+91
 330
 17
 100
@@ -5509,21 +5449,101 @@ AcDbPolyline
  70
 1
  10
-48.0
+-53.0
  20
--40.0
+95.3
  10
-88.0
+-53.0
  20
--40.0
+140.7
  10
-88.0
+-80.0
  20
-40.0
+140.7
  10
-48.0
+-80.0
  20
-40.0
+95.3
+  0
+CIRCLE
+  5
+92
+330
+17
+100
+AcDbEntity
+  8
+outline
+100
+AcDbCircle
+ 10
+-66.5
+ 20
+118.0
+ 30
+0.0
+ 40
+2.0
+  0
+CIRCLE
+  5
+93
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+-56.5
+ 20
+32.0
+ 30
+0.0
+ 40
+1.6
+  0
+CIRCLE
+  5
+94
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+-76.5
+ 20
+32.0
+ 30
+0.0
+ 40
+1.6
+  0
+CIRCLE
+  5
+95
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+-56.5
+ 20
+52.0
+ 30
+0.0
+ 40
+1.6
   0
 CIRCLE
   5
@@ -5537,15 +5557,15 @@ AcDbEntity
 100
 AcDbCircle
  10
-156.75
+-76.5
  20
--30.0
+52.0
  30
 0.0
  40
-2.6
+1.6
   0
-CIRCLE
+LWPOLYLINE
   5
 97
 330
@@ -5553,17 +5573,29 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+outline
 100
-AcDbCircle
+AcDbPolyline
+ 90
+4
+ 70
+1
  10
-156.75
+-53.0
  20
--10.0
- 30
-0.0
- 40
-2.6
+19.299999999999997
+ 10
+-53.0
+ 20
+64.7
+ 10
+-80.0
+ 20
+64.7
+ 10
+-80.0
+ 20
+19.299999999999997
   0
 CIRCLE
   5
@@ -5573,17 +5605,17 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+outline
 100
 AcDbCircle
  10
-136.75
+-66.5
  20
--30.0
+42.0
  30
 0.0
  40
-2.6
+2.0
   0
 CIRCLE
   5
@@ -5597,13 +5629,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-136.75
+76.5
  20
--10.0
+108.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5617,13 +5649,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-116.75
+56.5
  20
--30.0
+108.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5637,13 +5669,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-116.75
+76.5
  20
--10.0
+128.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5657,15 +5689,15 @@ AcDbEntity
 100
 AcDbCircle
  10
-96.75
+56.5
  20
--30.0
+128.0
  30
 0.0
  40
-2.6
+1.6
   0
-CIRCLE
+LWPOLYLINE
   5
 9D
 330
@@ -5673,17 +5705,29 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+outline
 100
-AcDbCircle
+AcDbPolyline
+ 90
+4
+ 70
+1
  10
-96.75
+80.0
  20
--10.0
- 30
-0.0
- 40
-2.6
+95.3
+ 10
+80.0
+ 20
+140.7
+ 10
+53.0
+ 20
+140.7
+ 10
+53.0
+ 20
+95.3
   0
 CIRCLE
   5
@@ -5693,17 +5737,17 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+outline
 100
 AcDbCircle
  10
-0.0
+66.5
  20
-0.0
+118.0
  30
 0.0
  40
-19.25
+2.0
   0
 CIRCLE
   5
@@ -5717,13 +5761,13 @@ AcDbEntity
 100
 AcDbCircle
  10
--23.57
+76.5
  20
--23.57
+32.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5737,13 +5781,13 @@ AcDbEntity
 100
 AcDbCircle
  10
--23.57
+56.5
  20
-23.57
+32.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5757,13 +5801,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-23.57
+76.5
  20
--23.57
+52.0
  30
 0.0
  40
-2.6
+1.6
   0
 CIRCLE
   5
@@ -5777,13 +5821,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-23.57
+56.5
  20
-23.57
+52.0
  30
 0.0
  40
-2.6
+1.6
   0
 LWPOLYLINE
   5
@@ -5797,41 +5841,25 @@ outline
 100
 AcDbPolyline
  90
-8
+4
  70
 1
  10
--25.5
+80.0
  20
--28.5
+19.299999999999997
  10
-25.5
+80.0
  20
--28.5
+64.7
  10
-28.5
+53.0
  20
--25.5
+64.7
  10
-28.5
+53.0
  20
-25.5
- 10
-25.5
- 20
-28.5
- 10
--25.5
- 20
-28.5
- 10
--28.5
- 20
-25.5
- 10
--28.5
- 20
--25.5
+19.299999999999997
   0
 CIRCLE
   5
@@ -5841,17 +5869,17 @@ A4
 100
 AcDbEntity
   8
-0
+outline
 100
 AcDbCircle
  10
--28.6
+66.5
  20
--32.5
+42.0
  30
 0.0
  40
-3.1
+2.0
   0
 CIRCLE
   5
@@ -5865,13 +5893,13 @@ AcDbEntity
 100
 AcDbCircle
  10
-40.5
+17.5
  20
--32.5
+66.0
  30
 0.0
  40
-3.1
+2.6
   0
 CIRCLE
   5
@@ -5881,17 +5909,17 @@ A6
 100
 AcDbEntity
   8
-0
+annotation
 100
 AcDbCircle
  10
-40.5
+17.5
  20
-7.0
+66.0
  30
 0.0
  40
-3.1
+4.5
   0
 CIRCLE
   5
@@ -5905,15 +5933,15 @@ AcDbEntity
 100
 AcDbCircle
  10
--28.6
+17.5
  20
-32.5
+90.0
  30
 0.0
  40
-3.1
+2.6
   0
-TEXT
+CIRCLE
   5
 A8
 330
@@ -5923,33 +5951,17 @@ AcDbEntity
   8
 annotation
 100
-AcDbText
+AcDbCircle
  10
-100.0
+17.5
  20
-100.0
+90.0
  30
 0.0
  40
-5.0
-  1
-Frame-Plate-back-left.dxf
-  7
-LiberationSerif
- 72
-1
- 11
-100.0
- 21
-100.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+4.5
   0
-TEXT
+CIRCLE
   5
 A9
 330
@@ -5957,35 +5969,19 @@ A9
 100
 AcDbEntity
   8
-annotation
+0
 100
-AcDbText
+AcDbCircle
  10
-100.0
+-17.5
  20
 90.0
  30
 0.0
  40
-5.0
-  1
-width=200.00[mm]
-  7
-LiberationSerif
- 72
-1
- 11
-100.0
- 21
-90.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+2.6
   0
-TEXT
+CIRCLE
   5
 AA
 330
@@ -5995,33 +5991,17 @@ AcDbEntity
   8
 annotation
 100
-AcDbText
+AcDbCircle
  10
-100.0
+-17.5
  20
-80.0
+90.0
  30
 0.0
  40
-5.0
-  1
-height=80.00[mm]
-  7
-LiberationSerif
- 72
-1
- 11
-100.0
- 21
-80.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+4.5
   0
-TEXT
+CIRCLE
   5
 AB
 330
@@ -6029,35 +6009,19 @@ AB
 100
 AcDbEntity
   8
-annotation
+0
 100
-AcDbText
+AcDbCircle
  10
-100.0
+-17.5
  20
-70.0
+66.0
  30
 0.0
  40
-5.0
-  1
-thickness=10.00[mm]
-  7
-LiberationSerif
- 72
-1
- 11
-100.0
- 21
-70.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+2.6
   0
-TEXT
+CIRCLE
   5
 AC
 330
@@ -6067,31 +6031,15 @@ AcDbEntity
   8
 annotation
 100
-AcDbText
+AcDbCircle
  10
-100.0
+-17.5
  20
-60.0
+66.0
  30
 0.0
  40
-5.0
-  1
-material=alu
-  7
-LiberationSerif
- 72
-1
- 11
-100.0
- 21
-60.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+4.5
   0
 TEXT
   5
@@ -6105,9 +6053,493 @@ annotation
 100
 AcDbText
  10
-100.0
+0.0
  20
-50.0
+78.0
+ 30
+0.0
+ 40
+5.0
+  1
+counterbored 5mm deep
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+78.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+CIRCLE
+  5
+AE
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+-66.5
+ 20
+80.0
+ 30
+0.0
+ 40
+3.4
+  0
+CIRCLE
+  5
+AF
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+66.5
+ 20
+80.0
+ 30
+0.0
+ 40
+3.4
+  0
+CIRCLE
+  5
+B0
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+-47.5
+ 20
+40.0
+ 30
+0.0
+ 40
+2.5
+  0
+CIRCLE
+  5
+B1
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+47.5
+ 20
+40.0
+ 30
+0.0
+ 40
+2.5
+  0
+CIRCLE
+  5
+B2
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+-47.5
+ 20
+101.0
+ 30
+0.0
+ 40
+2.5
+  0
+CIRCLE
+  5
+B3
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbCircle
+ 10
+47.5
+ 20
+101.0
+ 30
+0.0
+ 40
+2.5
+  0
+LWPOLYLINE
+  5
+B4
+330
+17
+100
+AcDbEntity
+  8
+outline
+100
+AcDbPolyline
+ 90
+21
+ 70
+0
+ 10
+-55.0
+ 20
+0.0
+ 10
+-37.5
+ 20
+0.0
+ 10
+-37.5
+ 20
+-28.0
+ 10
+-34.0
+ 20
+-28.0
+ 10
+-34.0
+ 20
+-38.0
+ 10
+-17.0
+ 20
+-38.0
+ 10
+-17.0
+ 20
+-85.0
+ 10
+17.0
+ 20
+-85.0
+ 10
+17.0
+ 20
+-38.0
+ 10
+34.0
+ 20
+-38.0
+ 10
+34.0
+ 20
+-28.0
+ 10
+37.5
+ 20
+-28.0
+ 10
+37.5
+ 20
+0.0
+ 10
+55.0
+ 20
+0.0
+ 10
+55.0
+ 20
+139.0
+ 10
+37.5
+ 20
+139.0
+ 10
+37.5
+ 20
+176.0
+ 10
+-37.5
+ 20
+176.0
+ 10
+-37.5
+ 20
+139.0
+ 10
+-55.0
+ 20
+139.0
+ 10
+-55.0
+ 20
+0.0
+  0
+LWPOLYLINE
+  5
+B5
+330
+17
+100
+AcDbEntity
+  8
+outline
+100
+AcDbPolyline
+ 90
+2
+ 70
+0
+ 10
+-110.0
+ 20
+-67.5
+ 10
+110.0
+ 20
+-67.5
+  0
+LWPOLYLINE
+  5
+B6
+330
+17
+100
+AcDbEntity
+  8
+outline
+100
+AcDbPolyline
+ 90
+2
+ 70
+0
+ 10
+-110.0
+ 20
+171.44
+ 10
+110.0
+ 20
+171.44
+  0
+TEXT
+  5
+B7
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+270.0
+ 30
+0.0
+ 40
+5.0
+  1
+Z-Axis-spindle-GP_1.5kW_ER20.dxf
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+270.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+B8
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+260.0
+ 30
+0.0
+ 40
+5.0
+  1
+width=160.00[mm]
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+260.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+B9
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+250.0
+ 30
+0.0
+ 40
+5.0
+  1
+height=140.00[mm]
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+250.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+BA
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+240.0
+ 30
+0.0
+ 40
+5.0
+  1
+thickness=10.00[mm]
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+240.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+BB
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+230.0
+ 30
+0.0
+ 40
+5.0
+  1
+material=alu
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+230.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+BC
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+220.0
  30
 0.0
  40
@@ -6119,9 +6551,45 @@ LiberationSerif
  72
 1
  11
-100.0
+0.0
  21
-50.0
+220.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+BD
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+210.0
+ 30
+0.0
+ 40
+5.0
+  1
+Sat 2022-Mar-19 16:44:28
+  7
+LiberationSerif
+ 72
+1
+ 11
+0.0
+ 21
+210.0
  31
 0.0
 100
@@ -7223,7 +7691,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-B0
+C0
   0
 DICTIONARYVAR
   5
@@ -7235,7 +7703,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-18T17:15:25.975726+00:00
+0.17.2 @ 2022-03-19T15:44:28.060526+00:00
   0
 VISUALSTYLE
   5
@@ -7939,7 +8407,7 @@ X-Ray
   0
 DICTIONARYVAR
   5
-B0
+C0
 330
 2D
 100
@@ -7947,7 +8415,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-18T17:15:25.984355+00:00
+0.17.2 @ 2022-03-19T15:44:28.070686+00:00
   0
 ENDSEC
   0

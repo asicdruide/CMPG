@@ -17,9 +17,15 @@ def AddOn(width):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-def Spindle_outline(spindle):
-  name = spindle['name']
-  y    = spindle['bottom']
+def Spindle_outline(p_variant):
+  spindle = ({'name' : 'GPenny 2.2kW ER20 square air cooled flange', 'id' : 'GP_2.2kW_ER20' , 'bottom' : 40}   # e.g. https://de.aliexpress.com/item/1005002490128320.html?spm=a2g0o.store_pc_groupList.8148356.31.3e704e2bZPBZpF
+            ,{'name' : 'Amazon 1.5kW ER11 square air cooled flange', 'id' : 'AM_1.5kW_ER11' , 'bottom' : 9.44} # e.g. https://www.amazon.com/gp/product/B06Y42QL2R
+            ,{'name' : 'GPenny 1.5kW ER20 square air cooled flange', 'id' : 'GP_1.5kW_ER20' , 'bottom' : 40}   # e.g. https://de.aliexpress.com/item/1005002490128320.html?spm=a2g0o.store_pc_groupList.8148356.10.763a5056MfIubV
+            ,{'name' : 'AliEx  1.5kW ER11 square air cooled flange', 'id' : 'AE_1.5kW_ER11' , 'bottom' : 28}   # e.g. https://fr.aliexpress.com/item/32953548253.html?srcSns=sns_Copy&spreadType=socialShare&bizType=ProductDetail&social_params=20498188540&aff_fcid=394633005d0f4e22a981cdcb4ef84ff9-1646684439869-04366-_mKItZoY&tt=MG&aff_fsk=_mKItZoY&aff_platform=default&sk=_mKItZoY&aff_trace_key=394633005d0f4e22a981cdcb4ef84ff9-1646684439869-04366-_mKItZoY&shareId=20498188540&businessType=ProductDetail&platform=AE&terminal_id=21deee05b3694129af60a740b84b062b&afSmartRedirect=y
+            )
+
+  name = spindle[p_variant]['name']
+  y    = spindle[p_variant]['bottom']
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (name == 'GPenny 2.2kW ER20 square air cooled flange'):

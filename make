@@ -8,18 +8,17 @@ else
 endif
 
 if ($par == "portal" || $par == "all") then
-  rm Portal/*.dxf
+  rm -f Portal/*.dxf
   python3.8 ./Portal-Plate.py
 endif
 
 if ($par == "frame" || $par == "all") then
-  rm Frame/*.dxf
+  rm -f Frame/*.dxf
   python3.8 ./Frame-Plate.py
 endif
 
 if ($par == "z-axis" || $par == "all") then
-  rm Z-Axis/*.dxf
-  python3.8 ./Z-Axis-Spindle-Plate.py
+  rm -f Z-Axis/*.dxf
   python3.8 ./Z-Axis-Plate.py
 endif
 
