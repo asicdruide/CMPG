@@ -16,7 +16,7 @@ This is work-in-progress, if you use it, you do it on your own risk.
 Planned improvements:
  * ~~central setup file for all parameters~~ (done)
  * more dependencies calculated (less magic numbers)
- * output for non-plate values like extrusion length
+ * ~~output for non-plate values like extrusion length~~ (done)
  * ~~parts library for common parts~~ (done)
 
 
