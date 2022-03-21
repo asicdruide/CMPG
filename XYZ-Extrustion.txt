@@ -10,6 +10,6 @@ Work-Area:
  * Z                                120mm
 
 outer frame:
- * X                                741mm (+Xstepper)
- * Y                                836mm (+Ystepper)
-generated on Sat 2022-Mar-19 20:17:52
+ * X                                746mm (+Xstepper)
+ * Y                                846mm (+Ystepper)
+generated on Mon 2022-Mar-21 21:18:28

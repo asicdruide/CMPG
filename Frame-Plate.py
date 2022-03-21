@@ -1,7 +1,8 @@
 import ezdxf
 import math
-from cfg    import *
-from common import *
+from ezdxf    import units
+from cfg      import *
+from common   import *
 from datetime import datetime
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -63,6 +64,12 @@ def Frame_Plate(p_name , p_variant):
       mx = -mx
 
 
+    # I've made a slight deviation from baseline design, here.
+    # My intention is to be able to allow longer workpieces to hang over the frame
+    # at front and back. To not limit X-opening i've removed the inner triangles.
+    # I don't expect that to be a rigity issue.
+
+
     # x/y values under the assumption that the center of ballscrew/motor-axis is at (0,0)
     (x0,x1,x2) = [ -36.1  ,  88+shift_x , 163.9+shift_x]
     (y2,y1,y0) = [ 40
@@ -97,7 +104,7 @@ def Frame_Plate(p_name , p_variant):
     #  15mm portal-side-thickness (either 10mm + 5mm spacer or native 15mm without spacer)
     #  13mm MGN12 height (rail+block)
     #  20mm half width of Y-profile
-    #                = 68mm
+    #  = 68mm
     Face40x80(msp   , ( 68   +shift_x)*mx ,   0 , 0)
     Side40x40(msp   , (126.75+shift_x)*mx , -20 , 0)   # x is rounded, should be uncritical
 
@@ -106,7 +113,7 @@ def Frame_Plate(p_name , p_variant):
       BF12_face     (msp ,  0  ,   0 , 0)
     elif (p_name == 'back'):
       # back
-      NEMA23       (msp  ,   0    ,   0 , 0)
+      NEMA23       (msp       ,   0    ,   0 , 0)
       Block_connect(p_variant ,   0    ,   0 , mx)
 
     width  = (x2-x0)
@@ -202,6 +209,7 @@ for p_name in      cfg['Frame'].keys():
 
       doc.layers.add(name="annotation"     , color=2)
       doc.layers.add(name="outline"        , color=2)
+      doc.units = units.MM
 
       # Add new entities to the modelspace:
       msp = doc.modelspace()

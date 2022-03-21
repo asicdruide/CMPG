@@ -51,7 +51,8 @@ print(""                                                                        
 
 outerXframe  = gantryXextrusion
 outerXframe += 15                                       # sum of actual right-side width + spacers
-outerXframe += cfg['Portal']['side']['thickness']       # actual left-side width
+outerXframe += 15                                       # sum of actual left-side width + spacers
+
 
 
 outerYframe  = frameYextrusion

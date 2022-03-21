@@ -1,6 +1,7 @@
 import ezdxf
-from cfg    import *
-from common import *
+from ezdxf    import units
+from cfg      import *
+from common   import *
 from datetime import datetime
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -635,14 +636,20 @@ def Z_Axis_Plate(p_name , p_variant):
 
 
   # add identifying text
-  txt = (                 "%s" % file_name
+  txt = [                 "%s" % file_name
         ,    "width=%5.2f[mm]" % width
         ,   "height=%5.2f[mm]" % height
         ,"thickness=%5.2f[mm]" % (cfg['Z-Axis'][p_name]['thickness'])
         , "material=%s"        % (cfg['Z-Axis'][p_name]['material'])
         ,   "amount=%d"        % (cfg['Z-Axis'][p_name]['amount'])
         ,   "%s"               % (datetime.now().strftime("%a %Y-%b-%d %H:%M:%S"))
-        )
+        ]
+
+  if (p_name == 'back'):
+    txt.append("variant for %dmm thick top and %dmm thick bottom"    % (cfg['Z-Axis']['top'   ]['thickness'],cfg['Z-Axis']['bottom']['thickness']))
+
+
+
 
   for i in range(0,len(txt)):
     msp.add_text(txt[i]
@@ -650,7 +657,7 @@ def Z_Axis_Plate(p_name , p_variant):
                             ,'height': 5
                             ,'layer' : 'annotation'
                             }
-               ).set_pos((text_x , text_y + 70 - 10*i) , align='MIDDLE_CENTER')
+               ).set_pos((text_x , text_y + 10*len(txt) - 10*i) , align='MIDDLE_CENTER')
 
 
   return  "%dx_%dmm_%s" % (cfg['Z-Axis'][p_name]['amount']
@@ -669,8 +676,9 @@ for p_name in      cfg['Z-Axis'].keys():
       # Create a new DXF R2010 drawing, official DXF version name: "AC1024"
       doc = ezdxf.new('R2010' , setup=True)
 
-      doc.layers.add(name="annotation"      , color=2)
-      doc.layers.add(name="outline"         , color=2)
+      my_annotations = doc.layers.add(name="annotation"      , color=2)
+      my_outline     = doc.layers.add(name="outline"         , color=2)
+      doc.units = units.MM
 
       # Add new entities to the modelspace:
       msp = doc.modelspace()
@@ -680,6 +688,17 @@ for p_name in      cfg['Z-Axis'].keys():
       doc.saveas(file_name)
 
       print("INFO: file '%s' written" % file_name)
+
+
+      my_annotations.off()
+      my_outline    .off()
+
+      file_name = file_name.replace(".dxf", "_plain.dxf")
+
+      doc.saveas(file_name)
+
+      print("INFO: file '%s' written" % file_name)
+
 
 
 

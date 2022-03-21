@@ -1,7 +1,8 @@
 import ezdxf
 import math
-from cfg    import *
-from common import *
+from ezdxf    import units
+from cfg      import *
+from common   import *
 from datetime import datetime
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -377,6 +378,9 @@ for p_name in      cfg['Portal'].keys():
 
       doc.layers.add(name="annotation"     , color=2)
       doc.layers.add(name="outline"        , color=2)
+
+      doc.units = units.MM
+
 
       # Add new entities to the modelspace:
       msp = doc.modelspace()
