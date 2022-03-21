@@ -678,7 +678,7 @@ for p_name in      cfg['Z-Axis'].keys():
 
       my_annotations = doc.layers.add(name="annotation"      , color=2)
       my_outline     = doc.layers.add(name="outline"         , color=2)
-      doc.units = units.MM
+      doc.units      = units.MM
 
       # Add new entities to the modelspace:
       msp = doc.modelspace()

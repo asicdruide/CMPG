@@ -376,10 +376,9 @@ for p_name in      cfg['Portal'].keys():
       # Create a new DXF R2010 drawing, official DXF version name: "AC1024"
       doc = ezdxf.new('R2010' , setup=True)
 
-      doc.layers.add(name="annotation"     , color=2)
-      doc.layers.add(name="outline"        , color=2)
-
-      doc.units = units.MM
+      my_annotations = doc.layers.add(name="annotation"      , color=2)
+      my_outline     = doc.layers.add(name="outline"         , color=2)
+      doc.units      = units.MM
 
 
       # Add new entities to the modelspace:
@@ -391,6 +390,14 @@ for p_name in      cfg['Portal'].keys():
 
       print("INFO: file '%s' written" % file_name)
 
+      my_annotations.off()
+      my_outline    .off()
+
+      file_name = file_name.replace(".dxf", "_plain.dxf")
+
+      doc.saveas(file_name)
+
+      print("INFO: file '%s' written" % file_name)
 
 
 
