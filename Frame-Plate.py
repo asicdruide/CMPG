@@ -133,6 +133,8 @@ def Frame_Plate(p_name , p_variant):
                           ,-40
                           ]
 
+    cr=5
+
     # outer shape...
     shape = msp.add_lwpolyline([( (x0+cr   )*mx , y0       , 0      )
                                ,( (x3-cr   )*mx , y0       , cb90*mx)
@@ -220,11 +222,13 @@ for p_name in      cfg['Frame'].keys():
 
       print("INFO: file '%s' written" % file_name)
 
-      my_annotations.off()
-      my_outline    .off()
-
-      file_name = file_name.replace(".dxf", "_plain.dxf")
-
-      doc.saveas(file_name)
-
-      print("INFO: file '%s' written" % file_name)
+      #my_annotations.off()
+      #my_outline    .off()
+      #
+      #
+      #
+      #file_name = file_name.replace(".dxf", "_plain.dxf")
+      #
+      #doc.saveas(file_name)
+      #
+      #print("INFO: file '%s' written" % file_name)

@@ -10,14 +10,17 @@ from datetime import datetime
 def Block_connect (p_variant , cx , cy):   # center of ballscrew
   hole = 6.2
 
-  mx = -1
+  if (p_variant == 'right'):
+    mx = -1
+  else:
+    mx = 1
 
-  for x,y in [(-9.5  ,  35)
-             ,(-9.5  , -35)
-             ,( 35.5 ,  35)
-             ,( 35.5 , -35)
+  for x,y in [( 9.5  * mx,  35)
+             ,( 9.5  * mx, -35)
+             ,(-35.5 * mx,  35)
+             ,(-35.5 * mx, -35)
              ]:
-    msp.add_circle(((cx+x)*mx , cy + y) , hole/2)
+    msp.add_circle((x + cx*mx , cy + y) , hole/2)
 
   return
 
@@ -172,8 +175,8 @@ def Portal_plate(p_name , p_variant):
     # we have 2 non-right angles
     # corner 16 -- 16 : 17 -- 18   start_angle = 90°     , stop_angle = 125.76°
     # corner 17 -- 18 : 19 -- 20   start_angle = 125.76° , stop_angle = 0°
-    (p16cb , p16x , p16y , p17x , p17y) = outer_corner(2.5 , 90     , 125.76)
-    (p18cb , p18x , p18y , p19x , p19y) = outer_corner(2.5 , 125.76 , 0     )
+    (p16cb , p16x , p16y , p17x , p17y) = outer_corner(5   , 90     , 125.76)
+    (p18cb , p18x , p18y , p19x , p19y) = outer_corner(5   , 125.76 , 0     )
 
 
     # outer shape...
@@ -182,10 +185,10 @@ def Portal_plate(p_name , p_variant):
                                ,( (x1         )*mx , y3-cr      , 0       )   #  3
                                ,( (x1         )*mx , y2+cr      , cb90    )   #  4
                                ,( (x1+cr      )*mx , y2         , 0       )   #  5
-                               ,( (x3-cr      )*mx , y2         ,-cb90    )   #  6
-                               ,( (x3         )*mx , y2-cr      , 0       )   #  7
-                               ,( (x3         )*mx , y0+cr      , cb90    )   #  8
-                               ,( (x3+cr      )*mx , y0         , 0       )   #  9
+                               ,( (x3-5       )*mx , y2         ,-cb90    )   #  6
+                               ,( (x3         )*mx , y2-5       , 0       )   #  7
+                               ,( (x3         )*mx , y0+1       , cb90    )   #  8
+                               ,( (x3+1       )*mx , y0         , 0       )   #  9
                                ,( (x4-cr      )*mx , y0         , cb90    )   # 10
                                ,( (x4         )*mx , y0+cr      , 0       )   # 11
                                ,( (x4         )*mx , y1-cr      ,-cb90    )   # 12
@@ -196,8 +199,8 @@ def Portal_plate(p_name , p_variant):
                                ,( (x5+p17x    )*mx , y4+p17y    , 0       )   # 17
                                ,( (x2+p18x    )*mx , y5+p18y    ,-p18cb*mx)   # 18
                                ,( (x2+p19x    )*mx , y5+p19y    , 0       )   # 19
-                               ,( (x0+cr      )*mx , y5         , cb90    )   # 20
-                               ,( (x0         )*mx , y5-cr      , 0       )   # 21
+                               ,( (x0+5       )*mx , y5         , cb90    )   # 20
+                               ,( (x0         )*mx , y5-5       , 0       )   # 21
                                ,( (x0         )*mx , y3+cr      , cb90    )   # 22
                                ]
                               , format='xyb'
@@ -390,14 +393,14 @@ for p_name in      cfg['Portal'].keys():
 
       print("INFO: file '%s' written" % file_name)
 
-      my_annotations.off()
-      my_outline    .off()
-
-      file_name = file_name.replace(".dxf", "_plain.dxf")
-
-      doc.saveas(file_name)
-
-      print("INFO: file '%s' written" % file_name)
+      #my_annotations.off()
+      #my_outline    .off()
+      #
+      #file_name = file_name.replace(".dxf", "_plain.dxf")
+      #
+      #doc.saveas(file_name)
+      #
+      #print("INFO: file '%s' written" % file_name)
 
 
 

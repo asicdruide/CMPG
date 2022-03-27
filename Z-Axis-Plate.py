@@ -320,7 +320,7 @@ def Z_Axis_Plate(p_name , p_variant):
                                 ]
 
     # draw outer shape...
-    shape = msp.add_lwpolyline([( x1+cr    , y3       , 0   ) #  1
+    shape = msp.add_lwpolyline([( x1+10    , y3       , 0   ) #  1
                                ,( x2-cr    , y3       ,-cb90) #  2
                                ,( x2       , y3-cr    , 0   ) #  3
                                ,( x2       , y1+cr    , cb90) #  4
@@ -345,9 +345,9 @@ def Z_Axis_Plate(p_name , p_variant):
                                ,( x2       , y8-cr    , 0   ) # 23
                                ,( x2       , y6+cr    ,-cb90) # 24
                                ,( x2-cr    , y6       , 0   ) # 25
-                               ,( x1+cr    , y6       , cb90) # 26
-                               ,( x1       , y6-cr    , 0   ) # 27
-                               ,( x1       , y3+cr    , cb90) # 28
+                               ,( x1+10    , y6       , cb90) # 26
+                               ,( x1       , y6-10    , 0   ) # 27
+                               ,( x1       , y3+10    , cb90) # 28
                                ]
                               , format='xyb'
                               )
@@ -459,7 +459,7 @@ def Z_Axis_Plate(p_name , p_variant):
 
     # Y-adjust when top-plate is thicker than 10mm
     # the upper edge has to stay unchanged
-    yadj = 10 - cfg['Z-Axis']['top']['thickness']
+    yadj = cfg['Z-Axis']['top']['thickness'] - 10
 
     if (yadj < -10):
       print("ERROR: Z-Axis-top-plate is too thick! (%dmm)" % (cfg['Z-Axis']['top']['thickness']))
@@ -467,12 +467,10 @@ def Z_Axis_Plate(p_name , p_variant):
       exit(1)
 
 
-
-
-    y5  = 280
-    y4  = 279.5
-    y3  = 270   + yadj
-    y2  = 260   + yadj
+    y5  = 280    + yadj
+    y4  = 279.5  + yadj
+    y3  = 270
+    y2  = 260
     y1  = 0.5
     y0  = 0
     ym1 = -cfg['Z-Axis']['bottom']['thickness']
@@ -538,7 +536,7 @@ def Z_Axis_Plate(p_name , p_variant):
     BackAddOn(40 , 197.78)  # what is the purpose of this?
 
     # shifted upper spacer a little down to avoid contact with top-plate
-    RailMount(66.5 , 54 , 122.67 , 191.33-margin + yadj , 260-margin + yadj)
+    RailMount(66.5 , 54 , 122.67 , 191.33-margin  , 260-margin)
 
 
     width  = x10-x1    #  width of plate
@@ -558,6 +556,8 @@ def Z_Axis_Plate(p_name , p_variant):
     (y2,y1) = [ height/2
               ,-height/2
               ]
+
+    cr = 1
 
     # outer shape...
     shape = msp.add_lwpolyline([( x1+cr , y1       , 0   )   #  1
@@ -690,14 +690,14 @@ for p_name in      cfg['Z-Axis'].keys():
       print("INFO: file '%s' written" % file_name)
 
 
-      my_annotations.off()
-      my_outline    .off()
-
-      file_name = file_name.replace(".dxf", "_plain.dxf")
-
-      doc.saveas(file_name)
-
-      print("INFO: file '%s' written" % file_name)
+      #my_annotations.off()
+      #my_outline    .off()
+      #
+      #file_name = file_name.replace(".dxf", "_plain.dxf")
+      #
+      #doc.saveas(file_name)
+      #
+      #print("INFO: file '%s' written" % file_name)
 
 
 
