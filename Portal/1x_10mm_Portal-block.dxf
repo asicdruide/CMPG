@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459665.621435185
+2459672.9156712964
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459665.621435185
+2459672.9156712964
   9
 $TDUUPDATE
  40
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{3254E307-A454-4D63-8E93-E33B678AB501}
+{1D737F99-3F97-4CA7-8D6A-C505CBCA8904}
   9
 $VERSIONGUID
   2
-{65D6DD74-FF9E-4CB5-8603-04F249F67C75}
+{5346C604-12AC-4762-952B-EB8C457D3810}
   9
 $EXTNAMES
 290
@@ -1323,9 +1323,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1339,9 +1339,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -5561,7 +5561,7 @@ AcDbPolyline
  20
 30.0
   0
-CIRCLE
+POINT
   5
 96
 330
@@ -5571,15 +5571,13 @@ AcDbEntity
   8
 outline
 100
-AcDbCircle
+AcDbPoint
  10
 0.0
  20
 0.0
  30
 0.0
- 40
-2.0
   0
 TEXT
   5
@@ -5637,7 +5635,7 @@ AcDbText
  40
 5.0
   1
-width=60.00[mm]
+width=60.00mm
   7
 LiberationSerif
  72
@@ -5673,7 +5671,7 @@ AcDbText
  40
 5.0
   1
-height=85.00[mm]
+height=85.00mm
   7
 LiberationSerif
  72
@@ -5709,7 +5707,7 @@ AcDbText
  40
 5.0
   1
-thickness=10.00[mm]
+thickness=10.00mm
   7
 LiberationSerif
  72
@@ -5817,7 +5815,7 @@ AcDbText
  40
 5.0
   1
-Sat 2022-Mar-26 14:54:52
+Sat 2022-Apr-02 21:58:34
   7
 LiberationSerif
  72
@@ -6939,7 +6937,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-26T13:54:52.858109+00:00
+0.17.2 @ 2022-04-02T19:58:34.348329+00:00
   0
 VISUALSTYLE
   5
@@ -7651,7 +7649,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-03-26T13:54:52.866104+00:00
+0.17.2 @ 2022-04-02T19:58:34.356356+00:00
   0
 ENDSEC
   0

@@ -208,8 +208,8 @@ def Portal_plate(p_name , p_variant):
     shape.close(True)
 
     # add other elements...
-    MGN12H         (msp ,  27   *mx ,  56      , 0)
-    MGN12H         (msp , 188.18*mx ,  56      , 0)
+    MGN12H         (msp ,  27   *mx ,  56      , 0   , 0)
+    MGN12H         (msp , 188.18*mx ,  56      , 0   , 0)
     SFU1605_holder (msp , 107.59*mx ,  26      , 0)
 
     Face40x60      (msp ,  35   *mx , 126.059  , 0 , cfg['Portal']['side']['thickness']-10)
@@ -346,13 +346,13 @@ def Portal_plate(p_name , p_variant):
 
 
   # add identifying text
-  txt = (                 "%s" % file_name
-        ,    "width=%5.2f[mm]" % width
-        ,   "height=%5.2f[mm]" % height
-        ,"thickness=%5.2f[mm]" % (cfg['Portal'][p_name]['thickness'])
-        , "material=%s"        % (cfg['Portal'][p_name]['material'])
-        ,   "amount=%d"        % (cfg['Portal'][p_name]['amount'])
-        ,   "%s"               % (datetime.now().strftime("%a %Y-%b-%d %H:%M:%S"))
+  txt = (               "%s" % file_name
+        ,    "width=%5.2fmm" % width
+        ,   "height=%5.2fmm" % height
+        ,"thickness=%5.2fmm" % (cfg['Portal'][p_name]['thickness'])
+        , "material=%s"      % (cfg['Portal'][p_name]['material'])
+        ,   "amount=%d"      % (cfg['Portal'][p_name]['amount'])
+        ,   "%s"             % (datetime.now().strftime("%a %Y-%b-%d %H:%M:%S"))
         )
 
   for i in range(0,len(txt)):

@@ -37,7 +37,7 @@ def Frame_Plate(p_name , p_variant):
     print("ERROR: don't know how to draw Frame_Plate(%s,%s" % (p_name , p_variant))
     exit(1)
 
-  cr    = 3                     # corner radius
+  cr    = 5                     # corner radius
   dbr   = 1.5                   # dog-bone radius => 3mm tool diameter
   cb90  = 0.4142135             # corner bulge = tan(22.5°) for 90° corners
   dbo90 = math.sqrt(2) * dbr    # dog-bone offset for 90° inner corners
@@ -175,13 +175,13 @@ def Frame_Plate(p_name , p_variant):
 
 
   # add identifying text
-  txt = (                 "%s" % file_name
-        ,    "width=%5.2f[mm]" % width
-        ,   "height=%5.2f[mm]" % height
-        ,"thickness=%5.2f[mm]" % (cfg['Frame'][p_name]['thickness'])
-        , "material=%s"        % (cfg['Frame'][p_name]['material'])
-        ,   "amount=%d"        % (cfg['Frame'][p_name]['amount'])
-        ,   "%s"               % (datetime.now().strftime("%a %Y-%b-%d %H:%M:%S"))
+  txt = (               "%s" % file_name
+        ,    "width=%5.2fmm" % width
+        ,   "height=%5.2fmm" % height
+        ,"thickness=%5.2fmm" % (cfg['Frame'][p_name]['thickness'])
+        , "material=%s"      % (cfg['Frame'][p_name]['material'])
+        ,   "amount=%d"      % (cfg['Frame'][p_name]['amount'])
+        ,   "%s"             % (datetime.now().strftime("%a %Y-%b-%d %H:%M:%S"))
         )
 
   for i in range(0,len(txt)):

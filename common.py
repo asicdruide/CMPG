@@ -21,12 +21,8 @@ def rotateXY(px , py , cx , cy , angle):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def SFU1204_nutholder(msp , cx , cy , rotate , context):
-  if (context == 'spindle'):
-    hole   =   5.2
-    hole2  =   9   # counter bore
-  else:
-    hole   =   5.3
-    hole2  =   9   # counter bore
+  hole   =   5.2
+  hole2  =   9   # counter bore
 
   holes = [[cx - 24/2 , cy - 35 / 2]
           ,[cx + 24/2 , cy - 35 / 2]
@@ -47,38 +43,47 @@ def SFU1204_nutholder(msp , cx , cy , rotate , context):
                             ,'layer' : 'annotation'
                             }
                ).set_pos((0 , cy) , align='MIDDLE_CENTER')
+    layer = 'outline'
   else:
-    # draw outline
-    (x1,x2) = [-36 /2 , 36/2]
-    (y2,y1) = [ 50 /2
-              ,-50 /2
-              ]
-
-    cr    = 1                     # corner radius
-    cb90  = 0.4142135             # corner bulge = tan(22.5°) for 90° corners
-
-    (p1x,p1y) = rotateXY(cx+x1+cr , cy+y1          , cx , cy , rotate)
-    (p2x,p2y) = rotateXY(cx+x2-cr , cy+y1          , cx , cy , rotate)
-    (p3x,p3y) = rotateXY(cx+x2    , cy+y1+cr       , cx , cy , rotate)
-    (p4x,p4y) = rotateXY(cx+x2    , cy+y2-cr       , cx , cy , rotate)
-    (p5x,p5y) = rotateXY(cx+x2-cr , cy+y2          , cx , cy , rotate)
-    (p6x,p6y) = rotateXY(cx+x1+cr , cy+y2          , cx , cy , rotate)
-    (p7x,p7y) = rotateXY(cx+x1    , cy+y2-cr       , cx , cy , rotate)
-    (p8x,p8y) = rotateXY(cx+x1    , cy+y1+cr       , cx , cy , rotate)
+    layer = '0'
 
 
-    shape = msp.add_lwpolyline([(p1x,p1y , 0   ) # 1
-                               ,(p2x,p2y , cb90) # 2
-                               ,(p3x,p3y , 0   ) # 3
-                               ,(p4x,p4y , cb90) # 4
-                               ,(p5x,p5y , 0   ) # 5
-                               ,(p6x,p6y , cb90) # 6
-                               ,(p7x,p7y , 0   ) # 7
-                               ,(p8x,p8y , cb90) # 8
-                               ]
-                              , format='xyb'
-                              )
-    shape.close(True)
+  # draw outline
+  (x1,x2) = [-36 /2 , 36/2]
+  (y2,y1) = [ 50 /2
+            ,-50 /2
+            ]
+
+  cr    = 1                     # corner radius
+  cb90  = 0.4142135             # corner bulge = tan(22.5°) for 90° corners
+
+  (p1x,p1y) = rotateXY(cx+x1+cr , cy+y1          , cx , cy , rotate)
+  (p2x,p2y) = rotateXY(cx+x2-cr , cy+y1          , cx , cy , rotate)
+  (p3x,p3y) = rotateXY(cx+x2    , cy+y1+cr       , cx , cy , rotate)
+  (p4x,p4y) = rotateXY(cx+x2    , cy+y2-cr       , cx , cy , rotate)
+  (p5x,p5y) = rotateXY(cx+x2-cr , cy+y2          , cx , cy , rotate)
+  (p6x,p6y) = rotateXY(cx+x1+cr , cy+y2          , cx , cy , rotate)
+  (p7x,p7y) = rotateXY(cx+x1    , cy+y2-cr       , cx , cy , rotate)
+  (p8x,p8y) = rotateXY(cx+x1    , cy+y1+cr       , cx , cy , rotate)
+
+
+  shape = msp.add_lwpolyline([(p1x,p1y , 0   ) # 1
+                             ,(p2x,p2y , cb90) # 2
+                             ,(p3x,p3y , 0   ) # 3
+                             ,(p4x,p4y , cb90) # 4
+                             ,(p5x,p5y , 0   ) # 5
+                             ,(p6x,p6y , cb90) # 6
+                             ,(p7x,p7y , 0   ) # 7
+                             ,(p8x,p8y , cb90) # 8
+                             ]
+                            , format='xyb'
+                            , dxfattribs={'layer': layer}
+                            )
+  shape.close(True)
+
+
+  # mark center
+  msp.add_point((cx , cy) , dxfattribs={'layer': 'outline'})
 
   return
 
@@ -156,7 +161,7 @@ def BF10_face(msp , cx , cy , rotate):   # center of ballscrew
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # floating end ballscrew support
 def BF10_footprint(msp , cx , cy , rotate):
-  hole1  =   5.2
+  hole1  =   5.0
   B      =  60
   L      =  20
   P      =  46
@@ -175,14 +180,14 @@ def BF10_footprint(msp , cx , cy , rotate):
   shape.close(True)
 
   # mark center
-  msp.add_circle((cx , cy) , 2 , dxfattribs={'layer': 'outline'})
+  msp.add_point((cx , cy) , dxfattribs={'layer': 'outline'})
 
   return
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # fixed end ballscrew support
 def BK10_footprint(msp , cx , cy , rotate):
-  hole   =   5.2
+  hole   =   5.0
   B      =  60
   L2     =  25
   P      =  46
@@ -208,7 +213,7 @@ def BK10_footprint(msp , cx , cy , rotate):
   shape.close(True)
 
   # mark center
-  msp.add_circle((cx , cy) , 2 , dxfattribs={'layer': 'outline'})
+  msp.add_point((cx , cy) , dxfattribs={'layer': 'outline'})
 
   return
 
@@ -237,7 +242,7 @@ def BK12_face(msp , cx , cy , rotate):   # center of ballscrew
   shape.close(True)
 
   # mark center
-  msp.add_circle((cx , cy) , 2 , dxfattribs={'layer': 'outline'})
+  msp.add_point((cx , cy) , dxfattribs={'layer': 'outline'})
 
   return
 
@@ -306,17 +311,21 @@ def Side40x40 (msp , cx , cy, rotate):   # center of holes
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-def MGN12H(msp , cx , cy , rotate):
+def MGN12H(msp , cx , cy , rotate , counterbore_depth):
   width  =  20
   height =  20
   hole   =   3.2
 
+  holes = [rotateXY(cx - width/2 , cy - height/2, cx , cy , rotate)
+          ,rotateXY(cx - width/2 , cy + height/2, cx , cy , rotate)
+          ,rotateXY(cx + width/2 , cy - height/2, cx , cy , rotate)
+          ,rotateXY(cx + width/2 , cy + height/2, cx , cy , rotate)
+          ]
+
+
+
   # mouting holes
-  for (x,y) in [rotateXY(cx - width/2 , cy - height/2, cx , cy , rotate)
-               ,rotateXY(cx - width/2 , cy + height/2, cx , cy , rotate)
-               ,rotateXY(cx + width/2 , cy - height/2, cx , cy , rotate)
-               ,rotateXY(cx + width/2 , cy + height/2, cx , cy , rotate)
-               ]:
+  for (x,y) in holes:
     msp.add_circle((x , y) , hole/2)
 
   width  = 45.4
@@ -332,8 +341,22 @@ def MGN12H(msp , cx , cy , rotate):
                             )
   shape.close(True)
 
+
+  if (counterbore_depth > 0):
+    hole2  =   8   # counter bore
+
+    for (x,y) in holes:
+      msp.add_circle((x  , y) , hole2/2 , dxfattribs={'layer' : 'annotation'})
+
+    msp.add_text("counterbored %dmm deep" % counterbore_depth
+                ,dxfattribs={'style' : 'LiberationSerif'
+                            ,'height': 5
+                            ,'layer' : 'annotation'
+                            }
+               ).set_pos((cx , cy) , align='MIDDLE_CENTER')
+
   # mark center
-  msp.add_circle((cx , cy) , 2 , dxfattribs={'layer': 'outline'})
+  msp.add_point((cx , cy) , dxfattribs={'layer': 'outline'})
 
   return
 
@@ -367,7 +390,7 @@ def SFU1605_holder(msp , cx , cy , rotate):
   shape.close(True)
 
   # mark center
-  msp.add_circle((cx , cy) , 2 , dxfattribs={'layer': 'outline'})
+  msp.add_point((cx , cy) , dxfattribs={'layer': 'outline'})
 
   return
 
@@ -401,7 +424,7 @@ def Face40x60 (msp , cx , cy , rotate , counterbore_depth):   # center of profil
   shape.close(True)
 
   # mark center
-  msp.add_circle((cx , cy) , 2 , dxfattribs={'layer': 'outline'})
+  msp.add_point((cx , cy) , dxfattribs={'layer': 'outline'})
 
   if (counterbore_depth > 0):
     hole2  =   9   # counter bore
@@ -409,7 +432,7 @@ def Face40x60 (msp , cx , cy , rotate , counterbore_depth):   # center of profil
     for (x,y) in holes:
       msp.add_circle((x  , y) , hole2/2 , dxfattribs={'layer' : 'annotation'})
 
-    msp.add_text("counterbored %d[mm] deep" % counterbore_depth
+    msp.add_text("counterbored %dmm deep" % counterbore_depth
                 ,dxfattribs={'style' : 'LiberationSerif'
                             ,'height': 5
                             ,'layer' : 'annotation'

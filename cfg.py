@@ -19,13 +19,14 @@ cfg = {'Portal'    : {'back'                 : {'thickness' :  10,'material' : '
                      }
 
 
-      ,'Z-Axis'    : {'spindle'              : {'thickness' :  10,'material' : 'alu' , 'variant' : [0,1,2,3       ],'amount':1}
+      ,'Z-Axis'    : {'spindle'              : {'thickness' :  10,'material' : 'alu' , 'variant' : ['' , 0,1,2,3  ],'amount':1}
                      ,'bottom'               : {'thickness' :  10,'material' : 'alu' , 'variant' : [''            ],'amount':1}
                      ,'top'                  : {'thickness' :  15,'material' : 'alu' , 'variant' : [''            ],'amount':1}
                      ,'back'                 : {'thickness' :  10,'material' : 'alu' , 'variant' : [''            ],'amount':1}
                      ,'rail_spacer'          : {'thickness' :   7,'material' : 'alu' , 'variant' : [''            ],'amount':4}
                      ,'motor_spacer'         : {'thickness' :   0,'material' : 'alu' , 'variant' : [''            ],'amount':1}
                      ,'spindle_plate_spacer' : {'thickness' :   3,'material' : 'alu' , 'variant' : [''            ],'amount':1}
+                     ,'spindle_adapter'      : {'thickness' :  10,'material' : 'alu' , 'variant' : [''            ],'amount':1}
                      }
 
       ,'Ballscrew' : {'X'                    : {'length' : 700}  #  650 is baseline design

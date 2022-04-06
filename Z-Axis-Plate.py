@@ -6,6 +6,30 @@ from datetime import datetime
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+def Spindle_adapter_connect(context):
+  if (context == 'spindle'):
+    # on spindle plate we need an M6 threaded hole
+    hole = 5.0
+  elif (context == 'spindle_adapter'):
+    # on spindle adapter we need an M6 thru-hole
+    hole = 6.2
+  else:
+    print("unknown context '%s' for Spindle_adapter_connect" % context)
+    exit(1)
+
+  # we need holes to mount the spindle_adapter to spindle_plate
+  holesY = [118
+           , 80
+           , 42
+           ]
+  for y in holesY:
+    msp.add_circle(( -49 , y) ,   hole/2)
+    msp.add_circle((  49 , y) ,   hole/2)
+
+  return
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 def SpindleAddOn(width):
   hole = 6.8
 
@@ -14,6 +38,18 @@ def SpindleAddOn(width):
   # i'd guess these are holes to screw the rails while plate is mounted
   msp.add_circle(( -width/2 + 13.5 , 80) ,   hole/2)
   msp.add_circle(( +width/2 - 13.5 , 80) ,   hole/2)
+
+  return
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+def SpindleAdapter(p_name):
+  hole = 6.8
+
+  # on spindle plate we need holes for M6 threads (=5mm)
+  # on adapter plate we need holes for M6 screws  (=6.4mm)
+
+
 
   return
 
@@ -46,10 +82,11 @@ def RailMount(x , y1 , y2 , y3 , y4):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def Spindle_outline(msp , p_variant):
-  spindle = ({'name' : 'GPenny 2.2kW ER20 square air cooled flange', 'id' : 'GP_2.2kW_ER20' , 'bottom' : 40}   # e.g. https://de.aliexpress.com/item/1005002490128320.html?spm=a2g0o.store_pc_groupList.8148356.31.3e704e2bZPBZpF
-            ,{'name' : 'Amazon 1.5kW ER11 square air cooled flange', 'id' : 'AM_1.5kW_ER11' , 'bottom' : 9.44} # e.g. https://www.amazon.com/gp/product/B06Y42QL2R
-            ,{'name' : 'GPenny 1.5kW ER20 square air cooled flange', 'id' : 'GP_1.5kW_ER20' , 'bottom' : 40}   # e.g. https://de.aliexpress.com/item/1005002490128320.html?spm=a2g0o.store_pc_groupList.8148356.10.763a5056MfIubV
-            ,{'name' : 'AliEx  1.5kW ER11 square air cooled flange', 'id' : 'AE_1.5kW_ER11' , 'bottom' : 28}   # e.g. https://fr.aliexpress.com/item/32953548253.html?srcSns=sns_Copy&spreadType=socialShare&bizType=ProductDetail&social_params=20498188540&aff_fcid=394633005d0f4e22a981cdcb4ef84ff9-1646684439869-04366-_mKItZoY&tt=MG&aff_fsk=_mKItZoY&aff_platform=default&sk=_mKItZoY&aff_trace_key=394633005d0f4e22a981cdcb4ef84ff9-1646684439869-04366-_mKItZoY&shareId=20498188540&businessType=ProductDetail&platform=AE&terminal_id=21deee05b3694129af60a740b84b062b&afSmartRedirect=y
+  spindle = ({'name' : 'GPenny 2.2kW ER20 square air cooled flange'   , 'id' : 'GP_2.2kW_ER20'    , 'bottom' : 40}   # e.g. https://de.aliexpress.com/item/1005002490128320.html?spm=a2g0o.store_pc_groupList.8148356.31.3e704e2bZPBZpF
+            ,{'name' : 'Amazon 1.5kW ER11 square air cooled flange'   , 'id' : 'AM_1.5kW_ER11'    , 'bottom' : 9.44} # e.g. https://www.amazon.com/gp/product/B06Y42QL2R
+            ,{'name' : 'GPenny 1.5kW ER20 square air cooled flange'   , 'id' : 'GP_1.5kW_ER20'    , 'bottom' : 40}   # e.g. https://de.aliexpress.com/item/1005002490128320.html?spm=a2g0o.store_pc_groupList.8148356.10.763a5056MfIubV
+            ,{'name' : 'AliEx  1.5kW ER11 square air cooled flange'   , 'id' : 'AE_1.5kW_ER11'    , 'bottom' : 28}   # e.g. https://fr.aliexpress.com/item/32953548253.html?srcSns=sns_Copy&spreadType=socialShare&bizType=ProductDetail&social_params=20498188540&aff_fcid=394633005d0f4e22a981cdcb4ef84ff9-1646684439869-04366-_mKItZoY&tt=MG&aff_fsk=_mKItZoY&aff_platform=default&sk=_mKItZoY&aff_trace_key=394633005d0f4e22a981cdcb4ef84ff9-1646684439869-04366-_mKItZoY&shareId=20498188540&businessType=ProductDetail&platform=AE&terminal_id=21deee05b3694129af60a740b84b062b&afSmartRedirect=y
+           #,{'name' : 'GPenny 1.5kW ER20 square air cooled no flange', 'id' : 'GP_1.5kW_ER20 nf' , 'bottom' : 40}   # e.g. https://de.aliexpress.com/item/1005002490128320.html?spm=a2g0o.store_pc_groupList.8148356.10.763a5056MfIubV
             )
 
   v_name = spindle[p_variant]['name']
@@ -145,6 +182,35 @@ def Spindle_outline(msp , p_variant):
     mountN = 4
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   elif (v_name == 'GPenny 1.5kW ER20 square air cooled flange'):
+    hole_x_width  =  95
+    hole_y_space  =  61
+    hole          =   5   # threaded with M6
+    width1        = 110
+    width2        =  75
+    width3        =  68
+    width4        =  34
+
+    x1  = -width1  / 2    # leftmost X
+    x2  = -width2  / 2
+    x3  = -width3  / 2
+    x4  = -width4  / 2
+
+    x5  =  width4  / 2
+    x6  =  width3  / 2
+    x7  =  width2  / 2
+    x8  =  width1  / 2    # rightmost X
+
+    y1  =  y  - 40 - 8 - 20 - 10 - 47 # bottom Y (collet)
+    y2  =  y1 + 47
+    y3  =  y2 + 10
+    y4  =  y3 + 28
+    y5  =  y
+    y6  =  y5 + hole_y_space + 38
+    y7  =  y6 + 37        # top Y
+
+    mountN = 2
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  elif (v_name == 'GPenny 1.5kW ER20 square air cooled no flange'):
     hole_x_width  =  95
     hole_y_space  =  61
     hole          =   5   # threaded with M6
@@ -399,7 +465,77 @@ def Z_Axis_Plate(p_name , p_variant):
 
     ZBlock_y1      = 118     # might be calculated with offset from plate boundaries
     ZBlock_y2      =  42     # might be calculated with offset from plate boundaries
-    ZNut_y         =  78     # how is value calculated?
+    ZNut_y         =  80     # how is value calculated?
+
+    cr    = 2.5                   # corner radius
+    cb90  = 0.4142135             # corner bulge = tan(22.5°) for 90° corners
+
+    # outer shape of Z-Axis-Spindle-Plate
+    x0 = -width  / 2    # leftmost X
+    x1 = -width2 / 2
+    x2 =  width2 / 2
+    x3 =  width  / 2    # rightmost X
+
+    y0 =           0    # bottom Y
+    y1 =  height2
+    y2 =  height        # top Y
+
+    shape = msp.add_lwpolyline([( (x1+5    ) , y0       , 0   )  #  0
+                               ,( (x2-5    ) , y0       , cb90)  #  1
+                               ,( (x2      ) , y0+5     , 0   )  #  2
+                               ,( (x2      ) , y1-5     ,-cb90)  #  3
+                               ,( (x2+5    ) , y1       , 0   )  #  4
+                               ,( (x3-cr   ) , y1       , cb90)  #  5
+                               ,( (x3      ) , y1+cr    , 0   )  #  6
+                               ,( (x3      ) , y2-cr    , cb90)  #  7
+                               ,( (x3-cr   ) , y2       , 0   )  #  8
+                               ,( (x0+cr   ) , y2       , cb90)  #  9
+                               ,( (x0      ) , y2-cr    , 0   )  # 10
+                               ,( (x0      ) , y1+cr    , cb90)  # 11
+                               ,( (x0+cr   ) , y1       , 0   )  # 12
+                               ,( (x1-5    ) , y1       ,-cb90)  # 13
+                               ,( (x1      ) , y1-5     , 0   )  # 14
+                               ,( (x1      ) , y0+5     , cb90)  # 15
+                               ]
+                              , format='xyb'
+                              )
+    shape.close(True)
+
+    # Assemble parts
+    MGN12H(msp , -ZRail_xdist/2 , ZBlock_y1 , 90   , 4)
+    MGN12H(msp , -ZRail_xdist/2 , ZBlock_y2 , 90   , 4)
+    MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y1 , 90   , 4)
+    MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y2 , 90   , 4)
+
+    SFU1204_nutholder(msp , 0 , ZNut_y , 90, 'spindle')
+
+    SpindleAddOn(width)
+
+    # dowel pin between spindle plate and spindle adapter
+    msp.add_circle(( 0 , ZNut_y) ,   3/2)
+
+
+
+    if (p_variant == ''):
+      file_name_add = ''
+
+      # we need holes to mount the spindle adapter
+      # we need a hole for a dowel pin (passstift) between spindle plate and adapter plate
+      Spindle_adapter_connect(p_name)
+    else:
+      file_name_add = Spindle_outline(msp , p_variant)
+
+    text_x =   0
+    text_y = 200
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  elif (p_name == 'spindle_adapter'):
+    # free parameters
+    width          = 112     #  width of plate
+    height         = 140     # height of plate
+
+    width2         =  94     # bottom nose width
+    height2        =  20     # bottom nose height
 
     cr    = 3                     # corner radius
     cb90  = 0.4142135             # corner bulge = tan(22.5°) for 90° corners
@@ -436,16 +572,34 @@ def Z_Axis_Plate(p_name , p_variant):
     shape.close(True)
 
     # Assemble parts
-    MGN12H(msp , -ZRail_xdist/2 , ZBlock_y1 , 90)
-    MGN12H(msp , -ZRail_xdist/2 , ZBlock_y2 , 90)
-    MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y1 , 90)
-    MGN12H(msp ,  ZRail_xdist/2 , ZBlock_y2 , 90)
+    Spindle_adapter_connect(p_name)
 
-    SFU1204_nutholder(msp , 0 , ZNut_y , 90, 'spindle')
 
-    SpindleAddOn(width)
+    # bottom/top markers of baseline spindle
+    msp.add_lwpolyline([(-90 , -67.5 ) , (90 , -67.5 )] , dxfattribs={'layer': 'outline'})
+    msp.add_lwpolyline([(-90 , 171.44) , (90 , 171.44)] , dxfattribs={'layer': 'outline'})
 
-    file_name_add = Spindle_outline(msp , p_variant)
+
+    # holes to mount spindle to spindle adapter (mirrored at Y-axis because we need counterbores on the back)
+    #holesY = [40.5 + 90
+    #         ,40.5
+    #         ]
+    #
+    #holesX = [-41+25.5
+    #         , 41-26.5
+    #         ]
+    #for y in holesY:
+    #  for x in holesX:
+    #    msp.add_circle(( x , y) ,   5.2/2)
+
+
+
+
+    # we need a hole for a dowel pin (passstift) between spindle plate and adapter plate
+
+
+
+
 
     text_x =   0
     text_y = 200
@@ -522,10 +676,10 @@ def Z_Axis_Plate(p_name , p_variant):
     shape.close(True)
 
     # add other elements...
-    MGN12H(msp , -58 ,  14  ,   0)
-    MGN12H(msp ,  58 ,  14  ,   0)
-    MGN12H(msp , -58 , 159  ,   0)
-    MGN12H(msp ,  58 , 159  ,   0)
+    MGN12H(msp , -58 ,  14  ,   0   , 0)
+    MGN12H(msp ,  58 ,  14  ,   0   , 0)
+    MGN12H(msp , -58 , 159  ,   0   , 0)
+    MGN12H(msp ,  58 , 159  ,   0   , 0)
 
     # shifted BF10 a little up to avoid contact with bottom-plate
     BF10_footprint(msp , 0 ,  10+margin  , 90)
@@ -626,7 +780,7 @@ def Z_Axis_Plate(p_name , p_variant):
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   else:
-    print("ERROR: don't know how to draw Z-Axis-Plate(%s,%s)" % (p_name , p_variant))
+    print("ERROR: don't know how to draw Z-Axis-Plate(%s,'%s')" % (p_name , p_variant))
     exit(1)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -636,13 +790,13 @@ def Z_Axis_Plate(p_name , p_variant):
 
 
   # add identifying text
-  txt = [                 "%s" % file_name
-        ,    "width=%5.2f[mm]" % width
-        ,   "height=%5.2f[mm]" % height
-        ,"thickness=%5.2f[mm]" % (cfg['Z-Axis'][p_name]['thickness'])
-        , "material=%s"        % (cfg['Z-Axis'][p_name]['material'])
-        ,   "amount=%d"        % (cfg['Z-Axis'][p_name]['amount'])
-        ,   "%s"               % (datetime.now().strftime("%a %Y-%b-%d %H:%M:%S"))
+  txt = [               "%s" % file_name
+        ,    "width=%5.2fmm" % width
+        ,   "height=%5.2fmm" % height
+        ,"thickness=%5.2fmm" % (cfg['Z-Axis'][p_name]['thickness'])
+        , "material=%s"      % (cfg['Z-Axis'][p_name]['material'])
+        ,   "amount=%d"      % (cfg['Z-Axis'][p_name]['amount'])
+        ,   "%s"             % (datetime.now().strftime("%a %Y-%b-%d %H:%M:%S"))
         ]
 
   if (p_name == 'back'):
