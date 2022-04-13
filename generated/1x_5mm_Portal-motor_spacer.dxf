@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459672.9156712964
+2459683.796898148
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459672.9156712964
+2459683.796898148
   9
 $TDUUPDATE
  40
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{A5932AAF-6A61-491F-A5DB-1DB5CCE92A0F}
+{074114CE-5643-4B2C-9E12-96B40116A4B1}
   9
 $VERSIONGUID
   2
-{D62EC188-E0E6-442C-A926-4790169A2135}
+{8DEEDD01-3975-4993-9607-4B2BBBB55B81}
   9
 $EXTNAMES
 290
@@ -1323,9 +1323,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1339,9 +1339,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -2233,7 +2233,7 @@ LAYER
 100
 AcDbSymbolTable
  70
-4
+6
   0
 LAYER
   5
@@ -2299,7 +2299,7 @@ annotation
  70
 0
  62
-2
+7
   6
 Continuous
 370
@@ -2324,6 +2324,54 @@ outline
 0
  62
 2
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8D
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+thx
+ 70
+0
+ 62
+1
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8E
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+th52
+ 70
+0
+ 62
+30
   6
 Continuous
 370
@@ -5269,129 +5317,49 @@ AcDbEntity
 100
 AcDbPolyline
  90
-16
+8
  70
 1
  10
-31.1
+-23.5
  20
--40.0
+-28.5
  10
--43.0
+23.5
  20
--40.0
+-28.5
  42
--0.4142135
+0.4142135
  10
--48.0
+28.5
  20
--35.0
+-23.5
  10
--48.0
+28.5
  20
-9.5
+23.5
  42
--0.4142135
+0.4142135
  10
--43.0
+23.5
  20
-14.5
+28.5
  10
--22.2
+-23.5
  20
-14.5
+28.5
  42
--0.4142135
+0.4142135
  10
--17.2
+-28.5
  20
-9.5
+23.5
  10
--17.2
+-28.5
  20
--15.078679656440357
+-23.5
  42
-1.0
- 10
--15.078679656440357
- 20
--17.2
- 10
-15.078679656440357
- 20
--17.2
- 42
-1.0
- 10
-17.2
- 20
--15.078679656440357
- 10
-17.2
- 20
-35.0
- 42
--0.4142135
- 10
-22.2
- 20
-40.0
- 10
-31.1
- 20
-40.0
- 42
--0.4142135
- 10
-36.1
- 20
-35.0
- 10
-36.1
- 20
--35.0
- 42
--0.4142135
-  0
-CIRCLE
-  5
-8D
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-28.6
- 20
--32.5
- 30
-0.0
- 40
-3.1
-  0
-CIRCLE
-  5
-8E
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--40.5
- 20
--32.5
- 30
-0.0
- 40
-3.1
+0.4142135
   0
 CIRCLE
   5
@@ -5401,17 +5369,17 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+thx
 100
 AcDbCircle
  10
--40.5
+0.0
  20
-7.0
+0.0
  30
 0.0
  40
-3.1
+19.25
   0
 CIRCLE
   5
@@ -5421,17 +5389,17 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+th52
 100
 AcDbCircle
  10
-28.6
+-23.57
  20
-32.5
+-23.57
  30
 0.0
  40
-3.1
+2.6
   0
 CIRCLE
   5
@@ -5441,13 +5409,13 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+th52
 100
 AcDbCircle
  10
--23.0
+-23.57
  20
-0.0
+23.57
  30
 0.0
  40
@@ -5461,13 +5429,13 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+th52
 100
 AcDbCircle
  10
-23.0
+23.57
  20
-0.0
+-23.57
  30
 0.0
  40
@@ -5481,33 +5449,13 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+th52
 100
 AcDbCircle
  10
--23.0
+23.57
  20
--18.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-94
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-23.0
- 20
--18.0
+23.57
  30
 0.0
  40
@@ -5515,7 +5463,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-95
+94
 330
 17
 100
@@ -5529,39 +5477,75 @@ AcDbPolyline
  70
 1
  10
--30.0
+-25.5
  20
--25.0
+-28.5
  10
-30.0
+25.5
  20
--25.0
+-28.5
  10
-30.0
+28.5
  20
-7.5
+-25.5
  10
-17.0
+28.5
  20
-7.5
+25.5
  10
-17.0
+25.5
  20
-18.0
+28.5
  10
--17.0
+-25.5
  20
-18.0
+28.5
  10
--17.0
+-28.5
  20
-7.5
+25.5
  10
--30.0
+-28.5
  20
-7.5
+-25.5
   0
-POINT
+TEXT
+  5
+95
+330
+17
+100
+AcDbEntity
+  8
+annotation
+100
+AcDbText
+ 10
+0.0
+ 20
+98.5
+ 30
+0.0
+ 40
+5.0
+  1
+1x_5mm_Portal-motor_spacer.dxf
+  7
+LiberationSans
+ 72
+1
+ 11
+0.0
+ 21
+98.5
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
   5
 96
 330
@@ -5569,15 +5553,33 @@ POINT
 100
 AcDbEntity
   8
-outline
+annotation
 100
-AcDbPoint
+AcDbText
  10
 0.0
  20
-0.0
+88.5
  30
 0.0
+ 40
+5.0
+  1
+width=57.00mm
+  7
+LiberationSans
+ 72
+1
+ 11
+0.0
+ 21
+88.5
+ 31
+0.0
+100
+AcDbText
+ 73
+2
   0
 TEXT
   5
@@ -5593,21 +5595,21 @@ AcDbText
  10
 0.0
  20
-110.0
+78.5
  30
 0.0
  40
 5.0
   1
-Frame-block-right.dxf
+height=57.00mm
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-110.0
+78.5
  31
 0.0
 100
@@ -5629,21 +5631,21 @@ AcDbText
  10
 0.0
  20
-100.0
+68.5
  30
 0.0
  40
 5.0
   1
-width=84.10mm
+thickness= 5.00mm
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-100.0
+68.5
  31
 0.0
 100
@@ -5665,21 +5667,21 @@ AcDbText
  10
 0.0
  20
-90.0
+58.5
  30
 0.0
  40
 5.0
   1
-height=80.00mm
+material=alu
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-90.0
+58.5
  31
 0.0
 100
@@ -5701,21 +5703,21 @@ AcDbText
  10
 0.0
  20
-80.0
+48.5
  30
 0.0
  40
 5.0
   1
-thickness=10.00mm
+amount=1
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-80.0
+48.5
  31
 0.0
 100
@@ -5737,21 +5739,21 @@ AcDbText
  10
 0.0
  20
-70.0
+38.5
  30
 0.0
  40
 5.0
   1
-material=alu
+Wed 2022-Apr-13 19:07:32
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-70.0
+38.5
  31
 0.0
 100
@@ -5767,27 +5769,25 @@ TEXT
 100
 AcDbEntity
   8
-annotation
+thx
 100
 AcDbText
  10
-0.0
+80.0
  20
-60.0
+98.5
  30
 0.0
  40
 5.0
   1
-amount=1
+through hole 38.5mm
   7
-LiberationSerif
- 72
-1
+LiberationSans
  11
-0.0
+80.0
  21
-60.0
+98.5
  31
 0.0
 100
@@ -5803,27 +5803,25 @@ TEXT
 100
 AcDbEntity
   8
-annotation
+th52
 100
 AcDbText
  10
-0.0
+80.0
  20
-50.0
+88.5
  30
 0.0
  40
 5.0
   1
-Sat 2022-Apr-02 21:58:34
+through hole 5.2mm (M5 screw)
   7
-LiberationSerif
- 72
-1
+LiberationSans
  11
-0.0
+80.0
  21
-50.0
+88.5
  31
 0.0
 100
@@ -6937,7 +6935,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-04-02T19:58:34.980366+00:00
+0.17.2 @ 2022-04-13T17:07:32.493464+00:00
   0
 VISUALSTYLE
   5
@@ -7649,7 +7647,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-04-02T19:58:34.988465+00:00
+0.17.2 @ 2022-04-13T17:07:32.501373+00:00
   0
 ENDSEC
   0

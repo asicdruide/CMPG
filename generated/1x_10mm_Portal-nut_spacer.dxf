@@ -489,7 +489,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2459672.9156712964
+2459683.796898148
   9
 $TDUCREATE
  40
@@ -497,7 +497,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2459672.9156712964
+2459683.796898148
   9
 $TDUUPDATE
  40
@@ -549,7 +549,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-B2
+9F
   9
 $SURFTAB1
  70
@@ -929,11 +929,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{7D634BE8-4E83-4ED6-A62C-02EEF2D7EAA9}
+{88B7FD8B-9F77-4914-8F4D-1915EC54FA2B}
   9
 $VERSIONGUID
   2
-{E00A6CCB-51F6-45B9-A84A-F0C9371A9872}
+{46079120-16C0-41C3-9442-7368DDF974C8}
   9
 $EXTNAMES
 290
@@ -1323,9 +1323,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1339,9 +1339,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -2233,7 +2233,7 @@ LAYER
 100
 AcDbSymbolTable
  70
-4
+5
   0
 LAYER
   5
@@ -2299,7 +2299,7 @@ annotation
  70
 0
  62
-2
+7
   6
 Continuous
 370
@@ -2324,6 +2324,30 @@ outline
 0
  62
 2
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8D
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+th52
+ 70
+0
+ 62
+30
   6
 Continuous
 370
@@ -3133,7 +3157,7 @@ ACAD
   0
 APPID
   5
-AF
+9C
 330
 3
 100
@@ -3147,7 +3171,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-B0
+9D
 330
 3
 100
@@ -5269,89 +5293,49 @@ AcDbEntity
 100
 AcDbPolyline
  90
-12
+8
  70
 1
  10
-31.1
+-19.0
  20
--40.0
+-26.0
  10
--158.9
+19.0
  20
--40.0
- 42
--0.4142135
- 10
--163.9
- 20
--35.0
- 10
--163.9
- 20
--5.0
- 42
--0.4142135
- 10
--158.9
- 20
-0.0
- 10
--93.0
- 20
-0.0
+-26.0
  42
 0.4142135
  10
--88.0
+20.0
  20
-5.0
+-25.0
  10
--88.0
+20.0
  20
-35.0
+25.0
  42
--0.4142135
+0.4142135
  10
--83.0
+19.0
  20
-40.0
+26.0
  10
-31.1
+-19.0
  20
-40.0
+26.0
  42
--0.4142135
+0.4142135
  10
-36.1
+-20.0
  20
-35.0
+25.0
  10
-36.1
+-20.0
  20
--35.0
+-25.0
  42
--0.4142135
-  0
-CIRCLE
-  5
-8D
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--78.0
- 20
-30.0
- 30
-0.0
- 40
-2.6
+0.4142135
   0
 CIRCLE
   5
@@ -5361,13 +5345,13 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+th52
 100
 AcDbCircle
  10
--58.0
+-12.0
  20
-30.0
+-20.0
  30
 0.0
  40
@@ -5381,13 +5365,13 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+th52
 100
 AcDbCircle
  10
--78.0
+-12.0
  20
-10.0
+20.0
  30
 0.0
  40
@@ -5401,13 +5385,13 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+th52
 100
 AcDbCircle
  10
--58.0
+12.0
  20
-10.0
+-20.0
  30
 0.0
  40
@@ -5421,73 +5405,13 @@ CIRCLE
 100
 AcDbEntity
   8
-0
+th52
 100
 AcDbCircle
  10
--78.0
+12.0
  20
--10.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-92
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--58.0
- 20
--10.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-93
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--78.0
- 20
--30.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-94
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--58.0
- 20
--30.0
+20.0
  30
 0.0
  40
@@ -5495,7 +5419,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-95
+92
 330
 17
 100
@@ -5509,285 +5433,25 @@ AcDbPolyline
  70
 1
  10
--88.0
+-20.0
  20
--40.0
+-26.0
  10
--48.0
+20.0
  20
--40.0
+-26.0
  10
--48.0
+20.0
  20
-40.0
+26.0
  10
--88.0
+-20.0
  20
-40.0
+26.0
   0
-CIRCLE
+POINT
   5
-96
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--96.75
- 20
--30.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-97
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--96.75
- 20
--10.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-98
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--116.75
- 20
--30.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-99
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--116.75
- 20
--10.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-9A
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--136.75
- 20
--30.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-9B
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--136.75
- 20
--10.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-9C
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--156.75
- 20
--30.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-9D
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--156.75
- 20
--10.0
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-9E
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-0.0
- 20
-0.0
- 30
-0.0
- 40
-19.25
-  0
-CIRCLE
-  5
-9F
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--23.57
- 20
--23.57
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-A0
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--23.57
- 20
-23.57
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-A1
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-23.57
- 20
--23.57
- 30
-0.0
- 40
-2.6
-  0
-CIRCLE
-  5
-A2
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-23.57
- 20
-23.57
- 30
-0.0
- 40
-2.6
-  0
-LWPOLYLINE
-  5
-A3
+93
 330
 17
 100
@@ -5795,127 +5459,17 @@ AcDbEntity
   8
 outline
 100
-AcDbPolyline
- 90
-8
- 70
-1
+AcDbPoint
  10
--25.5
+0.0
  20
--28.5
- 10
-25.5
- 20
--28.5
- 10
-28.5
- 20
--25.5
- 10
-28.5
- 20
-25.5
- 10
-25.5
- 20
-28.5
- 10
--25.5
- 20
-28.5
- 10
--28.5
- 20
-25.5
- 10
--28.5
- 20
--25.5
-  0
-CIRCLE
-  5
-A4
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-28.6
- 20
--32.5
+0.0
  30
 0.0
- 40
-3.1
-  0
-CIRCLE
-  5
-A5
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--40.5
- 20
--32.5
- 30
-0.0
- 40
-3.1
-  0
-CIRCLE
-  5
-A6
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
--40.5
- 20
-7.0
- 30
-0.0
- 40
-3.1
-  0
-CIRCLE
-  5
-A7
-330
-17
-100
-AcDbEntity
-  8
-0
-100
-AcDbCircle
- 10
-28.6
- 20
-32.5
- 30
-0.0
- 40
-3.1
   0
 TEXT
   5
-A8
+94
 330
 17
 100
@@ -5927,21 +5481,21 @@ AcDbText
  10
 0.0
  20
-110.0
+96.0
  30
 0.0
  40
 5.0
   1
-Frame-back-left.dxf
+1x_10mm_Portal-nut_spacer.dxf
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-110.0
+96.0
  31
 0.0
 100
@@ -5951,7 +5505,7 @@ AcDbText
   0
 TEXT
   5
-A9
+95
 330
 17
 100
@@ -5963,21 +5517,21 @@ AcDbText
  10
 0.0
  20
-100.0
+86.0
  30
 0.0
  40
 5.0
   1
-width=200.00mm
+width=40.00mm
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-100.0
+86.0
  31
 0.0
 100
@@ -5987,7 +5541,7 @@ AcDbText
   0
 TEXT
   5
-AA
+96
 330
 17
 100
@@ -5999,21 +5553,21 @@ AcDbText
  10
 0.0
  20
-90.0
+76.0
  30
 0.0
  40
 5.0
   1
-height=80.00mm
+height=52.00mm
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-90.0
+76.0
  31
 0.0
 100
@@ -6023,7 +5577,7 @@ AcDbText
   0
 TEXT
   5
-AB
+97
 330
 17
 100
@@ -6035,7 +5589,7 @@ AcDbText
  10
 0.0
  20
-80.0
+66.0
  30
 0.0
  40
@@ -6043,13 +5597,13 @@ AcDbText
   1
 thickness=10.00mm
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-80.0
+66.0
  31
 0.0
 100
@@ -6059,7 +5613,7 @@ AcDbText
   0
 TEXT
   5
-AC
+98
 330
 17
 100
@@ -6071,7 +5625,7 @@ AcDbText
  10
 0.0
  20
-70.0
+56.0
  30
 0.0
  40
@@ -6079,13 +5633,13 @@ AcDbText
   1
 material=alu
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-70.0
+56.0
  31
 0.0
 100
@@ -6095,7 +5649,7 @@ AcDbText
   0
 TEXT
   5
-AD
+99
 330
 17
 100
@@ -6107,7 +5661,7 @@ AcDbText
  10
 0.0
  20
-60.0
+46.0
  30
 0.0
  40
@@ -6115,13 +5669,13 @@ AcDbText
   1
 amount=1
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-60.0
+46.0
  31
 0.0
 100
@@ -6131,7 +5685,7 @@ AcDbText
   0
 TEXT
   5
-AE
+9A
 330
 17
 100
@@ -6143,21 +5697,55 @@ AcDbText
  10
 0.0
  20
-50.0
+36.0
  30
 0.0
  40
 5.0
   1
-Sat 2022-Apr-02 21:58:34
+Wed 2022-Apr-13 19:07:32
   7
-LiberationSerif
+LiberationSans
  72
 1
  11
 0.0
  21
-50.0
+36.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+9B
+330
+17
+100
+AcDbEntity
+  8
+th52
+100
+AcDbText
+ 10
+80.0
+ 20
+96.0
+ 30
+0.0
+ 40
+5.0
+  1
+through hole 5.2mm (M5 screw)
+  7
+LiberationSans
+ 11
+80.0
+ 21
+96.0
  31
 0.0
 100
@@ -7259,7 +6847,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-B1
+9E
   0
 DICTIONARYVAR
   5
@@ -7271,7 +6859,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-04-02T19:58:34.892855+00:00
+0.17.2 @ 2022-04-13T17:07:32.521053+00:00
   0
 VISUALSTYLE
   5
@@ -7975,7 +7563,7 @@ X-Ray
   0
 DICTIONARYVAR
   5
-B1
+9E
 330
 2D
 100
@@ -7983,7 +7571,7 @@ DictionaryVariables
 280
 0
   1
-0.17.2 @ 2022-04-02T19:58:34.902443+00:00
+0.17.2 @ 2022-04-13T17:07:32.528758+00:00
   0
 ENDSEC
   0
