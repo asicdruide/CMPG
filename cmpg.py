@@ -44,6 +44,36 @@ Add2BOM(ctx , 6 , 'DIN125' , 'M4'  , '1204 nut to nut holder')    # washer
 
 
 
+# brackets to threnghten the frame
+doc = 'brackets at inner frame corners'
+Add2BOM(ctx ,   8 ,'brackets'   ,  'M5'    , doc)    # sliding nut
+
+Add2BOM(ctx , 2*8 ,'DIN912'     ,  'M5x8'  , doc)    # screw
+Add2BOM(ctx , 2*8 ,'DIN125'     ,  'M5'    , doc)    # washer
+Add2BOM(ctx , 2*8 ,'SlidingNut' ,  'M5'    , doc)    # sliding nut
+
+
+
+# lmit switches
+doc = 'mounting Z-limit switches'
+Add2BOM(ctx , 2 ,'DIN912'     ,  'M3x16' , doc)    # screw ~11mm in holder + 5mm in sliding nut
+Add2BOM(ctx , 2 ,'DIN125'     ,  'M3'    , doc)    # washer
+Add2BOM(ctx , 2 ,'SlidingNut' ,  'M3'    , doc)    # sliding nut
+
+doc = 'mounting XY-limit switches'
+Add2BOM(ctx , 4 ,'DIN912'     ,  'M3x10' , doc)    # screw ~5mm in holder + 5mm in sliding nut
+Add2BOM(ctx , 4 ,'DIN125'     ,  'M3'    , doc)    # washer
+Add2BOM(ctx , 4 ,'SlidingNut' ,  'M3'    , doc)    # sliding nut
+
+
+
+
+
+
+
+
+
+
 
 # loop thru all plates to draw...
 for plate_group  in cfg['Plates'].keys():
@@ -137,16 +167,19 @@ OUT = open(file_name , 'w')
 
 for what      in sorted(ctx['bom']      .keys()):
   for variant in sorted(ctx['bom'][what].keys()):
-    print("%s %s" % (what, variant)                   , file = OUT)
     sum = 0
 
     for (cnt,doc) in ctx['bom'][what][variant]:
-      print("  %3d (%s)" % (cnt,doc)                  , file = OUT)
       sum += cnt
 
-    print("  ==============================="         , file = OUT)
-    print("  %3d total" % (sum)                       , file = OUT)
-    print(" "                                         , file = OUT)
+    print("%-12s %-5s.........................%3d needed....stock(    ).......to be sourced(    )" % (what, variant, sum)  , file = OUT)
+
+    for (cnt,doc) in ctx['bom'][what][variant]:
+      print("  %3d (%s)" % (cnt,doc)                                           , file = OUT)
+
+    print(" "                                                                  , file = OUT)
+
+print("generated on %s" % ((datetime.now().strftime("%a %Y-%b-%d %H:%M:%S")))  , file = OUT)
 
 OUT.close()
 

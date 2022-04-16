@@ -285,6 +285,12 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     Add2BOM(ctx , 4, 'DIN985' , 'M5'    , doc)  # locknut
 
 
+    screw = Screw('M5' , cfg['Plates'][plate_group][plate_name]['thickness']
+                       + 15   # thread inside Z-extrusion
+                 )
+    doc = '%s to Z-extrusion' % (plate_id)
+    Add2BOM(ctx , 2, 'DIN912' , screw   , doc)  # screw
+    Add2BOM(ctx , 2, 'DIN125' , 'M5'    , doc)  # washer
 
 
 

@@ -132,7 +132,7 @@ def Frame_plate(ctx , plate_group , plate_name , plate_variant):
 
     if (plate_name == 'front'):
       # front
-      BF12_face     (ctx ,  0  ,   0 , 0)
+      BF12_face     (ctx ,  0  ,   0 , 0 , 0)
 
       screw = Screw('M5' , cfg['Plates'][plate_group][plate_name]['thickness']
                          + 20   # BF12 support block

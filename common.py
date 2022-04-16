@@ -190,7 +190,7 @@ def SFU1204_nutholder(ctx , cx , cy , rotate , context):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # floating end ballscrew support
-def BF12_face(ctx , cx , cy , rotate):   # center of ballscrew
+def BF12_face(ctx , cx , cy , rotate , cb_depth):   # center of ballscrew
   hole1  =   5.2
   hole2  =  26
   B      =  60
@@ -204,11 +204,16 @@ def BF12_face(ctx , cx , cy , rotate):   # center of ballscrew
   EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
   EnsureLayer(ctx , 'thx'  , 'through hole %dmm' % (hole2))
 
+  mounting_holes = (rotateXY(cx-P/2 , cy         , cx , cy , rotate)
+                   ,rotateXY(cx+P/2 , cy         , cx , cy , rotate)
+                   ,rotateXY(cx-P/2 , cy-E       , cx , cy , rotate)
+                   ,rotateXY(cx+P/2 , cy-E       , cx , cy , rotate)
+                   )
+
+  for (x,y) in mounting_holes:
+    ctx['msp'].add_circle((x,y) , hole1/2 , dxfattribs={'layer' : 'th52'})
+
   ctx['msp'].add_circle(     rotateXY(cx     , cy         , cx , cy , rotate) , hole2/2, dxfattribs={'layer': 'thx' }) # the large hole
-  ctx['msp'].add_circle(     rotateXY(cx-P/2 , cy         , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx+P/2 , cy         , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx-P/2 , cy-E       , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx+P/2 , cy-E       , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
 
   # draw outline
   shape = ctx['msp'].add_lwpolyline([rotateXY(cx-B/2 , cy-h       , cx , cy , rotate)  # 1
@@ -224,6 +229,21 @@ def BF12_face(ctx , cx , cy , rotate):   # center of ballscrew
                                    )
 
   shape.close(True)
+
+  if (cb_depth > 0):
+    hole3 = 9   # counter bore
+
+    ln = 'cb%dx%d'                                     % (hole3 , cb_depth)
+    ld = 'counter bore %3.1fmm diameter, %3.1fmm deep' % (hole3 , cb_depth)
+
+    EnsureLayer(ctx , ln , ld)
+
+    for (x,y) in mounting_holes:
+      ctx['msp'].add_circle((x,y) , hole3/2 , dxfattribs={'layer' : ln})
+
+
+
+
 
   return
 

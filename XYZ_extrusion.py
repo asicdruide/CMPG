@@ -50,7 +50,7 @@ def XYZ_extrusion(ctx):
 
   # for mounting the Zrails to the gantryZextrusion...
   amount = 2*int(gantryZextrusion / 25 + 0.5)   # two z-rails...
-  doc    = 'Yrails to extrusion'
+  doc    = 'Zrails to extrusion'
   Add2BOM(ctx , amount , 'DIN912'     , 'M3x8' , doc)    # screw
   Add2BOM(ctx , amount , 'SlidingNut' , 'M3'   , doc)
 
@@ -89,6 +89,7 @@ def XYZ_extrusion(ctx):
   print("outer frame:"                                                                     , file = OUT)
   print(" * X                              %5dmm (+Xstepper)" % (outerXframe)              , file = OUT)
   print(" * Y                              %5dmm (+Ystepper)" % (outerYframe)              , file = OUT)
+  print(""                                                                                 , file = OUT)
 
   print("generated on %s" % ((datetime.now().strftime("%a %Y-%b-%d %H:%M:%S")))            , file = OUT)
 

@@ -235,7 +235,7 @@ def Portal_Plate(ctx , plate_group , plate_name , plate_variant):
     Add2BOM(ctx , 2*6 , 'DIN125' , 'M5'  , doc)    # washer needed?
 
     if (plate_variant == 'left'):
-      BF12_face         (ctx ,  48       , 188.5590 , -90)
+      BF12_face         (ctx ,  48       , 188.5590 , -90 , cfg['Plates'][plate_group]['side']['thickness']-10)
 
       screw = Screw('M5' , 10   # if side is thicker it's counter bored to be effectively 10
                          + 20   # BF12 support block

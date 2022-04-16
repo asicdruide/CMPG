@@ -1,18 +1,17 @@
-DIN125 M3
+DIN125       M3   ......................... 54 needed....stock(    ).......to be sourced(    )
+    2 (mounting Z-limit switches)
+    4 (mounting XY-limit switches)
     8 (Portal-side-left to Y-MGN12H)
     8 (Portal-side-right to Y-MGN12H)
    16 (ZAxis-front to Z-MGN12H)
    16 (ZAxis-back X-MGN12H)
-  ===============================
-   48 total
  
-DIN125 M4
+DIN125       M4   .........................  6 needed....stock(    ).......to be sourced(    )
     6 (1204 nut to nut holder)
-  ===============================
-    6 total
  
-DIN125 M5
+DIN125       M5   .........................250 needed....stock(    ).......to be sourced(    )
    18 (1605 nut to nut holder)
+   16 (brackets at inner frame corners)
     8 (Frame-front-left to Y-extrusion)
     8 (Frame-front-left to frameX-extrusion)
     8 (Y-BF12 to Frame-front-left)
@@ -38,12 +37,11 @@ DIN125 M5
     4 (ZAxis-front to Z-1204 nutholder)
     2 (ZAxis-bottom to Z-extrusion)
     8 (Z-NEMA23 to ZAxis-top)
+    2 (ZAxis-top to Z-extrusion)
     4 (ZAxis-back to X-1605 nutholder)
     8 (Z-extrusion to ZAxis-back)
-  ===============================
-  232 total
  
-DIN125 M6
+DIN125       M6   ......................... 36 needed....stock(    ).......to be sourced(    )
     4 (block to Frame-back-left)
     4 (block to Frame-back-right)
     4 (Frame-block-left to Frame-back)
@@ -53,58 +51,42 @@ DIN125 M6
     6 (spindle_adapter to ZAxis-front)
     2 (Z-BF10 to ZAxis-back)
     4 (Z-BK10 to ZAxis-back)
-  ===============================
-   36 total
  
-DIN912 M3x10
+DIN912       M3x10......................... 20 needed....stock(    ).......to be sourced(    )
+    4 (mounting XY-limit switches)
    16 (ZAxis-front to Z-MGN12H)
-  ===============================
-   16 total
  
-DIN912 M3x16
+DIN912       M3x16......................... 34 needed....stock(    ).......to be sourced(    )
+    2 (mounting Z-limit switches)
     8 (Portal-side-left to Y-MGN12H (exact:15))
     8 (Portal-side-right to Y-MGN12H (exact:15))
    16 (ZAxis-back X-MGN12H (exact:15))
-  ===============================
-   32 total
  
-DIN912 M3x8
+DIN912       M3x8 .........................144 needed....stock(    ).......to be sourced(    )
    58 (Xrails to extrusion)
    64 (Yrails to extrusion)
-   22 (Yrails to extrusion)
-  ===============================
-  144 total
+   22 (Zrails to extrusion)
  
-DIN912 M4x18
+DIN912       M4x18.........................  6 needed....stock(    ).......to be sourced(    )
     6 (1204 nut to nut holder (exact:17))
-  ===============================
-    6 total
  
-DIN912 M5x14
+DIN912       M5x14.........................  4 needed....stock(    ).......to be sourced(    )
     4 (ZAxis-front to Z-1204 nutholder (exact:13))
-  ===============================
-    4 total
  
-DIN912 M5x16
+DIN912       M5x16......................... 52 needed....stock(    ).......to be sourced(    )
     8 (Frame-front-left to frameX-extrusion)
     8 (Frame-front-right to frameX-extrusion)
     8 (Frame-back-left to frameX-extrusion)
     8 (Frame-back-right to frameX-extrusion)
    20 (Portal-back to portal)
-  ===============================
-   52 total
  
-DIN912 M5x20
+DIN912       M5x20......................... 18 needed....stock(    ).......to be sourced(    )
    18 (1605 nut to nut holder)
-  ===============================
-   18 total
  
-DIN912 M5x22
+DIN912       M5x22.........................  8 needed....stock(    ).......to be sourced(    )
     8 (Z-extrusion to ZAxis-back (exact:23))
-  ===============================
-    8 total
  
-DIN912 M5x25
+DIN912       M5x25......................... 70 needed....stock(    ).......to be sourced(    )
     8 (Frame-front-left to Y-extrusion)
     8 (Frame-front-right to Y-extrusion)
     8 (Frame-back-left to Y-extrusion)
@@ -115,55 +97,43 @@ DIN912 M5x25
    12 (Portal-side-right to portalX-extrusion)
     2 (ZAxis-bottom to Z-extrusion)
     4 (ZAxis-back to X-1605 nutholder)
-  ===============================
-   70 total
  
-DIN912 M5x30
+DIN912       M5x30.........................  6 needed....stock(    ).......to be sourced(    )
     4 (Z-NEMA23 to ZAxis-top (exact:31))
-  ===============================
-    4 total
+    2 (ZAxis-top to Z-extrusion)
  
-DIN912 M5x35
+DIN912       M5x35.........................  4 needed....stock(    ).......to be sourced(    )
     4 (X-NEMA23 to Portal-side-right (exact:36))
-  ===============================
-    4 total
  
-DIN912 M5x40
+DIN912       M5x40......................... 12 needed....stock(    ).......to be sourced(    )
     4 (Y-BF12 to Frame-front-left)
     4 (Y-BF12 to Frame-front-right)
     4 (X-BF12 to Portal-side-left)
-  ===============================
-   12 total
  
-DIN912 M5x45
+DIN912       M5x45......................... 12 needed....stock(    ).......to be sourced(    )
     4 (Y-BK12 to Frame-block-left)
     4 (Y-BK12 to Frame-block-right)
     4 (X-BK12 to Portal-block)
-  ===============================
-   12 total
  
-DIN912 M6x20
+DIN912       M5x8 ......................... 16 needed....stock(    ).......to be sourced(    )
+   16 (brackets at inner frame corners)
+ 
+DIN912       M6x20......................... 14 needed....stock(    ).......to be sourced(    )
     4 (steel socket to Portal-side-right (exact:19))
     4 (Portal-block to steel socket)
     6 (spindle_adapter to ZAxis-front)
-  ===============================
-   14 total
  
-DIN912 M6x25
+DIN912       M6x25......................... 16 needed....stock(    ).......to be sourced(    )
     4 (block to Frame-back-left)
     4 (block to Frame-back-right)
     4 (Frame-block-left to Frame-back)
     4 (Frame-block-right to Frame-back)
-  ===============================
-   16 total
  
-DIN912 M6x40
+DIN912       M6x40.........................  6 needed....stock(    ).......to be sourced(    )
     2 (Z-BF10 to ZAxis-back)
     4 (Z-BK10 to ZAxis-back)
-  ===============================
-    6 total
  
-DIN985 M5
+DIN985       M5   ......................... 40 needed....stock(    ).......to be sourced(    )
     4 (Y-BF12 to Frame-front-left)
     4 (Y-BF12 to Frame-front-right)
     4 (Y-NEMA23 to Frame-back-left)
@@ -174,44 +144,37 @@ DIN985 M5
     4 (X-NEMA23 to Portal-side-right)
     4 (X-BK12 to Portal-block)
     4 (Z-NEMA23 to ZAxis-top)
-  ===============================
-   40 total
  
-ISO7380 M5x20
+ISO7380      M5x20.........................  8 needed....stock(    ).......to be sourced(    )
     4 (Portal-side-left to Y-1605 nut holder)
     4 (Portal-side-right to Y-1605 nut holder)
-  ===============================
-    8 total
  
-SlidingNut M3
+SlidingNut   M3   .........................150 needed....stock(    ).......to be sourced(    )
+    2 (mounting Z-limit switches)
+    4 (mounting XY-limit switches)
    58 (Xrails to extrusion)
    64 (Yrails to extrusion)
-   22 (Yrails to extrusion)
-  ===============================
-  144 total
+   22 (Zrails to extrusion)
  
-SlidingNut M5
+SlidingNut   M5   ......................... 56 needed....stock(    ).......to be sourced(    )
+   16 (brackets at inner frame corners)
     8 (Frame-front-left to frameX-extrusion)
     8 (Frame-front-right to frameX-extrusion)
     8 (Frame-back-left to frameX-extrusion)
     8 (Frame-back-right to frameX-extrusion)
     8 (Z-extrusion to ZAxis-back)
-  ===============================
-   40 total
  
-SteelSocket M6x30
+SteelSocket  M6x30.........................  4 needed....stock(    ).......to be sourced(    )
     4 (steel socket to Portal-side-right)
-  ===============================
-    4 total
  
-SteelSocket M6x40
+SteelSocket  M6x40.........................  8 needed....stock(    ).......to be sourced(    )
     4 (block to Frame-back-left)
     4 (block to Frame-back-right)
-  ===============================
-    8 total
  
-dowel pin 3x10
+brackets     M5   .........................  8 needed....stock(    ).......to be sourced(    )
+    8 (brackets at inner frame corners)
+ 
+dowel pin    3x10 .........................  1 needed....stock(    ).......to be sourced(    )
     1 (dowel pin)
-  ===============================
-    1 total
  
+generated on Fri 2022-Apr-15 16:14:41
