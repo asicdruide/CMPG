@@ -54,16 +54,16 @@ Add2BOM(ctx , 2*8 ,'SlidingNut' ,  'M5'    , doc)    # sliding nut
 
 
 
-# lmit switches
+# limit switches
 doc = 'mounting Z-limit switches'
-Add2BOM(ctx , 2 ,'DIN912'     ,  'M3x16' , doc)    # screw ~11mm in holder + 5mm in sliding nut
-Add2BOM(ctx , 2 ,'DIN125'     ,  'M3'    , doc)    # washer
-Add2BOM(ctx , 2 ,'SlidingNut' ,  'M3'    , doc)    # sliding nut
+Add2BOM(ctx ,   2 ,'DIN912'     ,  'M3x16' , doc)    # screw ~11mm in holder + 5mm in sliding nut
+Add2BOM(ctx ,   2 ,'DIN125'     ,  'M3'    , doc)    # washer
+Add2BOM(ctx ,   2 ,'SlidingNut' ,  'M3'    , doc)    # sliding nut
 
 doc = 'mounting XY-limit switches'
-Add2BOM(ctx , 4 ,'DIN912'     ,  'M3x10' , doc)    # screw ~5mm in holder + 5mm in sliding nut
-Add2BOM(ctx , 4 ,'DIN125'     ,  'M3'    , doc)    # washer
-Add2BOM(ctx , 4 ,'SlidingNut' ,  'M3'    , doc)    # sliding nut
+Add2BOM(ctx , 2*2 ,'DIN912'     ,  'M3x10' , doc)    # screw ~5mm in holder + 5mm in sliding nut
+Add2BOM(ctx , 2*2 ,'DIN125'     ,  'M3'    , doc)    # washer
+Add2BOM(ctx , 2*2 ,'SlidingNut' ,  'M3'    , doc)    # sliding nut
 
 
 
