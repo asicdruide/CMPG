@@ -7,6 +7,8 @@ from common     import *
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def Spindle_adapter_connect(ctx , plate_name):
+  uf = ctx['unit_factor']
+
   if (plate_name == 'front'):
     # on spindle plate we need an M6 threaded hole
     hole = 5.0
@@ -27,8 +29,8 @@ def Spindle_adapter_connect(ctx , plate_name):
            , 42
            ]
   for y in holesY:
-    ctx['msp'].add_circle(( -49 , y) ,   hole/2, dxfattribs={'layer' : layer})
-    ctx['msp'].add_circle((  49 , y) ,   hole/2, dxfattribs={'layer' : layer})
+    ctx['msp'].add_circle(( -49*uf , y*uf) ,   hole/2*uf, dxfattribs={'layer' : layer})
+    ctx['msp'].add_circle((  49*uf , y*uf) ,   hole/2*uf, dxfattribs={'layer' : layer})
 
   return
 
@@ -36,12 +38,13 @@ def Spindle_adapter_connect(ctx , plate_name):
 
 def SpindleAddOn(ctx , width):
   hole = 6.8
+  uf = ctx['unit_factor']
 
   EnsureLayer  (ctx , 'th68' , 'through hole 6.8mm (M8 thread)')
 
   # purpose: mount dial indicator for aligning geometry
-  ctx['msp'].add_circle(( -width/2 + 13.5 , 80) ,   hole/2, dxfattribs={'layer' : 'th68'})
-  ctx['msp'].add_circle(( +width/2 - 13.5 , 80) ,   hole/2, dxfattribs={'layer' : 'th68'})
+  ctx['msp'].add_circle(( (-width/2 + 13.5)*uf , 80*uf) ,   hole/2*uf, dxfattribs={'layer' : 'th68'})
+  ctx['msp'].add_circle(( (+width/2 - 13.5)*uf , 80*uf) ,   hole/2*uf, dxfattribs={'layer' : 'th68'})
 
   return
 
@@ -61,12 +64,13 @@ def SpindleAdapter(plate_name):
 
 def ZAxisBackAddOn(ctx , cx , cy):
   hole = 6.8
+  uf = ctx['unit_factor']
 
   EnsureLayer(ctx , 'th68' , 'through hole 6.8mm (M8 thread)')
 
   # purpose: mount for dial indicator
-  ctx['msp'].add_circle(( cx , cy) ,   hole/2, dxfattribs={'layer': 'th68'})
-  ctx['msp'].add_circle((-cx , cy) ,   hole/2, dxfattribs={'layer': 'th68'})
+  ctx['msp'].add_circle(( cx*uf , cy*uf) ,   hole/2*uf , dxfattribs={'layer': 'th68'})
+  ctx['msp'].add_circle((-cx*uf , cy*uf) ,   hole/2*uf , dxfattribs={'layer': 'th68'})
 
   return
 
@@ -74,6 +78,7 @@ def ZAxisBackAddOn(ctx , cx , cy):
 
 def RailMount(ctx , x , y1 , y2 , y3 , y4):
   hole = 5.2
+  uf = ctx['unit_factor']
 
   EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
 
@@ -82,8 +87,8 @@ def RailMount(ctx , x , y1 , y2 , y3 , y4):
                ,[x , y3]
                ,[x , y4]
                ]:
-    ctx['msp'].add_circle(( x , y) , hole/2, dxfattribs={'layer': 'th52'})
-    ctx['msp'].add_circle((-x , y) , hole/2, dxfattribs={'layer': 'th52'})
+    ctx['msp'].add_circle(( x*uf , y*uf) , hole/2*uf , dxfattribs={'layer': 'th52'})
+    ctx['msp'].add_circle((-x*uf , y*uf) , hole/2*uf , dxfattribs={'layer': 'th52'})
 
   return
 
@@ -95,6 +100,7 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
   cb90  = 0.4142135             # corner bulge = tan(22.5°) for 90° corners
   dbo90 = math.sqrt(2) * dbr    # dog-bone offset for 90° inner corners
   dbb   = 1                     # dogbone bulge
+  uf = ctx['unit_factor']
 
   result = {}
 
@@ -121,40 +127,40 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
                           ]
 
     # draw outer shape...
-    shape = ctx['msp'].add_lwpolyline([( x1+cr    , y1       , 0   ) #  1
-                                      ,( x2       , y1       , 0   ) #  2
-                                      ,( x2       , y2-dbo90 ,-dbb ) #  3
-                                      ,( x2+dbo90 , y2       , 0   ) #  4
-                                      ,( x3-dbo90 , y2       ,-dbb ) #  5
-                                      ,( x3       , y2-dbo90 , 0   ) #  6
-                                      ,( x3       , y1       , 0   ) #  7
-                                      ,( x4-cr    , y1       , cb90) #  8
-                                      ,( x4       , y1+cr    , 0   ) #  9
-                                      ,( x4       , y6-cr    , cb90) # 10
-                                      ,( x4-cr    , y6       , 0   ) # 11
-                                      ,( x3       , y6       , 0   ) # 12
-                                      ,( x3       , y5+dbo90 ,-dbb ) # 13
-                                      ,( x3-dbo90 , y5       , 0   ) # 14
-                                      ,( x2+dbo90 , y5       ,-dbb ) # 15
-                                      ,( x2       , y5+dbo90 , 0   ) # 16
-                                      ,( x2       , y6       , 0   ) # 17
-                                      ,( x1+cr    , y6       , cb90) # 18
-                                      ,( x1       , y6-cr    , 0   ) # 19
-                                      ,( x1       , y1+cr    , cb90) # 20
+    shape = ctx['msp'].add_lwpolyline([( (x1+cr   )*uf , (y1      )*uf , 0   ) #  1
+                                      ,( (x2      )*uf , (y1      )*uf , 0   ) #  2
+                                      ,( (x2      )*uf , (y2-dbo90)*uf ,-dbb ) #  3
+                                      ,( (x2+dbo90)*uf , (y2      )*uf , 0   ) #  4
+                                      ,( (x3-dbo90)*uf , (y2      )*uf ,-dbb ) #  5
+                                      ,( (x3      )*uf , (y2-dbo90)*uf , 0   ) #  6
+                                      ,( (x3      )*uf , (y1      )*uf , 0   ) #  7
+                                      ,( (x4-cr   )*uf , (y1      )*uf , cb90) #  8
+                                      ,( (x4      )*uf , (y1+cr   )*uf , 0   ) #  9
+                                      ,( (x4      )*uf , (y6-cr   )*uf , cb90) # 10
+                                      ,( (x4-cr   )*uf , (y6      )*uf , 0   ) # 11
+                                      ,( (x3      )*uf , (y6      )*uf , 0   ) # 12
+                                      ,( (x3      )*uf , (y5+dbo90)*uf ,-dbb ) # 13
+                                      ,( (x3-dbo90)*uf , (y5      )*uf , 0   ) # 14
+                                      ,( (x2+dbo90)*uf , (y5      )*uf ,-dbb ) # 15
+                                      ,( (x2      )*uf , (y5+dbo90)*uf , 0   ) # 16
+                                      ,( (x2      )*uf , (y6      )*uf , 0   ) # 17
+                                      ,( (x1+cr   )*uf , (y6      )*uf , cb90) # 18
+                                      ,( (x1      )*uf , (y6-cr   )*uf , 0   ) # 19
+                                      ,( (x1      )*uf , (y1+cr   )*uf , cb90) # 20
                                       ]
                                      , format='xyb'
                                      )
     shape.close(True)
 
     # draw inner shape...
-    shape = ctx['msp'].add_lwpolyline([( x2+dbo90 , y3       , 0   ) #  1
-                                      ,( x3-dbo90 , y3       , dbb ) #  2
-                                      ,( x3       , y3+dbo90 , 0   ) #  3
-                                      ,( x3       , y4-dbo90 , dbb ) #  4
-                                      ,( x3-dbo90 , y4       , 0   ) #  5
-                                      ,( x2+dbo90 , y4       , dbb ) #  6
-                                      ,( x2       , y4-dbo90 , 0   ) #  7
-                                      ,( x2       , y3+dbo90 , dbb ) #  8
+    shape = ctx['msp'].add_lwpolyline([( (x2+dbo90)*uf , (y3      )*uf , 0   ) #  1
+                                      ,( (x3-dbo90)*uf , (y3      )*uf , dbb ) #  2
+                                      ,( (x3      )*uf , (y3+dbo90)*uf , 0   ) #  3
+                                      ,( (x3      )*uf , (y4-dbo90)*uf , dbb ) #  4
+                                      ,( (x3-dbo90)*uf , (y4      )*uf , 0   ) #  5
+                                      ,( (x2+dbo90)*uf , (y4      )*uf , dbb ) #  6
+                                      ,( (x2      )*uf , (y4-dbo90)*uf , 0   ) #  7
+                                      ,( (x2      )*uf , (y3+dbo90)*uf , dbb ) #  8
                                       ]
                                      , format='xyb'
                                      )
@@ -169,7 +175,7 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     # add other elements...
     EnsureLayer(ctx , 'thx' , 'through hole 22.5mm')
 
-    ctx['msp'].add_circle((0 , 0) , 22.5/2, dxfattribs={'layer' : 'thx'})
+    ctx['msp'].add_circle((0*uf , 0*uf) , 22.5/2*uf, dxfattribs={'layer' : 'thx'})
     #BF10_face(msp , 0 , 0 , -90) # BF10 mounted to back instead of bottom!
 
     EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
@@ -177,7 +183,7 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     for (x,y) in ((-5 ,  66.5)
                  ,(-5 , -66.5)
                  ):
-      ctx['msp'].add_circle((x , y) , 5.2/2, dxfattribs={'layer' : 'th52'})
+      ctx['msp'].add_circle((x*uf , y*uf) , 5.2/2*uf, dxfattribs={'layer' : 'th52'})
 
     screw = Screw('M5' , cfg['Plates'][plate_group][plate_name]['thickness']
                        + 15   # thread inside Z-extrusion
@@ -194,7 +200,7 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     for (x,y) in ((x1+32.75 ,  44.75)
                  ,(x1+32.75 , -44.75)
                  ):
-      ctx['msp'].add_circle((x ,y) , 6.8/2, dxfattribs={'layer' : 'th68'})
+      ctx['msp'].add_circle((x*uf ,y*uf) , 6.8/2*uf, dxfattribs={'layer' : 'th68'})
 
 
 
@@ -217,48 +223,48 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
                                 ]
 
     # draw outer shape...
-    shape = ctx['msp'].add_lwpolyline([( x1+10    , y3       , 0   ) #  1
-                                      ,( x2-cr    , y3       ,-cb90) #  2
-                                      ,( x2       , y3-cr    , 0   ) #  3
-                                      ,( x2       , y1+cr    , cb90) #  4
-                                      ,( x2+cr    , y1       , 0   ) #  5
-                                      ,( x3       , y1       , 0   ) #  6
-                                      ,( x3       , y2-dbo90 ,-dbb ) #  7
-                                      ,( x3+dbo90 , y2       , 0   ) #  8
-                                      ,( x4-dbo90 , y2       ,-dbb ) #  9
-                                      ,( x4       , y2-dbo90 , 0   ) # 10
-                                      ,( x4       , y1       , 0   ) # 11
-                                      ,( x5-cr    , y1       , cb90) # 12
-                                      ,( x5       , y1+cr    , 0   ) # 13
-                                      ,( x5       , y8-cr    , cb90) # 14
-                                      ,( x5-cr    , y8       , 0   ) # 15
-                                      ,( x4       , y8       , 0   ) # 16
-                                      ,( x4       , y7+dbo90 ,-dbb ) # 17
-                                      ,( x4-dbo90 , y7       , 0   ) # 18
-                                      ,( x3+dbo90 , y7       ,-dbb ) # 19
-                                      ,( x3       , y7+dbo90 , 0   ) # 20
-                                      ,( x3       , y8       , 0   ) # 21
-                                      ,( x2+cr    , y8       , cb90) # 22
-                                      ,( x2       , y8-cr    , 0   ) # 23
-                                      ,( x2       , y6+cr    ,-cb90) # 24
-                                      ,( x2-cr    , y6       , 0   ) # 25
-                                      ,( x1+10    , y6       , cb90) # 26
-                                      ,( x1       , y6-10    , 0   ) # 27
-                                      ,( x1       , y3+10    , cb90) # 28
+    shape = ctx['msp'].add_lwpolyline([( (x1+10   )*uf , (y3      )*uf , 0   ) #  1
+                                      ,( (x2-cr   )*uf , (y3      )*uf ,-cb90) #  2
+                                      ,( (x2      )*uf , (y3-cr   )*uf , 0   ) #  3
+                                      ,( (x2      )*uf , (y1+cr   )*uf , cb90) #  4
+                                      ,( (x2+cr   )*uf , (y1      )*uf , 0   ) #  5
+                                      ,( (x3      )*uf , (y1      )*uf , 0   ) #  6
+                                      ,( (x3      )*uf , (y2-dbo90)*uf ,-dbb ) #  7
+                                      ,( (x3+dbo90)*uf , (y2      )*uf , 0   ) #  8
+                                      ,( (x4-dbo90)*uf , (y2      )*uf ,-dbb ) #  9
+                                      ,( (x4      )*uf , (y2-dbo90)*uf , 0   ) # 10
+                                      ,( (x4      )*uf , (y1      )*uf , 0   ) # 11
+                                      ,( (x5-cr   )*uf , (y1      )*uf , cb90) # 12
+                                      ,( (x5      )*uf , (y1+cr   )*uf , 0   ) # 13
+                                      ,( (x5      )*uf , (y8-cr   )*uf , cb90) # 14
+                                      ,( (x5-cr   )*uf , (y8      )*uf , 0   ) # 15
+                                      ,( (x4      )*uf , (y8      )*uf , 0   ) # 16
+                                      ,( (x4      )*uf , (y7+dbo90)*uf ,-dbb ) # 17
+                                      ,( (x4-dbo90)*uf , (y7      )*uf , 0   ) # 18
+                                      ,( (x3+dbo90)*uf , (y7      )*uf ,-dbb ) # 19
+                                      ,( (x3      )*uf , (y7+dbo90)*uf , 0   ) # 20
+                                      ,( (x3      )*uf , (y8      )*uf , 0   ) # 21
+                                      ,( (x2+cr   )*uf , (y8      )*uf , cb90) # 22
+                                      ,( (x2      )*uf , (y8-cr   )*uf , 0   ) # 23
+                                      ,( (x2      )*uf , (y6+cr   )*uf ,-cb90) # 24
+                                      ,( (x2-cr   )*uf , (y6      )*uf , 0   ) # 25
+                                      ,( (x1+10   )*uf , (y6      )*uf , cb90) # 26
+                                      ,( (x1      )*uf , (y6-10   )*uf , 0   ) # 27
+                                      ,( (x1      )*uf , (y3+10   )*uf , cb90) # 28
                                       ]
                                      , format='xyb'
                                      )
     shape.close(True)
 
     # draw inner shape...
-    shape = ctx['msp'].add_lwpolyline([( x3+dbo90 , y4       , 0   ) #  1
-                                      ,( x4-dbo90 , y4       , dbb ) #  2
-                                      ,( x4       , y4+dbo90 , 0   ) #  3
-                                      ,( x4       , y5-dbo90 , dbb ) #  4
-                                      ,( x4-dbo90 , y5       , 0   ) #  5
-                                      ,( x3+dbo90 , y5       , dbb ) #  6
-                                      ,( x3       , y5-dbo90 , 0   ) #  7
-                                      ,( x3       , y4+dbo90 , dbb ) #  8
+    shape = ctx['msp'].add_lwpolyline([( (x3+dbo90)*uf , (y4      )*uf , 0   ) #  1
+                                      ,( (x4-dbo90)*uf , (y4      )*uf , dbb ) #  2
+                                      ,( (x4      )*uf , (y4+dbo90)*uf , 0   ) #  3
+                                      ,( (x4      )*uf , (y5-dbo90)*uf , dbb ) #  4
+                                      ,( (x4-dbo90)*uf , (y5      )*uf , 0   ) #  5
+                                      ,( (x3+dbo90)*uf , (y5      )*uf , dbb ) #  6
+                                      ,( (x3      )*uf , (y5-dbo90)*uf , 0   ) #  7
+                                      ,( (x3      )*uf , (y4+dbo90)*uf , dbb ) #  8
                                       ]
                                      , format='xyb'
                                      )
@@ -273,7 +279,7 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     for (x,y) in ((5 ,  66.5)
                  ,(5 , -66.5)
                  ):
-      ctx['msp'].add_circle((x,y) , 5.2/2, dxfattribs={'layer': 'th52'})
+      ctx['msp'].add_circle((x*uf,y*uf) , 5.2/2*uf, dxfattribs={'layer': 'th52'})
 
     screw = Screw('M5' , 6    # motor mount + washer
                        + cfg['Plates'][plate_group][plate_name]['thickness']
@@ -303,7 +309,7 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
                  ,(39.32-xadj , -34.96*1)
                  ,(39.32-xadj , -34.96*2)
                  ):
-      ctx['msp'].add_circle((x,y) , 3.2/2 , dxfattribs={'layer': 'th32'})
+      ctx['msp'].add_circle((x*uf,y*uf) , 3.2/2*uf , dxfattribs={'layer': 'th32'})
 
     result['plateWH'] = [(x5 - x1)     , (y8-y1)]
     result['textXY' ] = [(x5 + x1) / 2 ,  y8    ]
@@ -335,22 +341,22 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     y1 =  height2
     y2 =  height        # top Y
 
-    shape = ctx['msp'].add_lwpolyline([( (x1+5    ) , y0       , 0   )  #  0
-                                      ,( (x2-5    ) , y0       , cb90)  #  1
-                                      ,( (x2      ) , y0+5     , 0   )  #  2
-                                      ,( (x2      ) , y1-5     ,-cb90)  #  3
-                                      ,( (x2+5    ) , y1       , 0   )  #  4
-                                      ,( (x3-cr   ) , y1       , cb90)  #  5
-                                      ,( (x3      ) , y1+cr    , 0   )  #  6
-                                      ,( (x3      ) , y2-cr    , cb90)  #  7
-                                      ,( (x3-cr   ) , y2       , 0   )  #  8
-                                      ,( (x0+cr   ) , y2       , cb90)  #  9
-                                      ,( (x0      ) , y2-cr    , 0   )  # 10
-                                      ,( (x0      ) , y1+cr    , cb90)  # 11
-                                      ,( (x0+cr   ) , y1       , 0   )  # 12
-                                      ,( (x1-5    ) , y1       ,-cb90)  # 13
-                                      ,( (x1      ) , y1-5     , 0   )  # 14
-                                      ,( (x1      ) , y0+5     , cb90)  # 15
+    shape = ctx['msp'].add_lwpolyline([( (x1+5 )*uf , (y0   )*uf , 0   )  #  0
+                                      ,( (x2-5 )*uf , (y0   )*uf , cb90)  #  1
+                                      ,( (x2   )*uf , (y0+5 )*uf , 0   )  #  2
+                                      ,( (x2   )*uf , (y1-5 )*uf ,-cb90)  #  3
+                                      ,( (x2+5 )*uf , (y1   )*uf , 0   )  #  4
+                                      ,( (x3-cr)*uf , (y1   )*uf , cb90)  #  5
+                                      ,( (x3   )*uf , (y1+cr)*uf , 0   )  #  6
+                                      ,( (x3   )*uf , (y2-cr)*uf , cb90)  #  7
+                                      ,( (x3-cr)*uf , (y2   )*uf , 0   )  #  8
+                                      ,( (x0+cr)*uf , (y2   )*uf , cb90)  #  9
+                                      ,( (x0   )*uf , (y2-cr)*uf , 0   )  # 10
+                                      ,( (x0   )*uf , (y1+cr)*uf , cb90)  # 11
+                                      ,( (x0+cr)*uf , (y1   )*uf , 0   )  # 12
+                                      ,( (x1-5 )*uf , (y1   )*uf ,-cb90)  # 13
+                                      ,( (x1   )*uf , (y1-5 )*uf , 0   )  # 14
+                                      ,( (x1   )*uf , (y0+5 )*uf , cb90)  # 15
                                       ]
                                      , format='xyb'
                                      )
@@ -394,7 +400,7 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     # dowel pin between spindle plate and spindle adapter
     EnsureLayer(ctx , 'cb3x5' , 'counter bore 3mm diameter, 5mm deep (dowel pin)')
 
-    ctx['msp'].add_circle(( 0 , ZNut_y) ,   3/2, dxfattribs={'layer': 'cb3x5'})
+    ctx['msp'].add_circle(( 0*uf , ZNut_y*uf) ,   3/2*uf, dxfattribs={'layer': 'cb3x5'})
 
     if (plate_variant == ''):
       Add2BOM(ctx , 1, 'dowel pin'      , '3x10'    , 'dowel pin')  # dowel pin
@@ -440,22 +446,22 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     y1 =  height2
     y2 =  height        # top Y
 
-    shape = ctx['msp'].add_lwpolyline([( (x1+5    ) , y0       , 0   )
-                                      ,( (x2-5    ) , y0       , cb90)
-                                      ,( (x2      ) , y0+5     , 0   )
-                                      ,( (x2      ) , y1-5     ,-cb90)
-                                      ,( (x2+5    ) , y1       , 0   )
-                                      ,( (x3-cr   ) , y1       , cb90)
-                                      ,( (x3      ) , y1+cr    , 0   )
-                                      ,( (x3      ) , y2-cr    , cb90)
-                                      ,( (x3-cr   ) , y2       , 0   )
-                                      ,( (x0+cr   ) , y2       , cb90)
-                                      ,( (x0      ) , y2-cr    , 0   )
-                                      ,( (x0      ) , y1+cr    , cb90)
-                                      ,( (x0+cr   ) , y1       , 0   )
-                                      ,( (x1-5    ) , y1       ,-cb90)
-                                      ,( (x1      ) , y1-5     , 0   )
-                                      ,( (x1      ) , y0+5     , cb90)
+    shape = ctx['msp'].add_lwpolyline([( (x1+5 )*uf , (y0   )*uf , 0   )
+                                      ,( (x2-5 )*uf , (y0   )*uf , cb90)
+                                      ,( (x2   )*uf , (y0+5 )*uf , 0   )
+                                      ,( (x2   )*uf , (y1-5 )*uf ,-cb90)
+                                      ,( (x2+5 )*uf , (y1   )*uf , 0   )
+                                      ,( (x3-cr)*uf , (y1   )*uf , cb90)
+                                      ,( (x3   )*uf , (y1+cr)*uf , 0   )
+                                      ,( (x3   )*uf , (y2-cr)*uf , cb90)
+                                      ,( (x3-cr)*uf , (y2   )*uf , 0   )
+                                      ,( (x0+cr)*uf , (y2   )*uf , cb90)
+                                      ,( (x0   )*uf , (y2-cr)*uf , 0   )
+                                      ,( (x0   )*uf , (y1+cr)*uf , cb90)
+                                      ,( (x0+cr)*uf , (y1   )*uf , 0   )
+                                      ,( (x1-5 )*uf , (y1   )*uf ,-cb90)
+                                      ,( (x1   )*uf , (y1-5 )*uf , 0   )
+                                      ,( (x1   )*uf , (y0+5 )*uf , cb90)
                                       ]
                                      , format='xyb'
                                      )
@@ -518,46 +524,46 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     ym1 = -cfg['Plates'][plate_group]['bottom']['thickness']
 
     # draw outer shape...
-    shape = ctx['msp'].add_lwpolyline([( x1       , ym1      , 0   ) #  1
-                                      ,( x2       , ym1      , 0   ) #  2
-                                      ,( x2       , y1-dbo90 ,-dbb ) #  3
-                                      ,( x2+dbo90 , y1       , 0   ) #  4
-                                      ,( x5-dbo90 , y1       ,-dbb ) #  5
-                                      ,( x5       , y1-dbo90 , 0   ) #  6
-                                      ,( x5       , ym1      , 0   ) #  7
-                                      ,( x6       , ym1      , 0   ) #  8
-                                      ,( x6       , y1-dbo90 ,-dbb ) #  9
-                                      ,( x6+dbo90 , y1       , 0   ) # 10
-                                      ,( x9-dbo90 , y1       ,-dbb ) # 11
-                                      ,( x9       , y1-dbo90 , 0   ) # 12
-                                      ,( x9       , ym1      , 0   ) # 13
-                                      ,( x10      , ym1      , 0   ) # 14
-                                      ,( x10      , y5       , 0   ) # 15
-                                      ,( x9       , y5       , 0   ) # 16
-                                      ,( x9       , y3+dbo90 ,-dbb ) # 17
-                                      ,( x9-dbo90 , y3       , 0   ) # 18
-                                      ,( x8       , y3       , 0   ) # 19
-                                      ,( x8       , y2+dbo90 ,-dbb ) # 20
-                                      ,( x8-dbo90 , y2       , 0   ) # 21
-                                      ,( x7+dbo90 , y2       ,-dbb ) # 22
-                                      ,( x7       , y2+dbo90 , 0   ) # 23
-                                      ,( x7       , y3       , 0   ) # 24
-                                      ,( x6+dbo90 , y3       ,-dbb ) # 25
-                                      ,( x6       , y3+dbo90 , 0   ) # 26
-                                      ,( x6       , y4       , 0   ) # 27
-                                      ,( x5       , y4       , 0   ) # 28
-                                      ,( x5       , y3+dbo90 ,-dbb ) # 29
-                                      ,( x5-dbo90 , y3       , 0   ) # 30
-                                      ,( x4       , y3       , 0   ) # 31
-                                      ,( x4       , y2+dbo90 ,-dbb ) # 32
-                                      ,( x4-dbo90 , y2       , 0   ) # 33
-                                      ,( x3+dbo90 , y2       ,-dbb ) # 34
-                                      ,( x3       , y2+dbo90 , 0   ) # 35
-                                      ,( x3       , y3       , 0   ) # 36
-                                      ,( x2+dbo90 , y3       ,-dbb ) # 37
-                                      ,( x2       , y3+dbo90 , 0   ) # 38
-                                      ,( x2       , y5       , 0   ) # 39
-                                      ,( x1       , y5       , 0   ) # 40
+    shape = ctx['msp'].add_lwpolyline([( (x1      )*uf , (ym1     )*uf , 0   ) #  1
+                                      ,( (x2      )*uf , (ym1     )*uf , 0   ) #  2
+                                      ,( (x2      )*uf , (y1-dbo90)*uf ,-dbb ) #  3
+                                      ,( (x2+dbo90)*uf , (y1      )*uf , 0   ) #  4
+                                      ,( (x5-dbo90)*uf , (y1      )*uf ,-dbb ) #  5
+                                      ,( (x5      )*uf , (y1-dbo90)*uf , 0   ) #  6
+                                      ,( (x5      )*uf , (ym1     )*uf , 0   ) #  7
+                                      ,( (x6      )*uf , (ym1     )*uf , 0   ) #  8
+                                      ,( (x6      )*uf , (y1-dbo90)*uf ,-dbb ) #  9
+                                      ,( (x6+dbo90)*uf , (y1      )*uf , 0   ) # 10
+                                      ,( (x9-dbo90)*uf , (y1      )*uf ,-dbb ) # 11
+                                      ,( (x9      )*uf , (y1-dbo90)*uf , 0   ) # 12
+                                      ,( (x9      )*uf , (ym1     )*uf , 0   ) # 13
+                                      ,( (x10     )*uf , (ym1     )*uf , 0   ) # 14
+                                      ,( (x10     )*uf , (y5      )*uf , 0   ) # 15
+                                      ,( (x9      )*uf , (y5      )*uf , 0   ) # 16
+                                      ,( (x9      )*uf , (y3+dbo90)*uf ,-dbb ) # 17
+                                      ,( (x9-dbo90)*uf , (y3      )*uf , 0   ) # 18
+                                      ,( (x8      )*uf , (y3      )*uf , 0   ) # 19
+                                      ,( (x8      )*uf , (y2+dbo90)*uf ,-dbb ) # 20
+                                      ,( (x8-dbo90)*uf , (y2      )*uf , 0   ) # 21
+                                      ,( (x7+dbo90)*uf , (y2      )*uf ,-dbb ) # 22
+                                      ,( (x7      )*uf , (y2+dbo90)*uf , 0   ) # 23
+                                      ,( (x7      )*uf , (y3      )*uf , 0   ) # 24
+                                      ,( (x6+dbo90)*uf , (y3      )*uf ,-dbb ) # 25
+                                      ,( (x6      )*uf , (y3+dbo90)*uf , 0   ) # 26
+                                      ,( (x6      )*uf , (y4      )*uf , 0   ) # 27
+                                      ,( (x5      )*uf , (y4      )*uf , 0   ) # 28
+                                      ,( (x5      )*uf , (y3+dbo90)*uf ,-dbb ) # 29
+                                      ,( (x5-dbo90)*uf , (y3      )*uf , 0   ) # 30
+                                      ,( (x4      )*uf , (y3      )*uf , 0   ) # 31
+                                      ,( (x4      )*uf , (y2+dbo90)*uf ,-dbb ) # 32
+                                      ,( (x4-dbo90)*uf , (y2      )*uf , 0   ) # 33
+                                      ,( (x3+dbo90)*uf , (y2      )*uf ,-dbb ) # 34
+                                      ,( (x3      )*uf , (y2+dbo90)*uf , 0   ) # 35
+                                      ,( (x3      )*uf , (y3      )*uf , 0   ) # 36
+                                      ,( (x2+dbo90)*uf , (y3      )*uf ,-dbb ) # 37
+                                      ,( (x2      )*uf , (y3+dbo90)*uf , 0   ) # 38
+                                      ,( (x2      )*uf , (y5      )*uf , 0   ) # 39
+                                      ,( (x1      )*uf , (y5      )*uf , 0   ) # 40
                                       ]
                                      , format='xyb'
                                      )
@@ -645,14 +651,14 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     cr = 1
 
     # outer shape...
-    shape = ctx['msp'].add_lwpolyline([( x1+cr , y1       , 0   )   #  1
-                                      ,( x2-cr , y1       , cb90)   #  2
-                                      ,( x2    , y1+cr    , 0   )   #  3
-                                      ,( x2    , y2-cr    , cb90)   #  4
-                                      ,( x2-cr , y2       , 0   )   #  5
-                                      ,( x1+cr , y2       , cb90)   #  6
-                                      ,( x1    , y2-cr    , 0   )   #  7
-                                      ,( x1    , y1+cr    , cb90)   #  8
+    shape = ctx['msp'].add_lwpolyline([( (x1+cr)*uf , (y1   )*uf , 0   )   #  1
+                                      ,( (x2-cr)*uf , (y1   )*uf , cb90)   #  2
+                                      ,( (x2   )*uf , (y1+cr)*uf , 0   )   #  3
+                                      ,( (x2   )*uf , (y2-cr)*uf , cb90)   #  4
+                                      ,( (x2-cr)*uf , (y2   )*uf , 0   )   #  5
+                                      ,( (x1+cr)*uf , (y2   )*uf , cb90)   #  6
+                                      ,( (x1   )*uf , (y2-cr)*uf , 0   )   #  7
+                                      ,( (x1   )*uf , (y1+cr)*uf , cb90)   #  8
                                       ]
                                      , format='xyb'
                                      )
@@ -660,8 +666,8 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
 
     EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
 
-    ctx['msp'].add_circle((0 ,  d/2) , hole/2, dxfattribs={'layer': 'th52'})
-    ctx['msp'].add_circle((0 , -d/2) , hole/2, dxfattribs={'layer': 'th52'})
+    ctx['msp'].add_circle((0*uf ,  d/2*uf) , hole/2*uf, dxfattribs={'layer': 'th52'})
+    ctx['msp'].add_circle((0*uf , -d/2*uf) , hole/2*uf, dxfattribs={'layer': 'th52'})
 
     result['plateWH'] = [x2-x1 ,  y2-y1   ]
     result['textXY' ] = [    0 , (y2-y1)/2]
@@ -674,14 +680,14 @@ def ZAxis_Plate(ctx , plate_group , plate_name , plate_variant):
     (y0 , y1) = [-28.5 , 28.5]
 
     # outer shape...
-    shape = ctx['msp'].add_lwpolyline([( (x0+cr   ) , y0       , 0   )   #  1
-                                      ,( (x1-cr   ) , y0       , cb90)   #  2
-                                      ,( (x1      ) , y0+cr    , 0   )   #  3
-                                      ,( (x1      ) , y1-cr    , cb90)   #  4
-                                      ,( (x1-cr   ) , y1       , 0   )   #  5
-                                      ,( (x0+cr   ) , y1       , cb90)   #  6
-                                      ,( (x0      ) , y1-cr    , 0   )   #  7
-                                      ,( (x0      ) , y0+cr    , cb90)   #  8
+    shape = ctx['msp'].add_lwpolyline([( (x0+cr)*uf , (y0   )*uf , 0   )   #  1
+                                      ,( (x1-cr)*uf , (y0   )*uf , cb90)   #  2
+                                      ,( (x1   )*uf , (y0+cr)*uf , 0   )   #  3
+                                      ,( (x1   )*uf , (y1-cr)*uf , cb90)   #  4
+                                      ,( (x1-cr)*uf , (y1   )*uf , 0   )   #  5
+                                      ,( (x0+cr)*uf , (y1   )*uf , cb90)   #  6
+                                      ,( (x0   )*uf , (y1-cr)*uf , 0   )   #  7
+                                      ,( (x0   )*uf , (y0+cr)*uf , cb90)   #  8
                                       ]
                                      , format='xyb'
                                      )

@@ -7,6 +7,8 @@ from common     import *
 def PortalBlockConnect (ctx , plate_variant , cx , cy , cb_depth):   # center of ballscrew
   hole = 6.2
 
+  uf = ctx['unit_factor']
+
   if (plate_variant == 'right'):
     mx = -1
   else:
@@ -21,7 +23,7 @@ def PortalBlockConnect (ctx , plate_variant , cx , cy , cb_depth):   # center of
           ]
 
   for x,y in holes:
-    ctx['msp'].add_circle((x + cx*mx , cy + y) , hole/2 , dxfattribs={'layer' : 'th62'})
+    ctx['msp'].add_circle(((x + cx*mx)*uf , (cy + y)*uf) , hole/2*uf , dxfattribs={'layer' : 'th62'})
 
   if (cb_depth > 0):
     hole2 = 11   # counter bore
@@ -32,7 +34,7 @@ def PortalBlockConnect (ctx , plate_variant , cx , cy , cb_depth):   # center of
     EnsureLayer(ctx , ln , ld)
 
     for (x,y) in holes:
-      ctx['msp'].add_circle((x + cx*mx , cy + y) , hole2/2 , dxfattribs={'layer' : ln})
+      ctx['msp'].add_circle(((x + cx*mx)*uf , (cy + y)*uf) , hole2/2*uf , dxfattribs={'layer' : ln})
 
   return
 
@@ -41,6 +43,8 @@ def PortalBlockConnect (ctx , plate_variant , cx , cy , cb_depth):   # center of
 def PortalAddOn (ctx , plate_variant):
   hole = 6.8
   # purpose is to mount the foot of a measuring stand that holds a dial indicator the measure and adjust alignment
+
+  uf = ctx['unit_factor']
 
   if (plate_variant == 'left'):
     mx = 1
@@ -53,7 +57,7 @@ def PortalAddOn (ctx , plate_variant):
               #,[37 + 2*70.59 , 94.7514]
               #,[37           , 94.7514]
                ]:
-    ctx['msp'].add_circle((x * mx , y) , hole/2 , dxfattribs={'layer' : 'th68'})
+    ctx['msp'].add_circle((x * mx *uf, y*uf) , hole/2*uf , dxfattribs={'layer' : 'th68'})
 
   return
 
@@ -61,6 +65,8 @@ def PortalAddOn (ctx , plate_variant):
 
 def Portal_Plate(ctx , plate_group , plate_name , plate_variant):
   result = {}
+
+  uf = ctx['unit_factor']
 
   if (plate_variant==''):
     plate_id = '%s-%s'    % (plate_group,plate_name)
@@ -117,10 +123,10 @@ def Portal_Plate(ctx , plate_group , plate_name , plate_variant):
 
 
     # outer shape...
-    shape = ctx['msp'].add_lwpolyline([( x[0] , y[0])
-                                      ,( x[6] , y[0])
-                                      ,( x[6] , y[5])
-                                      ,( x[0] , y[5])
+    shape = ctx['msp'].add_lwpolyline([( x[0]*uf , y[0]*uf)
+                                      ,( x[6]*uf , y[0]*uf)
+                                      ,( x[6]*uf , y[5]*uf)
+                                      ,( x[0]*uf , y[5]*uf)
                                       ]
                                      , format='xy'
                                      )
@@ -131,7 +137,7 @@ def Portal_Plate(ctx , plate_group , plate_name , plate_variant):
 
     for xi in range(1,6):
       for yi in range(1,5):
-        ctx['msp'].add_circle((x[xi] , y[yi]) , hole_diameter/2 , dxfattribs={'layer' : 'th52'})
+        ctx['msp'].add_circle((x[xi]*uf , y[yi]*uf) , hole_diameter/2*uf , dxfattribs={'layer' : 'th52'})
 
     screw = Screw('M5' , cfg['Plates'][plate_group][plate_name]['thickness']
                        + 6   # thru sliding nut
@@ -168,28 +174,28 @@ def Portal_Plate(ctx , plate_group , plate_name , plate_variant):
 
 
     # outer shape...
-    shape = ctx['msp'].add_lwpolyline([( (x0+cr      )*mx , y3         , 0       )   #  1
-                                      ,( (x1-cr      )*mx , y3         ,-cb90    )   #  2
-                                      ,( (x1         )*mx , y3-cr      , 0       )   #  3
-                                      ,( (x1         )*mx , y2+cr      , cb90    )   #  4
-                                      ,( (x1+cr      )*mx , y2         , 0       )   #  5
-                                      ,( (x3-5       )*mx , y2         ,-cb90    )   #  6
-                                      ,( (x3         )*mx , y2-5       , 0       )   #  7
-                                      ,( (x3         )*mx , y0+1       , cb90    )   #  8
-                                      ,( (x3+1       )*mx , y0         , 0       )   #  9
-                                      ,( (x4-cr      )*mx , y0         , cb90    )   # 10
-                                      ,( (x4         )*mx , y0+cr      , 0       )   # 11
-                                      ,( (x4         )*mx , y1-cr      ,-cb90    )   # 12
-                                      ,( (x4+cr      )*mx , y1         , 0       )   # 13
-                                      ,( (x5-cr      )*mx , y1         , cb90    )   # 14
-                                      ,( (x5         )*mx , y1+cr      , 0       )   # 15
-                                      ,( (x5+p16x    )*mx , y4-p16y    , p16cb*mx)   # 16
-                                      ,( (x5+p17x    )*mx , y4+p17y    , 0       )   # 17
-                                      ,( (x2+p18x    )*mx , y5+p18y    ,-p18cb*mx)   # 18
-                                      ,( (x2+p19x    )*mx , y5+p19y    , 0       )   # 19
-                                      ,( (x0+5       )*mx , y5         , cb90    )   # 20
-                                      ,( (x0         )*mx , y5-5       , 0       )   # 21
-                                      ,( (x0         )*mx , y3+cr      , cb90    )   # 22
+    shape = ctx['msp'].add_lwpolyline([( (x0+cr      )*mx*uf , (y3     )*uf   , 0       )   #  1
+                                      ,( (x1-cr      )*mx*uf , (y3     )*uf   ,-cb90    )   #  2
+                                      ,( (x1         )*mx*uf , (y3-cr  )*uf   , 0       )   #  3
+                                      ,( (x1         )*mx*uf , (y2+cr  )*uf   , cb90    )   #  4
+                                      ,( (x1+cr      )*mx*uf , (y2     )*uf   , 0       )   #  5
+                                      ,( (x3-5       )*mx*uf , (y2     )*uf   ,-cb90    )   #  6
+                                      ,( (x3         )*mx*uf , (y2-5   )*uf   , 0       )   #  7
+                                      ,( (x3         )*mx*uf , (y0+1   )*uf   , cb90    )   #  8
+                                      ,( (x3+1       )*mx*uf , (y0     )*uf   , 0       )   #  9
+                                      ,( (x4-cr      )*mx*uf , (y0     )*uf   , cb90    )   # 10
+                                      ,( (x4         )*mx*uf , (y0+cr  )*uf   , 0       )   # 11
+                                      ,( (x4         )*mx*uf , (y1-cr  )*uf   ,-cb90    )   # 12
+                                      ,( (x4+cr      )*mx*uf , (y1     )*uf   , 0       )   # 13
+                                      ,( (x5-cr      )*mx*uf , (y1     )*uf   , cb90    )   # 14
+                                      ,( (x5         )*mx*uf , (y1+cr  )*uf   , 0       )   # 15
+                                      ,( (x5+p16x    )*mx*uf , (y4-p16y)*uf   , p16cb*mx)   # 16
+                                      ,( (x5+p17x    )*mx*uf , (y4+p17y)*uf   , 0       )   # 17
+                                      ,( (x2+p18x    )*mx*uf , (y5+p18y)*uf   ,-p18cb*mx)   # 18
+                                      ,( (x2+p19x    )*mx*uf , (y5+p19y)*uf   , 0       )   # 19
+                                      ,( (x0+5       )*mx*uf , (y5     )*uf   , cb90    )   # 20
+                                      ,( (x0         )*mx*uf , (y5-5   )*uf   , 0       )   # 21
+                                      ,( (x0         )*mx*uf , (y3+cr  )*uf   , cb90    )   # 22
                                       ]
                                      , format='xyb'
                                      )
@@ -297,15 +303,15 @@ def Portal_Plate(ctx , plate_group , plate_name , plate_variant):
     (y0 , y1) = [-28.5 , 28.5]
 
     # outer shape...
-    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mx , y0       , 0   )   #  1
-                                       ,( (x1-cr   )*mx , y0       , cb90)   #  2
-                                       ,( (x1      )*mx , y0+cr    , 0   )   #  3
-                                       ,( (x1      )*mx , y1-cr    , cb90)   #  4
-                                       ,( (x1-cr   )*mx , y1       , 0   )   #  5
-                                       ,( (x0+cr   )*mx , y1       , cb90)   #  6
-                                       ,( (x0      )*mx , y1-cr    , 0   )   #  7
-                                       ,( (x0      )*mx , y0+cr    , cb90)   #  8
-                                       ]
+    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mx*uf , (y0   )*uf  , 0   )   #  1
+                                      ,( (x1-cr   )*mx*uf , (y0   )*uf  , cb90)   #  2
+                                      ,( (x1      )*mx*uf , (y0+cr)*uf  , 0   )   #  3
+                                      ,( (x1      )*mx*uf , (y1-cr)*uf  , cb90)   #  4
+                                      ,( (x1-cr   )*mx*uf , (y1   )*uf  , 0   )   #  5
+                                      ,( (x0+cr   )*mx*uf , (y1   )*uf  , cb90)   #  6
+                                      ,( (x0      )*mx*uf , (y1-cr)*uf  , 0   )   #  7
+                                      ,( (x0      )*mx*uf , (y0+cr)*uf  , cb90)   #  8
+                                      ]
                                       , format='xyb'
                                       )
     shape.close(True)
@@ -328,14 +334,14 @@ def Portal_Plate(ctx , plate_group , plate_name , plate_variant):
     (y0 , y1) = [-26 , 26]
 
     # outer shape...
-    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mx , y0       , 0   )   #  1
-                                      ,( (x1-cr   )*mx , y0       , cb90)   #  2
-                                      ,( (x1      )*mx , y0+cr    , 0   )   #  3
-                                      ,( (x1      )*mx , y1-cr    , cb90)   #  4
-                                      ,( (x1-cr   )*mx , y1       , 0   )   #  5
-                                      ,( (x0+cr   )*mx , y1       , cb90)   #  6
-                                      ,( (x0      )*mx , y1-cr    , 0   )   #  7
-                                      ,( (x0      )*mx , y0+cr    , cb90)   #  8
+    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mx*uf , (y0   )*uf    , 0   )   #  1
+                                      ,( (x1-cr   )*mx*uf , (y0   )*uf    , cb90)   #  2
+                                      ,( (x1      )*mx*uf , (y0+cr)*uf    , 0   )   #  3
+                                      ,( (x1      )*mx*uf , (y1-cr)*uf    , cb90)   #  4
+                                      ,( (x1-cr   )*mx*uf , (y1   )*uf    , 0   )   #  5
+                                      ,( (x0+cr   )*mx*uf , (y1   )*uf    , cb90)   #  6
+                                      ,( (x0      )*mx*uf , (y1-cr)*uf    , 0   )   #  7
+                                      ,( (x0      )*mx*uf , (y0+cr)*uf    , cb90)   #  8
                                       ]
                                      , format='xyb'
                                      )
@@ -357,22 +363,22 @@ def Portal_Plate(ctx , plate_group , plate_name , plate_variant):
     mx=-1 # mirror to get the facets on the side towards inside
 
     # outer shape...
-    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mx , y0       , 0      )   #  1
-                                      ,( (x2-cr   )*mx , y0       , cb90*mx)   #  2
-                                      ,( (x2      )*mx , y0+cr    , 0      )   #  3
-                                      ,( (x2      )*mx , y3-cr    , cb90*mx)   #  4
-                                      ,( (x2-cr   )*mx , y3       , 0      )   #  5
-                                      ,( (x0+cr   )*mx , y3       , cb90*mx)   #  6
-                                      ,( (x0      )*mx , y3-cr    , 0      )   #  7
-                                      ,( (x0      )*mx , y2+cr    , cb90*mx)   #  8
-                                      ,( (x0+cr   )*mx , y2       , 0      )   #  9
-                                      ,( (x1-dbo90)*mx , y2       , dbb *mx)   # 10
-                                      ,( (x1      )*mx , y2-dbo90 , 0      )   # 11
-                                      ,( (x1      )*mx , y1+dbo90 , dbb *mx)   # 12
-                                      ,( (x1-dbo90)*mx , y1       , 0      )   # 13
-                                      ,( (x0+cr   )*mx , y1       , cb90*mx)   # 14
-                                      ,( (x0      )*mx , y1-cr    , 0      )   # 15
-                                      ,( (x0      )*mx , y0+cr    , cb90*mx)   # 16
+    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mx*uf , (y0      )*uf , 0      )   #  1
+                                      ,( (x2-cr   )*mx*uf , (y0      )*uf , cb90*mx)   #  2
+                                      ,( (x2      )*mx*uf , (y0+cr   )*uf , 0      )   #  3
+                                      ,( (x2      )*mx*uf , (y3-cr   )*uf , cb90*mx)   #  4
+                                      ,( (x2-cr   )*mx*uf , (y3      )*uf , 0      )   #  5
+                                      ,( (x0+cr   )*mx*uf , (y3      )*uf , cb90*mx)   #  6
+                                      ,( (x0      )*mx*uf , (y3-cr   )*uf , 0      )   #  7
+                                      ,( (x0      )*mx*uf , (y2+cr   )*uf , cb90*mx)   #  8
+                                      ,( (x0+cr   )*mx*uf , (y2      )*uf , 0      )   #  9
+                                      ,( (x1-dbo90)*mx*uf , (y2      )*uf , dbb *mx)   # 10
+                                      ,( (x1      )*mx*uf , (y2-dbo90)*uf , 0      )   # 11
+                                      ,( (x1      )*mx*uf , (y1+dbo90)*uf , dbb *mx)   # 12
+                                      ,( (x1-dbo90)*mx*uf , (y1      )*uf , 0      )   # 13
+                                      ,( (x0+cr   )*mx*uf , (y1      )*uf , cb90*mx)   # 14
+                                      ,( (x0      )*mx*uf , (y1-cr   )*uf , 0      )   # 15
+                                      ,( (x0      )*mx*uf , (y0+cr   )*uf , cb90*mx)   # 16
                                       ]
                                      , format='xyb'
                                      )

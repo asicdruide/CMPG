@@ -10,12 +10,14 @@ def Frame_Block_connect (ctx , plate_variant , cx , cy , mx):   # center of ball
 
   EnsureLayer(ctx , 'th62' , 'through hole 6.2mm (M6 screw)')
 
+  uf = ctx['unit_factor']
+
   for x,y in [(-28.6 , -32.5)
              ,( 40.5 , -32.5)
              ,( 40.5 ,   7  )
              ,(-28.6 ,  32.5)
              ]:
-    ctx['msp'].add_circle(((cx + x) * mx , cy + y) , hole/2 , dxfattribs={'layer' : 'th62'})
+    ctx['msp'].add_circle((((cx + x) * mx)*uf , (cy + y)*uf) , hole/2*uf , dxfattribs={'layer' : 'th62'})
 
   return
 
@@ -23,6 +25,8 @@ def Frame_Block_connect (ctx , plate_variant , cx , cy , mx):   # center of ball
 
 def Frame_plate(ctx , plate_group , plate_name , plate_variant):
   result = {}
+
+  uf = ctx['unit_factor']
 
   if (plate_variant==''):
     plate_id = '%s-%s'    % (plate_group,plate_name)
@@ -75,25 +79,25 @@ def Frame_plate(ctx , plate_group , plate_name , plate_variant):
 
 
     # x/y values under the assumption that the center of ballscrew/motor-axis is at (0,0)
-    (x0,x1,x2) = [ -36.1  ,  88+shift_x , 163.9+shift_x]
+    (x0,x1,x2) = [ -36.1     ,  88+shift_x , 163.9+shift_x]
     (y2,y1,y0) = [ 40
                  ,  0
                  ,-40
                  ]
 
     # draw outer shape...
-    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mirror_x , y0       , 0            )
-                                      ,( (x2-cr   )*mirror_x , y0       , cb90*mirror_x)
-                                      ,( (x2      )*mirror_x , y0+cr    , 0            )
-                                      ,( (x2      )*mirror_x , y1-cr    , cb90*mirror_x)
-                                      ,( (x2-cr   )*mirror_x , y1       , 0            )
-                                      ,( (x1+cr   )*mirror_x , y1       ,-cb90*mirror_x) # inner corner
-                                      ,( (x1      )*mirror_x , y1+cr    , 0            )
-                                      ,( (x1      )*mirror_x , y2-cr    , cb90*mirror_x)
-                                      ,( (x1-cr   )*mirror_x , y2       , 0            )
-                                      ,( (x0+cr   )*mirror_x , y2       , cb90*mirror_x)
-                                      ,( (x0      )*mirror_x , y2-cr    , 0            )
-                                      ,( (x0      )*mirror_x , y0+cr    , cb90*mirror_x)
+    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mirror_x*uf , (y0   )*uf    , 0            )
+                                      ,( (x2-cr   )*mirror_x*uf , (y0   )*uf    , cb90*mirror_x)
+                                      ,( (x2      )*mirror_x*uf , (y0+cr)*uf    , 0            )
+                                      ,( (x2      )*mirror_x*uf , (y1-cr)*uf    , cb90*mirror_x)
+                                      ,( (x2-cr   )*mirror_x*uf , (y1   )*uf    , 0            )
+                                      ,( (x1+cr   )*mirror_x*uf , (y1   )*uf    ,-cb90*mirror_x) # inner corner
+                                      ,( (x1      )*mirror_x*uf , (y1+cr)*uf    , 0            )
+                                      ,( (x1      )*mirror_x*uf , (y2-cr)*uf    , cb90*mirror_x)
+                                      ,( (x1-cr   )*mirror_x*uf , (y2   )*uf    , 0            )
+                                      ,( (x0+cr   )*mirror_x*uf , (y2   )*uf    , cb90*mirror_x)
+                                      ,( (x0      )*mirror_x*uf , (y2-cr)*uf    , 0            )
+                                      ,( (x0      )*mirror_x*uf , (y0+cr)*uf    , cb90*mirror_x)
                                       ]
                                      , format='xyb'
                                      )
@@ -188,22 +192,22 @@ def Frame_plate(ctx , plate_group , plate_name , plate_variant):
     cr=5
 
     # outer shape...
-    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mirror_x , y0       , 0            )
-                                      ,( (x3-cr   )*mirror_x , y0       , cb90*mirror_x)
-                                      ,( (x3      )*mirror_x , y0+cr    , 0            )
-                                      ,( (x3      )*mirror_x , y2-cr    , cb90*mirror_x)
-                                      ,( (x3-cr   )*mirror_x , y2       , 0            )
-                                      ,( (x2+cr   )*mirror_x , y2       , cb90*mirror_x)
-                                      ,( (x2      )*mirror_x , y2-cr    , 0            )
-                                      ,( (x2      )*mirror_x , y1+dbo90 ,-dbb *mirror_x)
-                                      ,( (x2-dbo90)*mirror_x , y1       , 0            )
-                                      ,( (x1+dbo90)*mirror_x , y1       ,-dbb *mirror_x)
-                                      ,( (x1      )*mirror_x , y1+dbo90 , 0            )
-                                      ,( (x1      )*mirror_x , y3-cr    , cb90*mirror_x)
-                                      ,( (x1-cr   )*mirror_x , y3       , 0            )
-                                      ,( (x0+cr   )*mirror_x , y3       , cb90*mirror_x)
-                                      ,( (x0      )*mirror_x , y3-cr    , 0            )
-                                      ,( (x0      )*mirror_x , y0+cr    , cb90*mirror_x)
+    shape = ctx['msp'].add_lwpolyline([( (x0+cr   )*mirror_x*uf , (y0      )*uf , 0            )
+                                      ,( (x3-cr   )*mirror_x*uf , (y0      )*uf , cb90*mirror_x)
+                                      ,( (x3      )*mirror_x*uf , (y0+cr   )*uf , 0            )
+                                      ,( (x3      )*mirror_x*uf , (y2-cr   )*uf , cb90*mirror_x)
+                                      ,( (x3-cr   )*mirror_x*uf , (y2      )*uf , 0            )
+                                      ,( (x2+cr   )*mirror_x*uf , (y2      )*uf , cb90*mirror_x)
+                                      ,( (x2      )*mirror_x*uf , (y2-cr   )*uf , 0            )
+                                      ,( (x2      )*mirror_x*uf , (y1+dbo90)*uf ,-dbb *mirror_x)
+                                      ,( (x2-dbo90)*mirror_x*uf , (y1      )*uf , 0            )
+                                      ,( (x1+dbo90)*mirror_x*uf , (y1      )*uf ,-dbb *mirror_x)
+                                      ,( (x1      )*mirror_x*uf , (y1+dbo90)*uf , 0            )
+                                      ,( (x1      )*mirror_x*uf , (y3-cr   )*uf , cb90*mirror_x)
+                                      ,( (x1-cr   )*mirror_x*uf , (y3      )*uf , 0            )
+                                      ,( (x0+cr   )*mirror_x*uf , (y3      )*uf , cb90*mirror_x)
+                                      ,( (x0      )*mirror_x*uf , (y3-cr   )*uf , 0            )
+                                      ,( (x0      )*mirror_x*uf , (y0+cr   )*uf , cb90*mirror_x)
                                       ]
                                      , format='xyb'
                                      )

@@ -123,6 +123,7 @@ def outer_corner (cr , start_angle , stop_angle):
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def SFU1204_nutholder(ctx , cx , cy , rotate , context):
+  uf     = ctx['unit_factor']
   hole   =   5.2
   hole2  =   9   # counter bore
 
@@ -138,10 +139,10 @@ def SFU1204_nutholder(ctx , cx , cy , rotate , context):
 
 
   for x,y in holes:
-    ctx['msp'].add_circle(rotateXY(x , y , cx , cy , rotate) ,   hole/2 , dxfattribs={'layer' : 'th52'})
+    ctx['msp'].add_circle(rotateXY(x*uf , y*uf , cx*uf , cy*uf , rotate) ,   hole/2*uf , dxfattribs={'layer' : 'th52'})
     # place holes and annotation
     if (context == 'front'):
-      ctx['msp'].add_circle(rotateXY(x , y , cx , cy , rotate) ,   hole2/2 , dxfattribs={'layer' : 'cb9x5'})
+      ctx['msp'].add_circle(rotateXY(x*uf , y*uf , cx*uf , cy*uf , rotate) ,   hole2/2*uf , dxfattribs={'layer' : 'cb9x5'})
 
   if (context == 'front'):
     layer = 'outline'
@@ -168,14 +169,14 @@ def SFU1204_nutholder(ctx , cx , cy , rotate , context):
   (p8x,p8y) = rotateXY(cx+x1    , cy+y1+cr       , cx , cy , rotate)
 
 
-  shape = ctx['msp'].add_lwpolyline([(p1x,p1y , 0   ) # 1
-                                    ,(p2x,p2y , cb90) # 2
-                                    ,(p3x,p3y , 0   ) # 3
-                                    ,(p4x,p4y , cb90) # 4
-                                    ,(p5x,p5y , 0   ) # 5
-                                    ,(p6x,p6y , cb90) # 6
-                                    ,(p7x,p7y , 0   ) # 7
-                                    ,(p8x,p8y , cb90) # 8
+  shape = ctx['msp'].add_lwpolyline([(p1x*uf , p1y*uf , 0   ) # 1
+                                    ,(p2x*uf , p2y*uf , cb90) # 2
+                                    ,(p3x*uf , p3y*uf , 0   ) # 3
+                                    ,(p4x*uf , p4y*uf , cb90) # 4
+                                    ,(p5x*uf , p5y*uf , 0   ) # 5
+                                    ,(p6x*uf , p6y*uf , cb90) # 6
+                                    ,(p7x*uf , p7y*uf , 0   ) # 7
+                                    ,(p8x*uf , p8y*uf , cb90) # 8
                                     ]
                                    , format='xyb'
                                    , dxfattribs={'layer': layer}
@@ -184,13 +185,14 @@ def SFU1204_nutholder(ctx , cx , cy , rotate , context):
 
 
   # mark center
-  ctx['msp'].add_point((cx , cy) , dxfattribs={'layer': 'outline'})
+  ctx['msp'].add_point((cx*uf , cy*uf) , dxfattribs={'layer': 'outline'})
 
   return
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # floating end ballscrew support
 def BF12_face(ctx , cx , cy , rotate , cb_depth):   # center of ballscrew
+  uf     = ctx['unit_factor']
   hole1  =   5.2
   hole2  =  26
   B      =  60
@@ -211,19 +213,19 @@ def BF12_face(ctx , cx , cy , rotate , cb_depth):   # center of ballscrew
                    )
 
   for (x,y) in mounting_holes:
-    ctx['msp'].add_circle((x,y) , hole1/2 , dxfattribs={'layer' : 'th52'})
+    ctx['msp'].add_circle((x*uf,y*uf) , hole1/2*uf , dxfattribs={'layer' : 'th52'})
 
-  ctx['msp'].add_circle(     rotateXY(cx     , cy         , cx , cy , rotate) , hole2/2, dxfattribs={'layer': 'thx' }) # the large hole
+  ctx['msp'].add_circle(     rotateXY(cx*uf     , cy*uf         , cx*uf , cy*uf , rotate) , hole2/2*uf, dxfattribs={'layer': 'thx' }) # the large hole
 
   # draw outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx-B/2 , cy-h       , cx , cy , rotate)  # 1
-                                    ,rotateXY(cx+B/2 , cy-h       , cx , cy , rotate)  # 2
-                                    ,rotateXY(cx+B/2 , cy-h+H1    , cx , cy , rotate)  # 3
-                                    ,rotateXY(cx+B1/2, cy-h+H1    , cx , cy , rotate)  # 4
-                                    ,rotateXY(cx+B1/2, cy-h+H     , cx , cy , rotate)  # 5
-                                    ,rotateXY(cx-B1/2, cy-h+H     , cx , cy , rotate)  # 6
-                                    ,rotateXY(cx-B1/2, cy-h+H1    , cx , cy , rotate)  # 7
-                                    ,rotateXY(cx-B/2 , cy-h+H1    , cx , cy , rotate)  # 8
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx-B/2 )*uf, (cy-h   )*uf , cx*uf , cy*uf , rotate)  # 1
+                                    ,rotateXY((cx+B/2 )*uf, (cy-h   )*uf , cx*uf , cy*uf , rotate)  # 2
+                                    ,rotateXY((cx+B/2 )*uf, (cy-h+H1)*uf , cx*uf , cy*uf , rotate)  # 3
+                                    ,rotateXY((cx+B1/2)*uf, (cy-h+H1)*uf , cx*uf , cy*uf , rotate)  # 4
+                                    ,rotateXY((cx+B1/2)*uf, (cy-h+H )*uf , cx*uf , cy*uf , rotate)  # 5
+                                    ,rotateXY((cx-B1/2)*uf, (cy-h+H )*uf , cx*uf , cy*uf , rotate)  # 6
+                                    ,rotateXY((cx-B1/2)*uf, (cy-h+H1)*uf , cx*uf , cy*uf , rotate)  # 7
+                                    ,rotateXY((cx-B/2 )*uf, (cy-h+H1)*uf , cx*uf , cy*uf , rotate)  # 8
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
@@ -239,7 +241,7 @@ def BF12_face(ctx , cx , cy , rotate , cb_depth):   # center of ballscrew
     EnsureLayer(ctx , ln , ld)
 
     for (x,y) in mounting_holes:
-      ctx['msp'].add_circle((x,y) , hole3/2 , dxfattribs={'layer' : ln})
+      ctx['msp'].add_circle((x*uf,y*uf) , hole3/2*uf , dxfattribs={'layer' : ln})
 
 
 
@@ -250,6 +252,7 @@ def BF12_face(ctx , cx , cy , rotate , cb_depth):   # center of ballscrew
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # floating end ballscrew support
 def BF10_face(ctx , cx , cy , rotate):   # center of ballscrew
+  uf     = ctx['unit_factor']
   hole1  =   5.2
   hole2  =  23
   B      =  60
@@ -260,21 +263,27 @@ def BF10_face(ctx , cx , cy , rotate):   # center of ballscrew
   P      =  46
   E      =  15
 
-  ctx['msp'].add_circle(     rotateXY(cx     , cy         , cx , cy , rotate) , hole2/2) # the large hole
-  ctx['msp'].add_circle(     rotateXY(cx-P/2 , cy         , cx , cy , rotate) , hole1/2) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx+P/2 , cy         , cx , cy , rotate) , hole1/2) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx-P/2 , cy-E       , cx , cy , rotate) , hole1/2) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx+P/2 , cy-E       , cx , cy , rotate) , hole1/2) # mounting holes
+  EnsureLayer(ctx , 'th52' , 'through hole 5.0mm (M6 thread)')
+
+  for (x,y) in [rotateXY(cx-P/2 , cy    , cx , cy , rotate)
+               ,rotateXY(cx+P/2 , cy    , cx , cy , rotate)
+               ,rotateXY(cx-P/2 , cy-E  , cx , cy , rotate)
+               ,rotateXY(cx+P/2 , cy-E  , cx , cy , rotate)
+               ]:
+    ctx['msp'].add_circle((x*uf , y*uf) , hole1/2*uf, dxfattribs={'layer': 'th52'}) # mounting holes
+
+  ctx['msp'].add_circle(     rotateXY((cx    )*uf , (cy  )*uf  , cx*uf , cy*uf , rotate) , hole2/2*uf) # the large hole
+
 
   # draw outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx-B/2 , cy-h       , cx , cy , rotate)  # 1
-                                    ,rotateXY(cx+B/2 , cy-h       , cx , cy , rotate)  # 2
-                                    ,rotateXY(cx+B/2 , cy-h+H1    , cx , cy , rotate)  # 3
-                                    ,rotateXY(cx+B1/2, cy-h+H1    , cx , cy , rotate)  # 4
-                                    ,rotateXY(cx+B1/2, cy-h+H     , cx , cy , rotate)  # 5
-                                    ,rotateXY(cx-B1/2, cy-h+H     , cx , cy , rotate)  # 6
-                                    ,rotateXY(cx-B1/2, cy-h+H1    , cx , cy , rotate)  # 7
-                                    ,rotateXY(cx-B/2 , cy-h+H1    , cx , cy , rotate)  # 8
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx-B/2 )*uf , (cy-h   )*uf , cx*uf , cy*uf , rotate)  # 1
+                                    ,rotateXY((cx+B/2 )*uf , (cy-h   )*uf , cx*uf , cy*uf , rotate)  # 2
+                                    ,rotateXY((cx+B/2 )*uf , (cy-h+H1)*uf , cx*uf , cy*uf , rotate)  # 3
+                                    ,rotateXY((cx+B1/2)*uf , (cy-h+H1)*uf , cx*uf , cy*uf , rotate)  # 4
+                                    ,rotateXY((cx+B1/2)*uf , (cy-h+H )*uf , cx*uf , cy*uf , rotate)  # 5
+                                    ,rotateXY((cx-B1/2)*uf , (cy-h+H )*uf , cx*uf , cy*uf , rotate)  # 6
+                                    ,rotateXY((cx-B1/2)*uf , (cy-h+H1)*uf , cx*uf , cy*uf , rotate)  # 7
+                                    ,rotateXY((cx-B/2 )*uf , (cy-h+H1)*uf , cx*uf , cy*uf , rotate)  # 8
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
@@ -285,6 +294,7 @@ def BF10_face(ctx , cx , cy , rotate):   # center of ballscrew
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # floating end ballscrew support
 def BF10_footprint(ctx , cx , cy , rotate):
+  uf     = ctx['unit_factor']
   hole1  =   5.0
   B      =  60
   L      =  20
@@ -292,27 +302,30 @@ def BF10_footprint(ctx , cx , cy , rotate):
 
   EnsureLayer(ctx , 'th50' , 'through hole 5.0mm (M6 thread)')
 
-  ctx['msp'].add_circle(     rotateXY(cx , cy-P/2         , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th50'}) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx , cy+P/2         , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th50'}) # mounting holes
+  for (x,y) in [rotateXY(cx , cy-P/2  , cx , cy , rotate)
+               ,rotateXY(cx , cy+P/2  , cx , cy , rotate)
+               ]:
+    ctx['msp'].add_circle((x*uf , y*uf) , hole1/2*uf, dxfattribs={'layer': 'th50'}) # mounting holes
 
   # draw outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx-L/2 , cy-B/2     , cx , cy , rotate)  # 1
-                                    ,rotateXY(cx+L/2 , cy-B/2     , cx , cy , rotate)  # 2
-                                    ,rotateXY(cx+L/2 , cy+B/2     , cx , cy , rotate)  # 3
-                                    ,rotateXY(cx-L/2 , cy+B/2     , cx , cy , rotate)  # 4
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx-L/2)*uf , (cy-B/2)*uf , cx*uf , cy*uf , rotate)  # 1
+                                    ,rotateXY((cx+L/2)*uf , (cy-B/2)*uf , cx*uf , cy*uf , rotate)  # 2
+                                    ,rotateXY((cx+L/2)*uf , (cy+B/2)*uf , cx*uf , cy*uf , rotate)  # 3
+                                    ,rotateXY((cx-L/2)*uf , (cy+B/2)*uf , cx*uf , cy*uf , rotate)  # 4
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
   shape.close(True)
 
   # mark center
-  ctx['msp'].add_point((cx , cy) , dxfattribs={'layer': 'outline'})
+  ctx['msp'].add_point((cx*uf , cy*uf) , dxfattribs={'layer': 'outline'})
 
   return
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # fixed end ballscrew support
 def BK10_footprint(ctx , cx , cy , rotate):
+  uf     = ctx['unit_factor']
   hole   =   5.0
   B      =  60
   L2     =  25
@@ -327,58 +340,62 @@ def BK10_footprint(ctx , cx , cy , rotate):
                ,rotateXY(cx + C1/2 , cy - P/2, cx , cy , rotate)
                ,rotateXY(cx + C1/2 , cy + P/2, cx , cy , rotate)
                ]:
-    ctx['msp'].add_circle((x , y) , hole/2, dxfattribs={'layer': 'th50'})
+    ctx['msp'].add_circle((x*uf , y*uf) , hole/2*uf, dxfattribs={'layer': 'th50'})
 
 
   # draw outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx-L2/2 , cy-B/2     , cx , cy , rotate)  # 1
-                                    ,rotateXY(cx+L2/2 , cy-B/2     , cx , cy , rotate)  # 2
-                                    ,rotateXY(cx+L2/2 , cy+B/2     , cx , cy , rotate)  # 3
-                                    ,rotateXY(cx-L2/2 , cy+B/2     , cx , cy , rotate)  # 4
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx-L2/2)*uf , (cy-B/2)*uf , cx*uf , cy*uf , rotate)  # 1
+                                    ,rotateXY((cx+L2/2)*uf , (cy-B/2)*uf , cx*uf , cy*uf , rotate)  # 2
+                                    ,rotateXY((cx+L2/2)*uf , (cy+B/2)*uf , cx*uf , cy*uf , rotate)  # 3
+                                    ,rotateXY((cx-L2/2)*uf , (cy+B/2)*uf , cx*uf , cy*uf , rotate)  # 4
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
   shape.close(True)
 
   # mark center
-  ctx['msp'].add_point((cx , cy) , dxfattribs={'layer': 'outline'})
+  ctx['msp'].add_point((cx*uf , cy*uf) , dxfattribs={'layer': 'outline'})
 
   return
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # fixed end ballscrew support
 def BK12_face(ctx , cx , cy , rotate):   # center of ballscrew
+  uf     = ctx['unit_factor']
   hole1  =   5.2
 
   EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
 
-  ctx['msp'].add_circle(     rotateXY(cx-23 , cy         , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx+23 , cy         , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx-23 , cy-18      , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(     rotateXY(cx+23 , cy-18      , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
+  for (x,y) in [rotateXY(cx-23 , cy         , cx , cy , rotate)
+               ,rotateXY(cx+23 , cy         , cx , cy , rotate)
+               ,rotateXY(cx-23 , cy-18      , cx , cy , rotate)
+               ,rotateXY(cx+23 , cy-18      , cx , cy , rotate)
+               ]:
+    ctx['msp'].add_circle((x*uf , y*uf) , hole1/2*uf, dxfattribs={'layer': 'th52'})
 
   # draw outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx-30 , cy-25      , cx , cy , rotate)
-                                    ,rotateXY(cx+30 , cy-25      , cx , cy , rotate)
-                                    ,rotateXY(cx+30 , cy-25+32.5 , cx , cy , rotate)
-                                    ,rotateXY(cx+17 , cy-25+32.5 , cx , cy , rotate)
-                                    ,rotateXY(cx+17 , cy-25+43   , cx , cy , rotate)
-                                    ,rotateXY(cx-17 , cy-25+43   , cx , cy , rotate)
-                                    ,rotateXY(cx-17 , cy-25+32.5 , cx , cy , rotate)
-                                    ,rotateXY(cx-30 , cy-25+32.5 , cx , cy , rotate)
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx-30)*uf , (cy-25     )*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx+30)*uf , (cy-25     )*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx+30)*uf , (cy-25+32.5)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx+17)*uf , (cy-25+32.5)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx+17)*uf , (cy-25+43  )*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx-17)*uf , (cy-25+43  )*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx-17)*uf , (cy-25+32.5)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx-30)*uf , (cy-25+32.5)*uf , cx*uf , cy*uf , rotate)
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
   shape.close(True)
 
   # mark center
-  ctx['msp'].add_point((cx , cy) , dxfattribs={'layer': 'outline'})
+  ctx['msp'].add_point((cx*uf , cy*uf) , dxfattribs={'layer': 'outline'})
 
   return
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
 def NEMA23 (ctx , cx , cy , rotate):   # center of axis
+  uf     = ctx['unit_factor']
   hole1  =   5.2
   hole2  =  38.5
   width  = 47.14
@@ -388,21 +405,24 @@ def NEMA23 (ctx , cx , cy , rotate):   # center of axis
   EnsureLayer(ctx , 'thx'  , 'through hole 38.5mm')
   EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
 
-  ctx['msp'].add_circle(rotateXY(cx           , cy                , cx , cy , rotate) , hole2/2, dxfattribs={'layer': 'thx' }) # the large hole
-  ctx['msp'].add_circle(rotateXY(cx - width/2 , cy - width/2      , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(rotateXY(cx - width/2 , cy + width/2      , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(rotateXY(cx + width/2 , cy - width/2      , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
-  ctx['msp'].add_circle(rotateXY(cx + width/2 , cy + width/2      , cx , cy , rotate) , hole1/2, dxfattribs={'layer': 'th52'}) # mounting holes
+  for (x,y) in [rotateXY(cx - width/2 , cy - width/2      , cx , cy , rotate)
+               ,rotateXY(cx - width/2 , cy + width/2      , cx , cy , rotate)
+               ,rotateXY(cx + width/2 , cy - width/2      , cx , cy , rotate)
+               ,rotateXY(cx + width/2 , cy + width/2      , cx , cy , rotate)
+               ]:
+    ctx['msp'].add_circle((x*uf , y*uf) , hole1/2*uf, dxfattribs={'layer': 'th52'})
+
+  ctx['msp'].add_circle(rotateXY(cx*uf , cy*uf , cx*uf , cy*uf , rotate) , hole2/2*uf, dxfattribs={'layer': 'thx' }) # the large hole
 
   # add outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx - ow/2 + cr, cy - ow/2     , cx , cy , rotate)   # 1
-                                    ,rotateXY(cx + ow/2 - cr, cy - ow/2     , cx , cy , rotate)   # 2
-                                    ,rotateXY(cx + ow/2     , cy - ow/2 + cr, cx , cy , rotate)   # 3
-                                    ,rotateXY(cx + ow/2     , cy + ow/2 - cr, cx , cy , rotate)   # 4
-                                    ,rotateXY(cx + ow/2 - cr, cy + ow/2     , cx , cy , rotate)   # 5
-                                    ,rotateXY(cx - ow/2 + cr, cy + ow/2     , cx , cy , rotate)   # 6
-                                    ,rotateXY(cx - ow/2     , cy + ow/2 - cr, cx , cy , rotate)   # 7
-                                    ,rotateXY(cx - ow/2     , cy - ow/2 + cr, cx , cy , rotate)   # 8
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx - ow/2 + cr)*uf, (cy - ow/2     )*uf , cx*uf , cy*uf , rotate)   # 1
+                                    ,rotateXY((cx + ow/2 - cr)*uf, (cy - ow/2     )*uf , cx*uf , cy*uf , rotate)   # 2
+                                    ,rotateXY((cx + ow/2     )*uf, (cy - ow/2 + cr)*uf , cx*uf , cy*uf , rotate)   # 3
+                                    ,rotateXY((cx + ow/2     )*uf, (cy + ow/2 - cr)*uf , cx*uf , cy*uf , rotate)   # 4
+                                    ,rotateXY((cx + ow/2 - cr)*uf, (cy + ow/2     )*uf , cx*uf , cy*uf , rotate)   # 5
+                                    ,rotateXY((cx - ow/2 + cr)*uf, (cy + ow/2     )*uf , cx*uf , cy*uf , rotate)   # 6
+                                    ,rotateXY((cx - ow/2     )*uf, (cy + ow/2 - cr)*uf , cx*uf , cy*uf , rotate)   # 7
+                                    ,rotateXY((cx - ow/2     )*uf, (cy - ow/2 + cr)*uf , cx*uf , cy*uf , rotate)   # 8
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
@@ -413,19 +433,20 @@ def NEMA23 (ctx , cx , cy , rotate):   # center of axis
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def Face40x80 (ctx , cx , cy , rotate):   # center of profile
+  uf   = ctx['unit_factor']
   hole = 5.2
 
   EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
 
   for yi in range(0,4):
-    ctx['msp'].add_circle(rotateXY(cx-10 , cy+30-yi*20    , cx , cy , rotate) , hole/2, dxfattribs={'layer': 'th52'})
-    ctx['msp'].add_circle(rotateXY(cx+10 , cy+30-yi*20    , cx , cy , rotate) , hole/2, dxfattribs={'layer': 'th52'})
+    for xi in [-10,10]:
+      ctx['msp'].add_circle(rotateXY((cx+xi)*uf , (cy+30-yi*20)*uf    , cx*uf , cy*uf , rotate) , hole/2*uf, dxfattribs={'layer': 'th52'})
 
   # add outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY( cx-20 , cy-40  , cx , cy , rotate)
-                                    ,rotateXY( cx+20 , cy-40  , cx , cy , rotate)
-                                    ,rotateXY( cx+20 , cy+40  , cx , cy , rotate)
-                                    ,rotateXY( cx-20 , cy+40  , cx , cy , rotate)
+  shape = ctx['msp'].add_lwpolyline([rotateXY( (cx-20)*uf , (cy-40)*uf  , cx*uf , cy*uf , rotate)
+                                    ,rotateXY( (cx+20)*uf , (cy-40)*uf  , cx*uf , cy*uf , rotate)
+                                    ,rotateXY( (cx+20)*uf , (cy+40)*uf  , cx*uf , cy*uf , rotate)
+                                    ,rotateXY( (cx-20)*uf , (cy+40)*uf  , cx*uf , cy*uf , rotate)
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
@@ -436,19 +457,21 @@ def Face40x80 (ctx , cx , cy , rotate):   # center of profile
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def Side40x40 (ctx , cx , cy, rotate):   # center of holes
+  uf    = ctx['unit_factor']
   hole  =   5.2
 
   EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
 
   for xi in range(0,4):
-    ctx['msp'].add_circle(rotateXY(cx+30-xi*20 , cy-10, cx , cy , rotate) , hole/2, dxfattribs={'layer': 'th52'})
-    ctx['msp'].add_circle(rotateXY(cx+30-xi*20 , cy+10, cx , cy , rotate) , hole/2, dxfattribs={'layer': 'th52'})
+    for yi in [-10,10]:
+      ctx['msp'].add_circle(rotateXY((cx+30-xi*20)*uf , (cy+yi)*uf, cx*uf , cy*uf , rotate) , hole/2*uf, dxfattribs={'layer': 'th52'})
 
   return
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def MGN12H(ctx , cx , cy , rotate , counterbore_depth):
+  uf     = ctx['unit_factor']
   width  =  20
   height =  20
   hole   =   3.2
@@ -464,23 +487,23 @@ def MGN12H(ctx , cx , cy , rotate , counterbore_depth):
 
   # mouting holes
   for (x,y) in holes:
-    ctx['msp'].add_circle((x , y) , hole/2 , dxfattribs={'layer': 'th32'})
+    ctx['msp'].add_circle((x*uf , y*uf) , hole/2*uf , dxfattribs={'layer': 'th32'})
 
   width  = 45.4
   height = 27
 
   # add outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx - width/2 , cy - height/2 , cx , cy , rotate)
-                                    ,rotateXY(cx + width/2 , cy - height/2 , cx , cy , rotate)
-                                    ,rotateXY(cx + width/2 , cy + height/2 , cx , cy , rotate)
-                                    ,rotateXY(cx - width/2 , cy + height/2 , cx , cy , rotate)
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx - width/2)*uf , (cy - height/2)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx + width/2)*uf , (cy - height/2)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx + width/2)*uf , (cy + height/2)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx - width/2)*uf , (cy + height/2)*uf , cx*uf , cy*uf , rotate)
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
   shape.close(True)
 
   # mark center
-  ctx['msp'].add_point((cx , cy) , dxfattribs={'layer': 'outline'})
+  ctx['msp'].add_point((cx*uf , cy*uf) , dxfattribs={'layer': 'outline'})
 
 
   if (counterbore_depth > 0):
@@ -492,13 +515,14 @@ def MGN12H(ctx , cx , cy , rotate , counterbore_depth):
     EnsureLayer(ctx , ln , ld)
 
     for (x,y) in holes:
-      ctx['msp'].add_circle((x  , y) , hole2/2 , dxfattribs={'layer' : ln})
+      ctx['msp'].add_circle((x*uf  , y*uf) , hole2/2*uf , dxfattribs={'layer' : ln})
 
   return
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def SFU1605_holder(ctx , cx , cy , rotate):
+  uf     = ctx['unit_factor']
   width  =  24
   height =  40
   ow     =  40
@@ -514,27 +538,28 @@ def SFU1605_holder(ctx , cx , cy , rotate):
                ,rotateXY(cx + width/2 , cy - height/2, cx , cy , rotate)
                ,rotateXY(cx + width/2 , cy + height/2, cx , cy , rotate)
                ]:
-    ctx['msp'].add_circle((x , y) , hole/2, dxfattribs={'layer': 'th52'})
+    ctx['msp'].add_circle((x*uf , y*uf) , hole/2*uf, dxfattribs={'layer': 'th52'})
 
 
   # add outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx - ow/2 , cy - oh/2 , cx , cy , rotate)
-                                    ,rotateXY(cx + ow/2 , cy - oh/2 , cx , cy , rotate)
-                                    ,rotateXY(cx + ow/2 , cy + oh/2 , cx , cy , rotate)
-                                    ,rotateXY(cx - ow/2 , cy + oh/2 , cx , cy , rotate)
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx - ow/2)*uf , (cy - oh/2)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx + ow/2)*uf , (cy - oh/2)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx + ow/2)*uf , (cy + oh/2)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx - ow/2)*uf , (cy + oh/2)*uf , cx*uf , cy*uf , rotate)
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
   shape.close(True)
 
   # mark center
-  ctx['msp'].add_point((cx , cy) , dxfattribs={'layer': 'outline'})
+  ctx['msp'].add_point((cx*uf , cy*uf) , dxfattribs={'layer': 'outline'})
 
   return
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def Face40x60 (ctx , cx , cy , rotate , counterbore_depth):   # center of profile
+  uf   = ctx['unit_factor']
   hole = 5.2
 
   holes =  [rotateXY(cx - 20 , cy + 10 , cx , cy , rotate)
@@ -548,14 +573,14 @@ def Face40x60 (ctx , cx , cy , rotate , counterbore_depth):   # center of profil
   EnsureLayer(ctx , 'th52' , 'through hole 5.2mm (M5 screw)')
 
   for (x,y) in holes:
-    ctx['msp'].add_circle((x , y) , hole/2 , dxfattribs={'layer': 'th52'})
+    ctx['msp'].add_circle((x*uf , y*uf) , hole/2*uf , dxfattribs={'layer': 'th52'})
 
 
   # add outline
-  shape = ctx['msp'].add_lwpolyline([rotateXY(cx-30 , cy-20 , cx , cy , rotate)
-                                    ,rotateXY(cx+30 , cy-20 , cx , cy , rotate)
-                                    ,rotateXY(cx+30 , cy+20 , cx , cy , rotate)
-                                    ,rotateXY(cx-30 , cy+20 , cx , cy , rotate)
+  shape = ctx['msp'].add_lwpolyline([rotateXY((cx-30)*uf , (cy-20)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx+30)*uf , (cy-20)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx+30)*uf , (cy+20)*uf , cx*uf , cy*uf , rotate)
+                                    ,rotateXY((cx-30)*uf , (cy+20)*uf , cx*uf , cy*uf , rotate)
                                     ]
                                    , dxfattribs={'layer': 'outline'}
                                    )
@@ -563,7 +588,7 @@ def Face40x60 (ctx , cx , cy , rotate , counterbore_depth):   # center of profil
   shape.close(True)
 
   # mark center
-  ctx['msp'].add_point((cx , cy) , dxfattribs={'layer': 'outline'})
+  ctx['msp'].add_point((cx*uf , cy*uf) , dxfattribs={'layer': 'outline'})
 
 
 
@@ -576,7 +601,7 @@ def Face40x60 (ctx , cx , cy , rotate , counterbore_depth):   # center of profil
     EnsureLayer(ctx , ln , ld)
 
     for (x,y) in holes:
-      ctx['msp'].add_circle((x  , y) , hole2/2 , dxfattribs={'layer' : ln})
+      ctx['msp'].add_circle((x*uf  , y*uf) , hole2/2*uf , dxfattribs={'layer' : ln})
 
   return
 

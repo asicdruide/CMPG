@@ -7,10 +7,11 @@ from Portal_Plate  import *
 from XYZ_extrusion import *
 from datetime import datetime
 
-ctx = {'bom' : {} # collect screws/washers/nuts/...
-      ,'doc' : 0
-      ,'msp' : 0
-      ,'lay' : {} # collect optional layers
+ctx = {'bom'         : {} # collect screws/washers/nuts/...
+      ,'doc'         : 0
+      ,'msp'         : 0
+      ,'lay'         : {} # collect optional layers
+      ,'unit_factor' : cfg['unit_factor']
       }
 
 
@@ -24,7 +25,6 @@ def Plate(ctx , plate_group , plate_name , plate_variant):
   else:
     print("ERROR: unknown plate group (%s)" % (plate_group))
     exit(1)
-
 
 
 
@@ -72,8 +72,22 @@ Add2BOM(ctx , 2*2 ,'SlidingNut' ,  'M3'    , doc)    # sliding nut
 
 
 
+uf = ctx['unit_factor']
 
 
+
+if (ctx['unit_factor'] == 1.0):
+  doc_units = units.MM
+  print("INFO: drawing unit is mm")
+elif (ctx['unit_factor'] == 0.1):
+  doc_units = units.CM
+  print("INFO: drawing unit is cm")
+elif (ctx['unit_factor'] == 0.001):
+  doc_units = units.M
+  print("INFO: drawing unit is m")
+else:
+  print("ERROR: unknown unit_factor (%8.4f)" % ctx['unit_factor'])
+  exit(1)
 
 # loop thru all plates to draw...
 for plate_group  in cfg['Plates'].keys():
@@ -83,7 +97,9 @@ for plate_group  in cfg['Plates'].keys():
         # Create a new DXF R2010 drawing, official DXF version name: "AC1024"
         ctx['doc'] = ezdxf.new('R2010' , setup=True)
 
-        ctx['doc'].units = units.MM
+        ctx['doc'].units = doc_units
+
+
         my_annotations   = ctx['doc'].layers.add(name="annotation"      , color=7)
         my_outline       = ctx['doc'].layers.add(name="outline"         , color=2)
 
@@ -117,13 +133,14 @@ for plate_group  in cfg['Plates'].keys():
           txt.append("variant for %dmm thick top and %dmm thick bottom"    % (cfg['Plates'][plate_group]['top'   ]['thickness'],cfg['Plates'][plate_group]['bottom']['thickness']))
 
 
+
         for i in range(0,len(txt)):
           ctx['msp'].add_text(txt[i]
                       ,dxfattribs={'style' : 'LiberationSans'
-                                  ,'height': 5
+                                  ,'height': 5*uf
                                   ,'layer' : 'annotation'
                                   }
-                     ).set_pos((res['textXY'][0] , res['textXY'][1] + len(txt)*10 - 10*i) , align='MIDDLE_CENTER')
+                     ).set_pos((res['textXY'][0]*uf , (res['textXY'][1] + len(txt)*10 - 10*i)*uf) , align='MIDDLE_CENTER')
 
         i = 0
 
@@ -136,10 +153,10 @@ for plate_group  in cfg['Plates'].keys():
           # add comment
           ctx['msp'].add_text(ctx['lay'][ln]
                       ,dxfattribs={'style' : 'LiberationSans'
-                                  ,'height': 5
+                                  ,'height': 5*uf
                                   ,'layer' : ln
                                   }
-                     ).set_pos((res['textXY'][0] + 80 , res['textXY'][1] + text_top - 10*i) , align='MIDDLE_LEFT')
+                     ).set_pos(((res['textXY'][0] + 80)*uf , (res['textXY'][1] + text_top - 10*i)*uf) , align='MIDDLE_LEFT')
           i += 1
 
 

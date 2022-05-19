@@ -26,7 +26,7 @@ cfg = {'Plates' : {'Frame'     : {'front'                : {'thickness' :  10,'m
                                  ,'rail_spacer'          : {'thickness' :   7,'material' : 'alu' , 'variant' : [''            ],'amount':4}
                                  ,'motor_spacer'         : {'thickness' :   0,'material' : 'alu' , 'variant' : [''            ],'amount':1}
                                  ,'spindle_plate_spacer' : {'thickness' :   3,'material' : 'alu' , 'variant' : [''            ],'amount':1}
-                                 ,'spindle_adapter'      : {'thickness' :  10,'material' : 'alu' , 'variant' : [''            ],'amount':1}
+                              #  ,'spindle_adapter'      : {'thickness' :  10,'material' : 'alu' , 'variant' : [''            ],'amount':1}
                                  }
                   }
 
@@ -34,6 +34,7 @@ cfg = {'Plates' : {'Frame'     : {'front'                : {'thickness' :  10,'m
                      ,'Y'                    : {'length' : 800}  # 1000 is baseline design
                      ,'Z'                    : {'length' : 250}  # don't change this!
                      }
+      ,'unit_factor' : 1.0
       }
 
 
