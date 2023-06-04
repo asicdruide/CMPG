@@ -19,5 +19,11 @@ Planned improvements:
  * ~~output for non-plate values like extrusion length~~ (done)
  * ~~parts library for common parts~~ (done)
 
+### How to run
+
+python cmpg.py 
+
+will re-generate everything under sub-folder 'generated'.
+
 
 
